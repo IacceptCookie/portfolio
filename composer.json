@@ -7,6 +7,7 @@
         "php": ">=8.1",
         "ext-ctype": "*",
         "ext-iconv": "*",
+        "api-platform/core": "3.2",
         "doctrine/doctrine-bundle": "^2.11",
         "doctrine/doctrine-migrations-bundle": "^3.3",
         "doctrine/orm": "^2.17",
@@ -72,6 +73,11 @@
         "symfony/polyfill-php81": "*"
     },
     "scripts": {
+        "start": [
+            "Composer\\Config::disableProcessTimeout",
+            "symfony serve"],
+        "test:cs": "php-cs-fixer fix --dry-run",
+        "fix:cs": "php-cs-fixer fix",
         "auto-scripts": {
             "cache:clear": "symfony-cmd",
             "assets:install %PUBLIC_DIR%": "symfony-cmd"
@@ -93,11 +99,12 @@
         }
     },
     "require-dev": {
+        "friendsofphp/php-cs-fixer": "^3.51",
         "phpunit/phpunit": "^9.5",
         "symfony/browser-kit": "6.3.*",
         "symfony/css-selector": "6.3.*",
         "symfony/debug-bundle": "6.3.*",
-        "symfony/maker-bundle": "^1.0",
+        "symfony/maker-bundle": "^1.53",
         "symfony/phpunit-bridge": "^7.0",
         "symfony/stopwatch": "6.3.*",
         "symfony/web-profiler-bundle": "6.3.*"
