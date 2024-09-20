@@ -1,0 +1,25 @@
+grumphp:
+    tasks:
+        composer: null
+        git_commit_message:
+            enforce_capitalized_subject: false
+            type_scope_conventions:
+                types:
+                    - build
+                    - ci
+                    - chore
+                    - docs
+                    - feat
+                    - fix
+                    - perf
+                    - refactor
+                    - revert
+                    - style
+                    - test
+        composer_script:
+            script: "test:yaml"
+        phpcsfixer:
+            config: ".php-cs-fixer.dist.php"
+        phpstan:
+    fixer:
+        enabled: false
