@@ -4,7 +4,6 @@ namespace App\Factory;
 
 use App\Entity\Tag;
 use App\Repository\TagRepository;
-use Doctrine\ORM\EntityRepository;
 use Zenstruck\Foundry\Persistence\PersistentProxyObjectFactory;
 use Zenstruck\Foundry\Persistence\Proxy;
 use Zenstruck\Foundry\Persistence\ProxyRepositoryDecorator;
@@ -12,23 +11,24 @@ use Zenstruck\Foundry\Persistence\ProxyRepositoryDecorator;
 /**
  * @extends PersistentProxyObjectFactory<Tag>
  *
- * @method        Tag|Proxy create(array|callable $attributes = [])
- * @method static Tag|Proxy createOne(array $attributes = [])
- * @method static Tag|Proxy find(object|array|mixed $criteria)
- * @method static Tag|Proxy findOrCreate(array $attributes)
- * @method static Tag|Proxy first(string $sortedField = 'id')
- * @method static Tag|Proxy last(string $sortedField = 'id')
- * @method static Tag|Proxy random(array $attributes = [])
- * @method static Tag|Proxy randomOrCreate(array $attributes = [])
+ * @method        Tag|Proxy                              create(array|callable $attributes = [])
+ * @method static Tag|Proxy                              createOne(array $attributes = [])
+ * @method static Tag|Proxy                              find(object|array|mixed $criteria)
+ * @method static Tag|Proxy                              findOrCreate(array $attributes)
+ * @method static Tag|Proxy                              first(string $sortedField = 'id')
+ * @method static Tag|Proxy                              last(string $sortedField = 'id')
+ * @method static Tag|Proxy                              random(array $attributes = [])
+ * @method static Tag|Proxy                              randomOrCreate(array $attributes = [])
  * @method static TagRepository|ProxyRepositoryDecorator repository()
- * @method static Tag[]|Proxy[] all()
- * @method static Tag[]|Proxy[] createMany(int $number, array|callable $attributes = [])
- * @method static Tag[]|Proxy[] createSequence(iterable|callable $sequence)
- * @method static Tag[]|Proxy[] findBy(array $attributes)
- * @method static Tag[]|Proxy[] randomRange(int $min, int $max, array $attributes = [])
- * @method static Tag[]|Proxy[] randomSet(int $number, array $attributes = [])
+ * @method static Tag[]|Proxy[]                          all()
+ * @method static Tag[]|Proxy[]                          createMany(int $number, array|callable $attributes = [])
+ * @method static Tag[]|Proxy[]                          createSequence(iterable|callable $sequence)
+ * @method static Tag[]|Proxy[]                          findBy(array $attributes)
+ * @method static Tag[]|Proxy[]                          randomRange(int $min, int $max, array $attributes = [])
+ * @method static Tag[]|Proxy[]                          randomSet(int $number, array $attributes = [])
  */
-final class TagFactory extends PersistentProxyObjectFactory{
+final class TagFactory extends PersistentProxyObjectFactory
+{
     /**
      * @see https://symfony.com/bundles/ZenstruckFoundryBundle/current/index.html#factories-as-services
      *
@@ -51,7 +51,7 @@ final class TagFactory extends PersistentProxyObjectFactory{
     protected function defaults(): array|callable
     {
         return [
-            'tagColor' => self::faker()->text(6),
+            'tagColor' => substr(self::faker()->hexColor(), 1),
             'tagLabel' => self::faker()->text(50),
         ];
     }

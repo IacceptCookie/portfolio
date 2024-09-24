@@ -2,16 +2,32 @@
 
 namespace App\DataFixtures;
 
+use App\Factory\ArticleFactory;
+use App\Factory\ElementFactory;
+use App\Factory\ImageFactory;
 use Doctrine\Bundle\FixturesBundle\Fixture;
+use Doctrine\Common\DataFixtures\DependentFixtureInterface;
 use Doctrine\Persistence\ObjectManager;
 
-class ElementFixtures extends Fixture
+class ElementFixtures extends Fixture implements DependentFixtureInterface
 {
     public function load(ObjectManager $manager): void
     {
-        // $product = new Product();
-        // $manager->persist($product);
+        $articles = ArticleFactory::repository()->findAll();
+        $image = ImageFactory::repository()->findOneBy(['imagePath' => '/img/test.jpg']);
 
-        $manager->flush();
+        foreach ($articles as $article) {
+            for ($i = 1; $i <= 3; ++$i) {
+                ElementFactory::createOne(['image' => $image, 'article' => $article, 'elementNumber' => $i]);
+            }
+        }
+    }
+
+    public function getDependencies(): array
+    {
+        return [
+            ImageFixtures::class,
+            ArticleFixtures::class,
+        ];
     }
 }
