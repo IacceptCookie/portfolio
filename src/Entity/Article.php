@@ -2,24 +2,60 @@
 
 namespace App\Entity;
 
+use ApiPlatform\Metadata\ApiResource;
+use ApiPlatform\Metadata\Delete;
+use ApiPlatform\Metadata\GetCollection;
+use ApiPlatform\Metadata\Patch;
+use ApiPlatform\Metadata\Post;
+use ApiPlatform\Metadata\Tests\Fixtures\Metadata\Get;
 use App\Repository\ArticleRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
+use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Serializer\Annotation\Groups;
 
+#[ApiResource(
+    operations: [
+        new Get(),
+        new GetCollection(),
+        new Post(),
+        new Patch(),
+        new Delete(),
+    ],
+    normalizationContext: ['groups' => [
+        'Article_read',
+        'Article_detail',
+        'Article_write',
+    ],
+    ],
+    order: ['articleTitle' => 'ASC'],
+)]
+#[ORM\HasLifecycleCallbacks]
 #[ORM\Entity(repositoryClass: ArticleRepository::class)]
 class Article
 {
     #[ORM\Id]
     #[ORM\GeneratedValue]
     #[ORM\Column]
+    #[Groups(['Article_read'])]
     private ?int $id = null;
 
+    #[ORM\Column(length: 80)]
+    #[Groups(['Article_read', 'Article_write'])]
+    private ?string $articleTitle = null;
+
     #[ORM\Column(length: 400)]
+    #[Groups(['Article_detail', 'Article_write'])]
     private ?string $articleDescription = null;
 
     #[ORM\Column]
+    #[Groups(['Article_read', 'Article_write'])]
     private ?int $readingTime = null;
+
+    #[ORM\Column(type: Types::DATETIME_MUTABLE)]
+    #[Groups(['Article_detail'])]
+    private ?\DateTimeInterface $creationDate = null;
 
     #[ORM\ManyToOne(inversedBy: 'articles')]
     #[ORM\JoinColumn(nullable: false)]
@@ -172,6 +208,38 @@ class Article
     public function setIllustration(?Image $illustration): static
     {
         $this->illustration = $illustration;
+
+        return $this;
+    }
+
+    public function getArticleTitle(): ?string
+    {
+        return $this->articleTitle;
+    }
+
+    public function setArticleTitle(string $articleTitle): static
+    {
+        $this->articleTitle = $articleTitle;
+
+        return $this;
+    }
+
+    public function getCreationDate(): ?\DateTimeInterface
+    {
+        return $this->creationDate;
+    }
+
+    #[ORM\PrePersist]
+    public function setCreatedDateValue(): void
+    {
+        if (!$this->creationDate) {
+            $this->creationDate = new \DateTime();
+        }
+    }
+
+    public function setCreationDate(\DateTimeInterface $creationDate): static
+    {
+        $this->creationDate = $creationDate;
 
         return $this;
     }

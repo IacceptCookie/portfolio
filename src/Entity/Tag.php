@@ -2,23 +2,48 @@
 
 namespace App\Entity;
 
+use ApiPlatform\Metadata\ApiResource;
+use ApiPlatform\Metadata\Delete;
+use ApiPlatform\Metadata\GetCollection;
+use ApiPlatform\Metadata\Patch;
+use ApiPlatform\Metadata\Post;
+use ApiPlatform\Metadata\Tests\Fixtures\Metadata\Get;
 use App\Repository\TagRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Serializer\Annotation\Groups;
 
+#[ApiResource(
+    operations: [
+        new Get(),
+        new GetCollection(),
+        new Post(),
+        new Patch(),
+        new Delete(),
+    ],
+    normalizationContext: ['groups' => [
+        'Tag_read',
+        'Tag_write',
+    ],
+    ],
+    order: ['tagLabel' => 'ASC'],
+)]
 #[ORM\Entity(repositoryClass: TagRepository::class)]
 class Tag
 {
     #[ORM\Id]
     #[ORM\GeneratedValue]
     #[ORM\Column]
+    #[Groups(['Tag_read'])]
     private ?int $id = null;
 
     #[ORM\Column(length: 50)]
+    #[Groups(['Tag_read', 'Tag_write'])]
     private ?string $tagLabel = null;
 
     #[ORM\Column(length: 6)]
+    #[Groups(['Tag_read', 'Tag_write'])]
     private ?string $tagColor = null;
 
     #[ORM\ManyToMany(targetEntity: Article::class, mappedBy: 'tags')]

@@ -51,6 +51,7 @@ final class ArticleFactory extends PersistentProxyObjectFactory
     protected function defaults(): array|callable
     {
         return [
+            'articleTitle' => self::faker()->text(80),
             'articleDescription' => self::faker()->text(400),
             'author' => UserFactory::new(),
             'illustration' => ImageFactory::new(),
