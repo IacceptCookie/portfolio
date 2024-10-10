@@ -3,3 +3,19 @@ controllers:
         path: ../src/Controller/
         namespace: App\Controller
     type: attribute
+api_route:
+    path: /api
+    controller: App\Controller\DefaultController::apiMethod
+react:
+    path: /{reactRouting}
+    controller: App\Controller\ReactController::index
+    requirements:
+        reactRouting: .*
+fallback_route:
+    path: /{any}
+    controller: Symfony\Bundle\FrameworkBundle\Controller\RedirectController::urlRedirect
+    defaults:
+        path: /
+        permanent: false
+    requirements:
+        any: .*
