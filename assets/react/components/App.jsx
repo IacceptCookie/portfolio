@@ -1,5 +1,6 @@
 import React from "react";
 import Routes from "../routes";
+import Footer from "./Footer/Footer";
 
 function App() {
     return (
@@ -10,9 +11,7 @@ function App() {
             <main>
                 <Routes />
             </main>
-            <footer>
-                <p>footer</p>
-            </footer>
+            <Footer />
         </div>
     );
 }
