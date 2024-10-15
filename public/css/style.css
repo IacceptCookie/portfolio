@@ -38,6 +38,11 @@ body {
     flex-direction: column;
     box-shadow: #6286bf 0 1px 1px;
     padding: 10px 0;
+    z-index: 1000;
+    position: fixed;
+    left: 0;
+    top: 0;
+    width: 100%;
 }
 
 .header__large {
@@ -128,9 +133,11 @@ body {
 }
 
 .header__small-area {
+    display: flex;
     align-self: center;
     max-width: 1800px;
     width: 100%;
+    flex-direction: column;
 }
 
 .header__small {
@@ -141,6 +148,8 @@ body {
 
 .header__small>a, .header__small>button {
     margin: 0 10px;
+    height: 60px;
+    padding: 0;
 }
 
 .header__toggle-btn {
@@ -178,6 +187,7 @@ main {
     display: flex;
     flex-direction: column;
     flex: 1;
+    margin-top: 80px;
 }
 
 .footer {
