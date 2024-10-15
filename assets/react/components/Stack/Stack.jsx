@@ -1,5 +1,5 @@
 import React from "react";
-import "./stack.css";
+import "./Stack.css";
 
 function Stack({height = 'auto', width = 'auto', children}) {
     return (
