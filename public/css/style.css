@@ -1,12 +1,18 @@
 @font-face {
-    font-family: Akira;
-    src: url(../font/Akira_Expanded_Demo.otf);
+    font-family: AlteHaas;
+    src: url(../font/AlteHaasGroteskBold.ttf) format('truetype');
+    font-weight: bold;
 }
 
 @font-face {
     font-family: AlteHaas;
-    src: url(../font/AlteHaasGroteskBold.ttf);
-    src: url(../font/AlteHaasGroteskRegular.ttf);
+    src: url(../font/AlteHaasGroteskRegular.ttf) format('truetype');
+    font-weight: normal;
+}
+
+@font-face {
+    font-family: Akira;
+    src: url(../font/Akira_Expanded_Demo.otf);
 }
 
 html {
@@ -18,7 +24,8 @@ body {
     flex-direction: column;
     margin: 0;
     padding: 0;
-    height: 100%;
+    min-height: 100%;
+    background-color: #0c1c3c;
 }
 
 #root {
@@ -43,6 +50,7 @@ body {
     left: 0;
     top: 0;
     width: 100%;
+    backdrop-filter: blur(10px);
 }
 
 .header__large {
@@ -85,7 +93,7 @@ body {
 
 .header__link, .header__link-small {
     text-decoration: none;
-    color: #193e81;
+    color: #6286bf;
     font-weight: 800;
     font-size: 32px;
     letter-spacing: 3px;
@@ -123,13 +131,13 @@ body {
 
 .header__link.highlight {
     color: white;
-    background-color: #193e81;
+    background-color: #6286bf;
     padding: 4px 16px;
     border-radius: 8px;
 }
 
 .header__link.highlight:hover {
-    background-color: #6286bf;
+    background-color: #193e81;
 }
 
 .header__small-area {
@@ -161,7 +169,7 @@ body {
 .header__toggle-icon {
     height: 60px;
     width: 60px;
-    color: #193e81;
+    color: #6286bf;
 }
 
 .header__logo-small {
@@ -184,10 +192,11 @@ body {
 }
 
 main {
+    margin-top: 80px;
     display: flex;
     flex-direction: column;
     flex: 1;
-    margin-top: 80px;
+    background-color: white;
 }
 
 .footer {
@@ -311,6 +320,15 @@ main {
 }
 
 @media only screen and (min-width: 1000px) {
+    main {
+        margin-top: 0;
+    }
+
+    .header {
+        box-shadow: none;
+        backdrop-filter: none;
+    }
+
     .header__large {
         display: flex;
     }
