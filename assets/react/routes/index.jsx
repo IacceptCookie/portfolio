@@ -3,6 +3,8 @@ import { Route, Switch } from "wouter";
 import NotFound from "../views/NotFound";
 import Home from "../views/Home";
 import TitleUpdater from "../tools/TitleUpdater";
+import Articles from "../views/Articles";
+import ExternalRedirect from "../tools/ExternalRedirect";
 
 function Routes() {
     return (
@@ -15,6 +17,18 @@ function Routes() {
                     </>
                 }
             </Route>
+            <Route path="/articles">
+                {() =>
+                    <>
+                        <TitleUpdater title="Mes articles" />
+                        <Articles />
+                    </>
+                }
+            </Route>
+            <Route path="/github" component={() => <ExternalRedirect url="https://github.com/IacceptCookie" />} />
+            <Route path="/linkedin" component={
+                () => <ExternalRedirect url="https://www.linkedin.com/in/rapha%C3%ABl-durand-386720267" />
+            } />
             <Route>
                 {() =>
                     <>
