@@ -17,7 +17,7 @@ function Layer(
         opacity = '1',
         videoType = 'video/mp4',
         text = '',
-        following = false,
+        className = '',
     }
 )
 {
@@ -26,7 +26,7 @@ function Layer(
         singleColor: <SingleColorLayer color={color} opacity={opacity} zIndex={zIndex} />,
         linearGradient: <LinearGradientLayer linearGradient={linearGradient} opacity={opacity} zIndex={zIndex} />,
         video: <VideoLayer src={src} videoType={videoType} zIndex={zIndex} />,
-        centeredText: <CenteredTextLayer text={text} following={following} zIndex={zIndex} />
+        centeredText: <CenteredTextLayer text={text} zIndex={zIndex} className={className} />
     };
 
     return variants[type]
