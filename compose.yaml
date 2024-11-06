@@ -1,21 +1,55 @@
-version: '3'
-
 services:
-###> doctrine/doctrine-bundle ###
-  database:
-    image: postgres:${POSTGRES_VERSION:-15}-alpine
-    environment:
-      POSTGRES_DB: ${POSTGRES_DB:-app}
-      # You should definitely change the password in production
-      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:-!ChangeMe!}
-      POSTGRES_USER: ${POSTGRES_USER:-app}
+  backend:
+    build:
+      context: .
+      dockerfile: docker/php/Dockerfile
+    container_name: portfolio_backend
     volumes:
-      - database_data:/var/lib/postgresql/data:rw
-      # You may use a bind-mounted host directory instead, so that it is harder to accidentally remove the volume and lose all your data!
-      # - ./docker/db/data:/var/lib/postgresql/data:rw
-###< doctrine/doctrine-bundle ###
+      - .:/var/www/symfony
+    environment:
+      DATABASE_URL: "postgresql://portfolio:portfolio@db:5432/portfolio?serverVersion=17&charset=utf8"
+    depends_on:
+      - db
+    networks:
+      - symfony-network
+
+  frontend:
+    build:
+      context: .
+      dockerfile: docker/node/Dockerfile
+    container_name: portfolio_frontend
+    volumes:
+      - .:/var/www/symfony
+    networks:
+      - symfony-network
+
+  db:
+    image: postgres:17
+    container_name: portfolio_db
+    environment:
+      POSTGRES_USER: portfolio
+      POSTGRES_PASSWORD: portfolio
+      POSTGRES_DB: portfolio
+    volumes:
+      - portfolio_postgres:/var/lib/postgresql/data
+    networks:
+      - symfony-network
+
+  nginx:
+    image: nginx:alpine
+    container_name: portfolio_nginx
+    ports:
+      - 80:80
+    volumes:
+      - ./docker/nginx/nginx.conf:/etc/nginx/nginx.conf
+      - ./public:/var/www/symfony/public
+    depends_on:
+      - backend
+    networks:
+      - symfony-network
+
+networks:
+  symfony-network:
 
 volumes:
-###> doctrine/doctrine-bundle ###
-  database_data:
-###< doctrine/doctrine-bundle ###
+  portfolio_postgres:
