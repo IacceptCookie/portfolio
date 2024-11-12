@@ -1,4 +1,3 @@
-# docker/php/Dockerfile
 FROM php:8.2-fpm
 
 RUN apt-get update && apt-get install -y \
@@ -8,18 +7,11 @@ RUN apt-get update && apt-get install -y \
     libpq-dev \
     && docker-php-ext-install pdo pdo_pgsql
 
+RUN git config --global --add safe.directory /var/www/symfony
+
 COPY --from=composer:latest /usr/bin/composer /usr/bin/composer
 
-RUN useradd -ms /bin/bash symfony
-
 WORKDIR /var/www/symfony
+COPY . ./
 
-COPY . .
-
-RUN chown -R symfony:symfony /var/www/symfony
-
-USER symfony
-RUN composer install --no-interaction --optimize-autoloader
-
-USER www-data
 CMD ["php-fpm"]

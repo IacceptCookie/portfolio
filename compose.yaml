@@ -13,16 +13,6 @@ services:
     networks:
       - symfony-network
 
-  frontend:
-    build:
-      context: .
-      dockerfile: docker/node/Dockerfile
-    container_name: portfolio_frontend
-    volumes:
-      - .:/var/www/symfony
-    networks:
-      - symfony-network
-
   db:
     image: postgres:17
     container_name: portfolio_db
