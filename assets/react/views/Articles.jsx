@@ -1,6 +1,7 @@
 import React from "react";
 import Stack from "../components/Stack/Stack";
 import Layer from "../components/Stack/Layer/Layer";
+import backgroundVideo from "../../video/back.webm";
 
 function Articles() {
     return (
@@ -8,7 +9,7 @@ function Articles() {
             <Stack aspectRatio="16/9" width="100%" maxHeight="60vh">
                 <Layer
                     type="video"
-                    src="https://videos.pexels.com/video-files/2715412/2715412-uhd_3840_2160_30fps.mp4"
+                    src={backgroundVideo}
                     zIndex={1}
                 />
                 <Layer

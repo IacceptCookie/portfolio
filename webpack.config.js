@@ -68,6 +68,18 @@ Encore
 
     // uncomment if you're having problems with a jQuery plugin
     //.autoProvidejQuery()
+
+    .addLoader({
+        test: /\.(webm)$/i,
+        use: [
+            {
+                loader: 'file-loader',
+                options: {
+                    name: 'videos/[name].[hash:8].[ext]', // Specify output path and filename pattern
+                },
+            },
+        ],
+    })
 ;
 
 module.exports = Encore.getWebpackConfig();
