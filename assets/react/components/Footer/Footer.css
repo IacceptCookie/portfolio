@@ -1,0 +1,124 @@
+.footer {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background: #0c1c3c;
+    padding: 20px 20px 5px 20px;
+}
+
+.footer__content {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    max-width: 1200px;
+    width: 100%;
+    align-self: center;
+}
+
+.footer__content>* {
+    margin-bottom: 15px;
+}
+
+.footer__section {
+    display: flex;
+    flex-direction: column;
+    justify-content: start;
+    align-items: center;
+}
+
+.image-section {
+    order: 3;
+}
+
+.footer__section-title {
+    font-size: 20px;
+    margin: 0;
+    color: #ffffff;
+    font-weight: bold;
+    font-family: AlteHaas, sans-serif;
+}
+
+.footer__section-links {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+}
+
+.footer__section-link-item {
+    text-align: center;
+    display: block;
+    margin: 14px 0;
+}
+
+.footer__section-link {
+    font-size: 18px;
+    padding-top: 5px;
+    padding-bottom: 2px;
+    position: relative;
+    text-decoration: none;
+    color: #6286bf;
+    font-weight: 800;
+    font-family: AlteHaas, sans-serif;
+}
+
+.footer__section-link::before {
+    content: '';
+    position: absolute;
+    width: 100%;
+    height: 3px;
+    border-radius: 3px;
+    background-color: #6286bf;
+    bottom: 0;
+    left: 0;
+    transform-origin: right;
+    transform: scaleX(0);
+    transition: transform .3s ease-in-out;
+}
+
+.footer__section-link:hover::before {
+    transform-origin: left;
+    transform: scaleX(1);
+}
+
+.footer__image {
+    width: 160px;
+    height: 160px;
+}
+
+.footer__homelink {
+    text-decoration: none;
+    color: #193e81;
+    font-size: 24px;
+    transition: .3s ease-in-out;
+    font-family: AlteHaas, sans-serif;
+}
+
+.footer__homelink:hover {
+    color: #1979da;
+}
+
+@media only screen and (min-width: 800px) {
+    .image-section {
+        order: unset;
+    }
+
+    .footer__content {
+        flex-direction: row;
+    }
+
+    .footer__section {
+        align-items: start;
+    }
+
+    .footer__section-link {
+        font-size: 20px;
+    }
+
+    .footer__section-title {
+        font-size: 32px;
+    }
+
+    .footer__section-link-item {
+        text-align: left;
+    }
+}

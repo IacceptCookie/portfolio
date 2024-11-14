@@ -3,6 +3,7 @@ import FooterSection from "./FooterSection";
 import {Link} from "wouter";
 import FooterImage from "./FooterImage";
 import Logo from "../../../img/logo-complete.png";
+import "./Footer.css";
 
 function Footer() {
     return (
