@@ -17,7 +17,6 @@ function Articles() {
                     linearGradient="linear-gradient(360deg, rgba(12,28,60,1) 0%, rgba(255,255,255,0) 70%)"
                     zIndex={2}
                 />
-                <Layer type="centeredText" text="Recherchons des articles" zIndex={3} />
             </Stack>
             <h1>let's go</h1>
         </>

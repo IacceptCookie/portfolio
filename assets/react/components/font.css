@@ -14,3 +14,15 @@
     font-family: Akira;
     src: url(../../font/Akira_Expanded_Demo.otf);
 }
+
+@font-face {
+    font-family: Altone;
+    src: url(../../font/Altone_Trial-Bold.ttf);
+    font-weight: bold;
+}
+
+@font-face {
+    font-family: Altone;
+    src: url(../../font/Altone_Trial-Regular.ttf);
+    font-weight: normal;
+}

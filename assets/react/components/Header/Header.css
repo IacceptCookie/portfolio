@@ -1,14 +1,12 @@
 .header {
     display: flex;
     flex-direction: column;
-    box-shadow: #6286bf 0 1px 1px;
     padding: 10px 0;
     z-index: 1000;
     position: fixed;
     left: 0;
     top: 0;
     width: 100%;
-    backdrop-filter: blur(10px);
 }
 
 .header__large {
@@ -145,9 +143,12 @@
     max-height: 300px;
 }
 
+.header>.header__small-area>.header__nav.unfolded {
+    backdrop-filter: blur(10px);
+}
+
 @media only screen and (min-width: 1000px) {
     .header {
-        box-shadow: none;
         backdrop-filter: none;
     }
 

@@ -2,11 +2,13 @@ import React from "react";
 import Stack from "../components/Stack/Stack";
 import Layer from "../components/Stack/Layer/Layer";
 import backgroundVideo from "../../video/back.webm";
+import AnimatedText from "../components/AnimatedText";
+import "./Home.css";
 
 function Home() {
     return (
         <>
-            <Stack aspectRatio="16/9" width="100%" maxHeight="100vh">
+            <Stack aspectRatio="16/9" width="100%" maxHeight="100vh" className="presentation-visual-area">
                 <Layer
                     type="video"
                     src={backgroundVideo}
@@ -17,9 +19,14 @@ function Home() {
                     linearGradient="linear-gradient(360deg, rgba(12,28,60,1) 0%, rgba(255,255,255,0) 70%)"
                     zIndex={2}
                 />
-                <Layer type="centeredText" text="This is centered" zIndex={3} />
             </Stack>
-            <h1>hello react</h1>
+            <AnimatedText
+                className="presentation-text-area"
+                text="
+                Bienvenue sur mon site internet, ceci est le premier texte, il est donc le premier à bénéficier
+                du dynamisme de React !"
+                speed={10}
+            />
         </>
     );
 }

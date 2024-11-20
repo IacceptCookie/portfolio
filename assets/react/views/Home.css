@@ -1,0 +1,22 @@
+.presentation-visual-area {
+    min-height: 300px;
+}
+
+.presentation-text-area {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 5px 30px;
+    background-color: #0c1c3c;
+}
+
+.presentation-text-area>p {
+    margin: 0;
+    text-align: center;
+    color: white;
+    font-family: Altone, sans-serif;
+    font-weight: bold;
+    font-size: 16px;
+    max-width: 600px;
+}
