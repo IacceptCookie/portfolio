@@ -2,9 +2,9 @@ import React from "react";
 import "./Stack.css";
 
 function Stack({
-                   width = 'auto',
-                   maxHeight = 'auto',
-                   aspectRatio = '16/9',
+                   width = '',
+                   maxHeight = '',
+                   aspectRatio = '',
                    className = '',
                    children
 }) {

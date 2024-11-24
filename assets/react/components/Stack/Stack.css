@@ -1,5 +1,8 @@
 .stack {
     position: relative;
+    width: auto;
+    max-height: auto;
+    aspect-ratio: 16/9;
 }
 
 .layer {

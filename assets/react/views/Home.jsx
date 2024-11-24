@@ -25,7 +25,7 @@ function Home() {
                 text="
                 Bienvenue sur mon site internet, ceci est le premier texte, il est donc le premier à bénéficier
                 du dynamisme de React !"
-                speed={10}
+                speed={20}
             />
         </>
     );

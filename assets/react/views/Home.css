@@ -18,5 +18,11 @@
     font-family: Altone, sans-serif;
     font-weight: bold;
     font-size: 16px;
-    max-width: 600px;
+    max-width: 1000px;
+}
+
+@media only screen and (min-width: 800px) {
+    .presentation-text-area>p {
+        font-size: 24px;
+    }
 }
