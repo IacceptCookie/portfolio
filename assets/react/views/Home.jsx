@@ -4,6 +4,9 @@ import Layer from "../components/Stack/Layer/Layer";
 import backgroundVideo from "../../video/back.webm";
 import AnimatedText from "../components/AnimatedText";
 import "./Home.css";
+import Tag from "../components/Tag/Tag";
+import Card from "../components/Card/Card";
+import cardIllustration from "../../img/background.jpg";
 
 function Home() {
     return (
@@ -25,7 +28,27 @@ function Home() {
                 text="
                 Bienvenue sur mon site internet, ceci est le premier texte, il est donc le premier à bénéficier
                 du dynamisme de React !"
-                speed={20}
+                speed={10}
+            />
+            <Tag tagTitle="Javascript" tagColorCode="f8f407" />
+            <Tag tagTitle="PHP" tagColorCode="4d73e1" />
+            <Tag tagTitle="Grafana" tagColorCode="e49017" />
+            <Card
+                type="large"
+                cardData={
+                    {
+                        title: "Ma première carte",
+                        readingTime: 5,
+                        image: cardIllustration,
+                        description: "Voici ma première carte, je la confectionne avec soin, " +
+                            "et je prends aussi le temps de traiter tout les cas de figures imaginables comme un " +
+                            "simple débordement de texte par exemple.",
+                        tags: [
+                            {id: 1, title: "PHP", colorCode: "4d73e1"},
+                            {id: 2, title: "Javascript", colorCode: "f8f407"},
+                        ]
+                    }
+                }
             />
         </>
     );

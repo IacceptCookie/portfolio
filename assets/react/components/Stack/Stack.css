@@ -1,7 +1,6 @@
 .stack {
     position: relative;
     width: auto;
-    max-height: auto;
     aspect-ratio: 16/9;
 }
 
@@ -18,7 +17,7 @@
     object-position: top;
 }
 
-.layer__centered-text-wrapper {
+.layer__text-wrapper {
     display: flex;
     justify-content: center;
     align-items: center;

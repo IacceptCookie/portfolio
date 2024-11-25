@@ -4,7 +4,7 @@ import ImageLayer from "./ImageLayer";
 import SingleColorLayer from "./SingleColorLayer";
 import VideoLayer from "./VideoLayer";
 import LinearGradientLayer from "./LinearGradientLayer";
-import CenteredTextLayer from "./CenteredTextLayer";
+import TextLayer from "./TextLayer";
 
 function Layer(
     {
@@ -17,7 +17,8 @@ function Layer(
         opacity = '1',
         videoType = 'video/mp4',
         text = '',
-        className = '',
+        wrapperClassName = '',
+        textClassName = ''
     }
 )
 {
@@ -26,7 +27,7 @@ function Layer(
         singleColor: <SingleColorLayer color={color} opacity={opacity} zIndex={zIndex} />,
         linearGradient: <LinearGradientLayer linearGradient={linearGradient} opacity={opacity} zIndex={zIndex} />,
         video: <VideoLayer src={src} videoType={videoType} zIndex={zIndex} />,
-        centeredText: <CenteredTextLayer text={text} zIndex={zIndex} className={className} />
+        text: <TextLayer text={text} zIndex={zIndex} wrapperClassName={wrapperClassName} textClassName={textClassName} />
     };
 
     return variants[type]

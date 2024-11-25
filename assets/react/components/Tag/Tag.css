@@ -1,0 +1,17 @@
+.tag {
+    display: flex;
+    margin: 5px;
+    padding: 6px 6px;
+    font-size: 14px;
+    font-family: AlteHaas, sans-serif;
+    font-weight: bold;
+    color: white;
+    border-radius: 15px;
+    width: fit-content;
+}
+
+@media only screen and (min-width: 800px) {
+    .tag {
+        font-size: 18px;
+    }
+}
