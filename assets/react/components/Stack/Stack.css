@@ -13,6 +13,7 @@
 }
 
 .layer__image, .layer__video {
+    border-radius: inherit;
     object-fit: cover;
     object-position: top;
 }

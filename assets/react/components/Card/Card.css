@@ -1,0 +1,129 @@
+.large-card {
+    display: flex;
+    text-decoration: none;
+    flex-direction: column;
+    margin: 8px;
+    width: 100%;
+    max-width: 600px;
+    background: #0E1084;
+    box-shadow: 1px 1px 2px #7577CD;
+    border-radius: 8px;
+}
+
+.large-card-illustration-stack {
+    width: 100%;
+    border-radius: 8px;
+    max-width: 600px;
+}
+
+.large-card-illustration-title {
+    text-align: center;
+    font-weight: bold;
+    font-size: 30px;
+    font-family: AlteHaas, sans-serif;
+    color: white;
+}
+
+.large-card-illustration-reading-time-wrapper {
+    display: flex;
+    justify-content: end;
+    align-items: end;
+}
+
+.large-card-illustration-reading-time {
+    display: none;
+    text-align: center;
+    font-weight: bold;
+    font-size: 16px;
+    font-family: AlteHaas, sans-serif;
+    color: white;
+    margin: 4px;
+}
+
+.large-card-description-area {
+    display: none;
+    flex-direction: column;
+    justify-content: space-between;
+    padding: 10px;
+    height: 180px;
+}
+
+.large-card-description {
+    text-align: center;
+    color: white;
+    font-size: 16px;
+    font-family: AlteHaas, sans-serif;
+    overflow: auto;
+}
+
+.large-card-tag-list {
+    display: flex;
+    flex-direction: row;
+}
+
+@media only screen and (min-width: 600px) {
+    .large-card-illustration-title {
+        font-size: 52px;
+    }
+}
+
+@media only screen and (min-width: 800px) {
+    .large-card {
+        margin: 30px;
+        max-width: 800px;
+    }
+
+    .large-card-illustration-stack {
+        max-width: 500px;
+    }
+
+    .large-card-illustration-title-wrapper {
+        justify-content: left;
+        align-items: start;
+    }
+
+    .large-card-illustration-title {
+        text-align: left;
+        margin: 8%;
+    }
+
+    .large-card-illustration-reading-time {
+        display: flex;
+    }
+
+    .large-card-description-area {
+        display: flex;
+        max-width: 280px;
+        height: auto;
+    }
+
+    .large-card-description {
+        font-size: 20px;
+    }
+
+    .left {
+        flex-direction: row;
+    }
+
+    .right {
+        flex-direction: row-reverse;
+    }
+}
+
+@media only screen and (min-width: 1000px) {
+    .large-card {
+        max-width: 1000px;
+    }
+
+    .large-card-illustration-stack {
+        max-width: 625px;
+    }
+
+    .large-card-description-area {
+        max-width: 355px;
+    }
+
+    .large-card-description {
+        font-size: 24px;
+    }
+}

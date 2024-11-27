@@ -143,15 +143,7 @@
     max-height: 300px;
 }
 
-.header>.header__small-area>.header__nav.unfolded {
-    backdrop-filter: blur(10px);
-}
-
 @media only screen and (min-width: 1000px) {
-    .header {
-        backdrop-filter: none;
-    }
-
     .header__large {
         display: flex;
     }

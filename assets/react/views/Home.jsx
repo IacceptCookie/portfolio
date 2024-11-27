@@ -19,7 +19,7 @@ function Home() {
                 />
                 <Layer
                     type="linearGradient"
-                    linearGradient="linear-gradient(360deg, rgba(12,28,60,1) 0%, rgba(255,255,255,0) 70%)"
+                    linearGradient="linear-gradient(360deg, rgba(8,9,87,1) 0%, rgba(255,255,255,0) 70%)"
                     zIndex={2}
                 />
             </Stack>
@@ -30,26 +30,45 @@ function Home() {
                 du dynamisme de React !"
                 speed={10}
             />
-            <Tag tagTitle="Javascript" tagColorCode="f8f407" />
-            <Tag tagTitle="PHP" tagColorCode="4d73e1" />
-            <Tag tagTitle="Grafana" tagColorCode="e49017" />
-            <Card
-                type="large"
-                cardData={
-                    {
-                        title: "Ma première carte",
-                        readingTime: 5,
-                        image: cardIllustration,
-                        description: "Voici ma première carte, je la confectionne avec soin, " +
-                            "et je prends aussi le temps de traiter tout les cas de figures imaginables comme un " +
-                            "simple débordement de texte par exemple.",
-                        tags: [
-                            {id: 1, title: "PHP", colorCode: "4d73e1"},
-                            {id: 2, title: "Javascript", colorCode: "f8f407"},
-                        ]
+            <div style={{ display: "flex", flexDirection: "column", alignItems: "center", padding: "10px" }}>
+                <Card
+                    type="large"
+                    to="/"
+                    cardData={
+                        {
+                            title: "Ma première carte",
+                            readingTime: 5,
+                            image: cardIllustration,
+                            description: "Voici ma première carte, je la confectionne avec soin, " +
+                                "et je prends aussi le temps de traiter tout les cas de figures imaginables comme un " +
+                                "simple débordement de texte par exemple.",
+                            tags: [
+                                {id: 1, title: "PHP", colorCode: "4d73e1"},
+                                {id: 2, title: "Javascript", colorCode: "f8f407"},
+                            ]
+                        }
                     }
-                }
-            />
+                />
+                <Card
+                    type="large"
+                    to="/"
+                    cardData={
+                        {
+                            title: "Ma première carte",
+                            readingTime: 5,
+                            image: cardIllustration,
+                            description: "Voici ma première carte, je la confectionne avec soin, " +
+                                "et je prends aussi le temps de traiter tout les cas de figures imaginables comme un " +
+                                "simple débordement de texte par exemple.",
+                            tags: [
+                                {id: 1, title: "PHP", colorCode: "4d73e1"},
+                                {id: 2, title: "Javascript", colorCode: "f8f407"},
+                            ]
+                        }
+                    }
+                    orientation="right"
+                />
+            </div>
         </>
     );
 }

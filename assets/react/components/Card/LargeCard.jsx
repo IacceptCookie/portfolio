@@ -2,28 +2,37 @@ import React from "react";
 import Stack from "../Stack/Stack";
 import Layer from "../Stack/Layer/Layer";
 import Tag from "../Tag/Tag";
+import { Link } from "wouter";
 
 function LargeCard(
     {
         cardData,
         orientation,
+        to,
     }
 )
 {
     return (
-        <div className="large-card">
+        <Link to={to} className={`${orientation} large-card`}>
             <Stack className="large-card-illustration-stack">
                 <Layer
                     type="text"
                     text={cardData.title}
+                    wrapperClassName="large-card-illustration-title-wrapper"
                     textClassName="large-card-illustration-title"
-                    zIndex={3}
+                    zIndex={4}
                 />
                 <Layer
                     type="text"
                     text={`Tps de lecture : ${cardData.readingTime} min`}
                     wrapperClassName="large-card-illustration-reading-time-wrapper"
                     textClassName="large-card-illustration-reading-time"
+                    zIndex={3}
+                />
+                <Layer
+                    type="singleColor"
+                    color="#0e1084"
+                    opacity="0.4"
                     zIndex={2}
                 />
                 <Layer
@@ -45,7 +54,7 @@ function LargeCard(
                     }
                 </div>
             </div>
-        </div>
+        </Link>
     )
 }
 

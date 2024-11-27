@@ -6,14 +6,15 @@ function Card(
     {
         type,
         cardData,
-        orientation = 1
+        to,
+        orientation = 'left'
     }
 )
 {
     const variants = {
         //small: <SmallCard cardData={cardData} />,
         //medium: <MediumCard cardData={cardData} />,
-        large: <LargeCard cardData={cardData} orientation={orientation} />,
+        large: <LargeCard cardData={cardData} to={to} orientation={orientation} />,
     };
 
     return variants[type]
