@@ -14,7 +14,7 @@ function Articles() {
                 />
                 <Layer
                     type="linearGradient"
-                    linearGradient="linear-gradient(360deg, rgba(12,28,60,1) 0%, rgba(255,255,255,0) 70%)"
+                    linearGradient="linear-gradient(360deg, rgba(8,9,87,1) 0%, rgba(255,255,255,0) 70%)"
                     zIndex={2}
                 />
             </Stack>

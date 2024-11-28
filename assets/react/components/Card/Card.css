@@ -63,18 +63,23 @@
 
 @media only screen and (min-width: 600px) {
     .large-card-illustration-title {
-        font-size: 52px;
+        font-size: 50px;
     }
 }
 
 @media only screen and (min-width: 800px) {
     .large-card {
         margin: 30px;
-        max-width: 800px;
+        max-width: 750px;
+        transition: 0.5s;
+    }
+
+    .large-card:hover {
+        transform: scale(1.03);
     }
 
     .large-card-illustration-stack {
-        max-width: 500px;
+        max-width: 60%;
     }
 
     .large-card-illustration-title-wrapper {
@@ -85,6 +90,7 @@
     .large-card-illustration-title {
         text-align: left;
         margin: 8%;
+        font-size: 58px;
     }
 
     .large-card-illustration-reading-time {
@@ -93,7 +99,7 @@
 
     .large-card-description-area {
         display: flex;
-        max-width: 280px;
+        max-width: 40%;
         height: auto;
     }
 
@@ -112,15 +118,11 @@
 
 @media only screen and (min-width: 1000px) {
     .large-card {
-        max-width: 1000px;
+        max-width: 950px;
     }
 
-    .large-card-illustration-stack {
-        max-width: 625px;
-    }
-
-    .large-card-description-area {
-        max-width: 355px;
+    .large-card-illustration-title {
+        font-size: 76px;
     }
 
     .large-card-description {
