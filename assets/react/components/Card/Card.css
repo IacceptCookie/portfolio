@@ -54,11 +54,98 @@
     font-size: 16px;
     font-family: AlteHaas, sans-serif;
     overflow: auto;
+    scrollbar-width: none;
 }
 
 .large-card-tag-list {
     display: flex;
     flex-direction: row;
+}
+
+.small-card {
+    display: flex;
+    position: relative;
+    text-decoration: none;
+    flex-direction: column;
+    margin: 8px;
+    width: 100%;
+    max-width: 250px;
+    background: #0E1084;
+    box-shadow: 1px 1px 2px #7577CD;
+    border-radius: 8px;
+    transition: 0.5s;
+}
+
+.small-card:hover {
+    transform: scale(1.05);
+}
+
+.small-card-hover-text-area {
+    display: none;
+    position: absolute;
+    justify-content: center;
+    align-items: center;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(8, 9, 87,0.75);
+    border-radius: 8px;
+    z-index: 4;
+    transition: 0.5s;
+}
+
+.small-card:hover .small-card-hover-text-area {
+    display: flex;
+}
+
+.small-card-hover-text {
+    text-align: center;
+    color: white;
+    font-family: AlteHaas, sans-serif;
+    font-weight: bold;
+    font-size: 20px;
+}
+
+.small-card-content {
+    display: flex;
+    flex-direction: column;
+    padding: 5px;
+    width: 100%;
+    box-sizing: border-box;
+}
+
+.small-card-illustration-stack {
+    display: flex;
+    width: 100%;
+    border-radius: 8px;
+}
+
+.small-card-illustration-title {
+    text-align: center;
+    font-weight: bold;
+    font-size: 20px;
+    color: white;
+    font-family: AlteHaas, sans-serif;
+    transition: 0.5s;
+}
+
+.small-card:hover .small-card-illustration-title {
+    display: none;
+}
+
+.small-card-description-area {
+    margin: 20px 0;
+    height: 140px;
+    overflow: auto;
+    scrollbar-width: none;
+}
+
+.small-card-description {
+    text-align: center;
+    font-size: 16px;
+    color: white;
+    font-family: AlteHaas, sans-serif;
 }
 
 @media only screen and (min-width: 600px) {

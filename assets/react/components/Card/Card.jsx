@@ -1,6 +1,7 @@
 import React from "react";
 import "./Card.css";
 import LargeCard from "./LargeCard";
+import SmallCard from "./SmallCard";
 
 function Card(
     {
@@ -12,8 +13,7 @@ function Card(
 )
 {
     const variants = {
-        //small: <SmallCard cardData={cardData} />,
-        //medium: <MediumCard cardData={cardData} />,
+        small: <SmallCard cardData={cardData} to={to} />,
         large: <LargeCard cardData={cardData} to={to} orientation={orientation} />,
     };
 

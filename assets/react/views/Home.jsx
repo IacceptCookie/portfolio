@@ -68,6 +68,24 @@ function Home() {
                     }
                     orientation="right"
                 />
+                <Card
+                    type="small"
+                    to="/"
+                    cardData={
+                        {
+                            title: "Ma première carte",
+                            readingTime: 5,
+                            image: cardIllustration,
+                            description: "Voici ma première carte, je la confectionne avec soin, " +
+                                "et je prends aussi le temps de traiter tout les cas de figures imaginables comme un " +
+                                "simple débordement de texte par exemple.",
+                            tags: [
+                                {id: 1, title: "PHP", colorCode: "4d73e1"},
+                                {id: 2, title: "Javascript", colorCode: "f8f407"},
+                            ]
+                        }
+                    }
+                />
             </div>
         </>
     );
