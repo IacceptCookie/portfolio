@@ -8,12 +8,11 @@ function LargeCard(
     {
         cardData,
         orientation,
-        to,
     }
 )
 {
     return (
-        <Link to={to} className={`${orientation} large-card`}>
+        <Link to={cardData.to} className={`${orientation} large-card`}>
             <Stack className="large-card-illustration-stack">
                 <Layer
                     type="text"
@@ -38,6 +37,7 @@ function LargeCard(
                 <Layer
                     type="image"
                     src={cardData.image}
+                    objectPosition="center"
                     alt="L'illustration de cet élément n'est pas supporté par votre navigateur"
                     zIndex={1}
                 />

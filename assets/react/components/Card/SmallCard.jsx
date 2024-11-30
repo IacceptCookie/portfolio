@@ -6,12 +6,11 @@ import { Link } from "wouter";
 function SmallCard(
     {
         cardData,
-        to,
     }
 )
 {
     return (
-        <Link to={to} className="small-card">
+        <Link to={cardData.to} className="small-card">
             <div className="small-card-hover-text-area">
                 <p className="small-card-hover-text">
                     {cardData.title}
@@ -34,6 +33,7 @@ function SmallCard(
                     <Layer
                         type="image"
                         src={cardData.image}
+                        objectPosition="center"
                         alt="L'illustration de cet élément n'est pas supporté par votre navigateur"
                         zIndex={1}
                     />

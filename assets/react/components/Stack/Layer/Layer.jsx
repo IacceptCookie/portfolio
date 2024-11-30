@@ -18,15 +18,16 @@ function Layer(
         videoType = 'video/mp4',
         text = '',
         wrapperClassName = '',
-        textClassName = ''
+        textClassName = '',
+        objectPosition = 'top',
     }
 )
 {
     const variants = {
-        image: <ImageLayer src={src} alt={alt} zIndex={zIndex} />,
+        image: <ImageLayer src={src} alt={alt} objectPosition={objectPosition} zIndex={zIndex} />,
         singleColor: <SingleColorLayer color={color} opacity={opacity} zIndex={zIndex} />,
         linearGradient: <LinearGradientLayer linearGradient={linearGradient} opacity={opacity} zIndex={zIndex} />,
-        video: <VideoLayer src={src} videoType={videoType} zIndex={zIndex} />,
+        video: <VideoLayer src={src} videoType={videoType} objectPosition={objectPosition} zIndex={zIndex} />,
         text: <TextLayer text={text} zIndex={zIndex} wrapperClassName={wrapperClassName} textClassName={textClassName} />
     };
 

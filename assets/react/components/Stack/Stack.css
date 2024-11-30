@@ -10,12 +10,12 @@
     left: 0;
     width: 100%;
     height: 100%;
+    max-height: inherit;
 }
 
 .layer__image, .layer__video {
     border-radius: inherit;
     object-fit: cover;
-    object-position: top;
 }
 
 .layer__text-wrapper {

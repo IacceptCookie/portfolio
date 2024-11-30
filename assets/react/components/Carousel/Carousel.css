@@ -1,0 +1,158 @@
+.carousel {
+    position: relative;
+    width: 100%;
+    max-height: 80vh;
+    min-height: 300px;
+    overflow: hidden;
+    margin: auto;
+}
+
+.carousel-slides {
+    display: flex;
+    transition: transform 0.5s ease-in-out;
+}
+
+.slide {
+    min-width: 100%;
+    height: auto;
+}
+
+.slide-stack {
+    width: 100%;
+    height: 100%;
+    max-height: 80vh;
+    min-height: 300px;
+}
+
+.slide-title-wrapper {
+    display: flex;
+    justify-content: start;
+    align-items: start;
+}
+
+.slide-title {
+    text-align: left;
+    position: relative;
+    top: 20%;
+    left: 20%;
+    color: white;
+    font-size: 24px;
+    font-family: AlteHaas, sans-serif;
+    font-weight: bold;
+    max-width: 60%;
+}
+
+.slide-description-wrapper {
+    display: flex;
+    justify-content: start;
+    align-items: center;
+}
+
+.slide-description {
+    text-align: left;
+    position: relative;
+    top: 10%;
+    left: 20%;
+    color: white;
+    font-size: 14px;
+    font-family: AlteHaas, sans-serif;
+    max-width: 60%;
+}
+
+.carousel-button {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background-color: rgba(0, 0, 0, 0);
+    border: none;
+    cursor: pointer;
+    z-index: 999;
+}
+
+.carousel-button-icon {
+    color: #7577CDFF;
+    width: 40px;
+    height: 40px;
+}
+
+.carousel-button.prev {
+    left: 10px;
+}
+
+.carousel-button.next {
+    right: 10px;
+}
+
+.carousel-indicators {
+    position: absolute;
+    bottom: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    gap: 10px;
+}
+
+.indicator {
+    width: 24px;
+    height: 12px;
+    border-radius: 6px;
+    background-color: #7577CDFF;
+    border: none;
+    box-sizing: border-box;
+    cursor: pointer;
+    transition: background-color 0.3s;
+    padding: 0;
+}
+
+.indicator.active {
+    background-color: #0E1084;
+}
+
+@media only screen and (min-width: 400px) {
+    .slide-title {
+        left: 15%;
+        max-width: 70%;
+    }
+
+    .slide-description {
+        top: 5%;
+        left: 15%;
+        max-width: 70%;
+    }
+}
+
+@media only screen and (min-width: 600px) {
+    .slide-title {
+        font-size: 35px;
+    }
+
+    .slide-description {
+        font-size: 20px;
+    }
+}
+
+@media only screen and (min-width: 800px) {
+    .slide-title {
+        font-size: 48px;
+    }
+
+    .slide-description {
+        font-size: 24px;
+    }
+}
+
+@media only screen and (min-width: 1000px) {
+    .slide-title {
+        top: 20%;
+        left: 20%;
+        font-size: 60px;
+        max-width: 60%;
+    }
+
+    .slide-description {
+        top: 5%;
+        left: 20%;
+        font-size: 28px;
+        max-width: 60%;
+    }
+}
