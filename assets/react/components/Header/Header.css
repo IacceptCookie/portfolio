@@ -42,7 +42,7 @@
 
 .header__center {
     display: flex;
-    flex: 1;
+    flex: 2;
     justify-content: space-between;
     align-items: center;
 }
@@ -143,7 +143,7 @@
     max-height: 300px;
 }
 
-@media only screen and (min-width: 1000px) {
+@media only screen and (min-width: 1200px) {
     .header__large {
         display: flex;
     }

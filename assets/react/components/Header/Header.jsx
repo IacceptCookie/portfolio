@@ -30,6 +30,7 @@ function Header() {
                 <section className="header__center">
                     <Link to="/profile" className="header__link rollon">Profil</Link>
                     <Link to="/articles" className="header__link rollon">Articles</Link>
+                    <Link to="/login" className="header__link rollon">Connexion</Link>
                 </section>
                 <section className="header__right">
                     <Link to="/contact" className="header__link highlight">Contact</Link>
@@ -51,6 +52,7 @@ function Header() {
                 <nav ref={navRef} className={`header__nav ${folded ? "folded" : "unfolded"}`}>
                     <Link to="/profile" className="header__link-small rollon">Profil</Link>
                     <Link to="/articles" className="header__link-small rollon">Articles</Link>
+                    <Link to="/login" className="header__link-small rollon">Connexion</Link>
                     <Link to="/contact" className="header__link-small rollon">Contact</Link>
                 </nav>
             </div>
