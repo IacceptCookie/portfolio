@@ -7,6 +7,7 @@ import "./Header.css";
 
 function Header() {
     const [folded, setFoldedState] = useState(true);
+    const [blurred, setBlurredState] = useState(false);
     const navRef = useRef(null);
 
     useEffect(() => {
@@ -20,7 +21,7 @@ function Header() {
     }, [folded]);
 
     return (
-        <header className="header">
+        <header className={`header ${blurred ? "blurred" : "unblurred"}`}>
             <nav className="header__large">
                 <section className="header__left">
                     <Link to="/">
@@ -42,7 +43,12 @@ function Header() {
                         <img src={String(Logo)} alt="Accueil" className="header__logo-small" />
                     </Link>
                     <button
-                        onClick={() => setFoldedState(!folded)}
+                        onClick={
+                        () => {
+                            setFoldedState(!folded);
+                            setBlurredState(!blurred);
+                        }
+                    }
                         aria-label="Toggle navigation"
                         className="header__toggle-btn"
                     >

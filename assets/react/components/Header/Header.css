@@ -9,6 +9,12 @@
     width: 100%;
 }
 
+.blurred {
+    backdrop-filter: blur(10px);
+    background-color: rgba(14,16,132,0.4);
+    border-bottom: 2px solid #6286bf;
+}
+
 .header__large {
     display: none;
     flex-direction: row;
@@ -65,8 +71,15 @@
     padding: 0 10px;
 }
 
-.header__link.rollon::before, .header__link-small.rollon::before {
+.header__link-small.rollon::before {
+    background-color: #6286bf;
+}
+
+.header__link.rollon::before {
     background: #0E1084;
+}
+
+.header__link.rollon::before, .header__link-small.rollon::before {
     content: "";
     inset: 0;
     position: absolute;

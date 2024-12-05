@@ -5,6 +5,7 @@ import Home from "../views/Home";
 import TitleUpdater from "../tools/TitleUpdater";
 import Articles from "../views/Articles";
 import ExternalRedirect from "../tools/ExternalRedirect";
+import Login from "../views/Login";
 
 function Routes() {
     return (
@@ -22,6 +23,14 @@ function Routes() {
                     <>
                         <TitleUpdater title="Mes articles" />
                         <Articles />
+                    </>
+                }
+            </Route>
+            <Route path="/login">
+                {() =>
+                    <>
+                        <TitleUpdater title="Connexion" />
+                        <Login />
                     </>
                 }
             </Route>
