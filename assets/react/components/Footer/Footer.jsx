@@ -9,7 +9,7 @@ function Footer() {
     return (
         <footer className="footer">
             <div className={"footer__content"}>
-                <FooterImage src={String(Logo)} alt={"Logo"} />
+                <FooterImage src={String(Logo)} alt={"Logo"} to='/' />
                 <FooterSection
                     title={"Réseaux"}
                     linksData={

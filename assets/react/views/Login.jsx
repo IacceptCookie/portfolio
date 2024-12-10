@@ -8,7 +8,7 @@ import AnimatedText from "../components/AnimatedText";
 function Login() {
     return (
         <div className="login-view">
-            <Stack aspectRatio="16/9" width="100%" maxHeight="60vh">
+            <Stack aspectRatio="16/9" width="100%" maxHeight="25vh">
                 <Layer
                     type="video"
                     src={backgroundVideo}
@@ -25,12 +25,12 @@ function Login() {
                     <h1>Connexion</h1>
                     <input type="text" name="email" placeholder="Adresse email" id="email"/>
                     <input type="password" name="password" placeholder="Mot de passe" id="password"/>
-                    <input type="submit" value="Connexion" id="submit" />
+                    <input type="submit" value="Envoyer" id="submit" />
                 </form>
                 <AnimatedText
                     className="disclaimer-text"
                     text="Cette page est réservée à l'authentification des éditeurs. Si vous êtes un simple visiteur,
-                    je vous recommande d'allez jeter un coup d'oeil à mes travaux"
+                    je vous recommande d'allez jeter un coup d'oeil à mes travaux."
                     speed={10}
                 />
             </div>

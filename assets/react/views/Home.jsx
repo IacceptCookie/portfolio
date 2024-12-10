@@ -30,7 +30,7 @@ function Home() {
                 du dynamisme de React !"
                 speed={10}
             />
-            <div style={{ display: "flex", flexDirection: "column", alignItems: "center", padding: "10px" }}>
+            <div style={{display: "flex", flexDirection: "column", alignItems: "center", padding: "10px"}}>
                 <Card
                     type="large"
                     cardData={
