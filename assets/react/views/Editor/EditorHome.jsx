@@ -1,14 +1,15 @@
 import React from "react";
 import "./EditorHome.css";
-import Card from "../components/Card/Card";
-import caseIllustration from "../../img/case.png";
-import statIllustration from "../../img/stats.png";
-import writeIllustration from "../../img/writer.png";
+import Card from "../../components/Card/Card";
+import caseIllustration from "../../../img/case.png";
+import statIllustration from "../../../img/stats.png";
+import writeIllustration from "../../../img/writer.png";
+import EditorHeader from "../../components/Editor/EditorHeader";
 
 function EditorHome() {
     return (
         <>
-            <div className="header-filler" />
+            <EditorHeader warning={false} />
             <div className="menu">
                 <Card
                     type="menu"

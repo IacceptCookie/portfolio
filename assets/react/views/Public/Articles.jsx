@@ -1,7 +1,7 @@
 import React from "react";
-import Stack from "../components/Stack/Stack";
-import Layer from "../components/Stack/Layer/Layer";
-import backgroundVideo from "../../video/back.webm";
+import Stack from "../../components/Stack/Stack";
+import Layer from "../../components/Stack/Layer/Layer";
+import backgroundVideo from "../../../video/back.webm";
 
 function Articles() {
     return (

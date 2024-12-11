@@ -1,9 +1,9 @@
 import React from "react";
-import Stack from "../components/Stack/Stack";
-import Layer from "../components/Stack/Layer/Layer";
+import Stack from "../../components/Stack/Stack";
+import Layer from "../../components/Stack/Layer/Layer";
 import "./Login.css";
-import backgroundVideo from "../../video/back.webm";
-import AnimatedText from "../components/AnimatedText";
+import backgroundVideo from "../../../video/back.webm";
+import AnimatedText from "../../components/AnimatedText";
 
 function Login() {
     return (

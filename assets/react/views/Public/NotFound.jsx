@@ -1,8 +1,8 @@
 import React from "react";
 import "./NotFound.css";
-import Stack from "../components/Stack/Stack";
-import Layer from "../components/Stack/Layer/Layer";
-import NotFoundIllustration from "../../img/404.png";
+import Stack from "../../components/Stack/Stack";
+import Layer from "../../components/Stack/Layer/Layer";
+import NotFoundIllustration from "../../../img/404.png";
 import {Link} from "wouter";
 
 function NotFound() {
