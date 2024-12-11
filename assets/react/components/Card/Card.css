@@ -1,4 +1,4 @@
-.large-card {
+.large-card, .menu-card {
     display: flex;
     text-decoration: none;
     flex-direction: column;
@@ -10,13 +10,17 @@
     border-radius: 8px;
 }
 
-.large-card-illustration-stack {
+.menu-card:hover {
+    box-shadow: 1px 1px 4px 2px #7577CD;
+}
+
+.large-card-illustration-stack, .menu-card-illustration-stack {
     width: 100%;
     border-radius: 8px;
     max-width: 600px;
 }
 
-.large-card-illustration-title {
+.large-card-illustration-title, .menu-card-illustration-title {
     text-align: center;
     font-weight: bold;
     font-size: 30px;
@@ -149,7 +153,7 @@
 }
 
 @media only screen and (min-width: 600px) {
-    .large-card-illustration-title {
+    .large-card-illustration-title, .menu-card-illustration-title {
         font-size: 50px;
     }
 }

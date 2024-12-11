@@ -6,6 +6,7 @@ import TitleUpdater from "../tools/TitleUpdater";
 import Articles from "../views/Articles";
 import ExternalRedirect from "../tools/ExternalRedirect";
 import Login from "../views/Login";
+import EditorHome from "../views/EditorHome";
 
 function Routes() {
     return (
@@ -31,6 +32,14 @@ function Routes() {
                     <>
                         <TitleUpdater title="Connexion" />
                         <Login />
+                    </>
+                }
+            </Route>
+            <Route path="/dashboard">
+                {() =>
+                    <>
+                        <TitleUpdater title="Tableau de bord" />
+                        <EditorHome />
                     </>
                 }
             </Route>
