@@ -4,6 +4,7 @@ import Card from "../../components/Card/Card";
 import caseIllustration from "../../../img/case.png";
 import statIllustration from "../../../img/stats.png";
 import writeIllustration from "../../../img/writer.png";
+import filterIllustration from "../../../img/checkboxes.png";
 import EditorHeader from "../../components/Editor/EditorHeader";
 
 function EditorHome() {
@@ -28,6 +29,16 @@ function EditorHome() {
                             title: "Gérer les articles existants",
                             image: caseIllustration,
                             to: "/article/manage"
+                        }
+                    }
+                />
+                <Card
+                    type="menu"
+                    cardData={
+                        {
+                            title: "Gérer les tags et les catégories",
+                            image: filterIllustration,
+                            to: "/filter/manage"
                         }
                     }
                 />
