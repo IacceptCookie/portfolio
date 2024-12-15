@@ -2,7 +2,59 @@
     font-size: 24px;
     font-weight: normal;
     color: white;
-    font-family: Altone, sans-serif;
+    font-family: AlteHaas, sans-serif;
     margin: 10px;
     text-align: left;
+}
+
+.element-link {
+    font-size: 28px;
+    font-weight: normal;
+    text-decoration: underline;
+    color: white;
+    font-family: AlteHaas, sans-serif;
+    margin: 10px;
+    text-align: left;
+}
+
+.element-quote {
+    font-size: 28px;
+    font-weight: normal;
+    color: white;
+    font-family: AlteHaas, sans-serif;
+    margin: 10px;
+    text-align: left;
+}
+
+.element-title {
+    font-size: 32px;
+    font-weight: bold;
+    color: white;
+    font-family: AlteHaas, sans-serif;
+    margin: 10px;
+    text-align: left;
+}
+
+.element-video-wrapper {
+    display: flex;
+    margin: 10px;
+    width: 100%;
+    flex-direction: column;
+}
+
+.element-video {
+    display: flex;
+    width: 100%;
+    aspect-ratio: 16/9;
+    height: auto;
+}
+
+.element-video-legend {
+    font-size: 20px;
+    font-weight: bold;
+    color: white;
+    font-family: AltHaas, sans-serif;
+    margin: 4px;
+    text-align: center;
+    width: 100%;
 }

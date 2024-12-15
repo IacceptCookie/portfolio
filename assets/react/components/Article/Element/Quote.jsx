@@ -1,9 +1,12 @@
 import React from "react";
 
-function Quote({}) {
-
+function Quote(
+    {
+        text
+    }
+) {
     return (
-        <p>Ceci est une citation</p>
+        <article className="element-quote"><i>&ldquo;{text}&rdquo;</i></article>
     );
 }
 

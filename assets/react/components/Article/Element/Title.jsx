@@ -1,9 +1,12 @@
 import React from "react";
 
-function Title({}) {
-
+function Title(
+    {
+        text
+    }
+) {
     return (
-        <p>Ceci est un titre</p>
+        <h1 className="element-title">{text}</h1>
     );
 }
 

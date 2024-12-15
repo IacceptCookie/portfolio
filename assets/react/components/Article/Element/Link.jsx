@@ -1,9 +1,13 @@
 import React from "react";
 
-function Link({}) {
-
+function Link(
+    {
+        text,
+        href,
+    }
+) {
     return (
-        <p>Ceci est un lien</p>
+        <a href={href} className="element-link">{text}</a>
     );
 }
 

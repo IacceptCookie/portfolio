@@ -7,7 +7,7 @@ function Paragraph(
     }
 ) {
     return (
-        <p className="element-paragraph">{text}</p>
+        <article className="element-paragraph">{text}</article>
     );
 }
 

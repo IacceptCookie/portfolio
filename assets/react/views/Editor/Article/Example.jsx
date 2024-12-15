@@ -14,15 +14,32 @@ function Example() {
                 picture={articleIllustration}
             />
             <ArticleContentWrapper>
-                <Element type="paragraph"
+                <Element
+                    type="paragraph"
                     text="Ceci est l'exemple d'un paragraphe contenant des informations très utiles surtout pour le
                     fonctionnement de ce merveilleux composant"
                 />
-                <Element type="picture" />
-                <Element type="link" />
-                <Element type="quote" />
-                <Element type="video" />
-                <Element type="title" />
+                <Element
+                    type="picture"
+                />
+                <Element
+                    type="link"
+                    text="Ceci est un lien"
+                    href="#"
+                />
+                <Element
+                    type="quote"
+                    text="Une citation intéressante"
+                />
+                <Element
+                    type="video"
+                    href="https://www.youtube.com/embed/a3ICNMQW7Ok?si=VuiLcODB3h3ZbZaf"
+                    text="Une vidéo d'exemple de windows 7 - Microsoft"
+                />
+                <Element
+                    type="title"
+                    text="Un titre pour exprimer un sujet intéressant"
+                />
             </ArticleContentWrapper>
         </>
     );
