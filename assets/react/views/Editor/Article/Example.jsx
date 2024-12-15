@@ -14,7 +14,10 @@ function Example() {
                 picture={articleIllustration}
             />
             <ArticleContentWrapper>
-                <Element type="paragraph" />
+                <Element type="paragraph"
+                    text="Ceci est l'exemple d'un paragraphe contenant des informations très utiles surtout pour le
+                    fonctionnement de ce merveilleux composant"
+                />
                 <Element type="picture" />
                 <Element type="link" />
                 <Element type="quote" />

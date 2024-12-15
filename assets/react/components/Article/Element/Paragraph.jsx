@@ -1,9 +1,13 @@
 import React from "react";
+import "./Element.css";
 
-function Paragraph({}) {
-
+function Paragraph(
+    {
+        text
+    }
+) {
     return (
-        <p>Ceci est un paragraphe</p>
+        <p className="element-paragraph">{text}</p>
     );
 }
 

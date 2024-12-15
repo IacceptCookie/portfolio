@@ -16,12 +16,12 @@ function Element(
 )
 {
     const variants = {
-        paragraph: <Paragraph />,
-        picture: <Picture />,
-        quote: <Quote />,
-        title: <Title />,
-        video: <Video />,
-        link: <Link />,
+        paragraph: <Paragraph text={text} />,
+        picture: <Picture src={imageSrc} legend={text} />,
+        quote: <Quote text={text} />,
+        title: <Title text={text} />,
+        video: <Video src={href} legend={text} />,
+        link: <Link text={text} href={href} />,
     };
 
     return variants[type]
