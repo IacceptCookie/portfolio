@@ -8,6 +8,7 @@ import ExternalRedirect from "../tools/ExternalRedirect";
 import Login from "../views/Public/Login";
 import EditorHome from "../views/Editor/EditorHome";
 import Create from "../views/Editor/Article/Create";
+import Example from "../views/Editor/Article/Example";
 
 function Routes() {
     return (
@@ -56,6 +57,14 @@ function Routes() {
                         <Create />
                     </>
                 }
+            </Route>
+            <Route path="/article/example">
+                    {() =>
+                        <>
+                                <TitleUpdater title="Exemple d'article" />
+                                <Example />
+                        </>
+                    }
             </Route>
 
             // footer routes

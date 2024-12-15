@@ -1,0 +1,39 @@
+.article-illustration-text {
+    font-size: 32px;
+    color: white;
+    text-align: center;
+    font-family: AlteHaas, sans-serif;
+    font-weight: bold;
+}
+
+.article-illustration-reading-time-wrapper {
+    display: flex;
+    justify-content: end;
+    align-items: end;
+}
+
+.article-illustration-reading-time {
+    display: flex;
+    text-align: center;
+    font-weight: bold;
+    font-size: 16px;
+    font-family: AlteHaas, sans-serif;
+    color: white;
+    margin: 4px;
+}
+
+.article-content-wrapper {
+    display: flex;
+    flex-direction: column;
+    max-width: 1000px;
+    align-self: center;
+    width: 100%;
+    padding: 15px 5px;
+    box-sizing: border-box;
+}
+
+@media only screen and (min-width: 600px) {
+    .article-illustration-text {
+        font-size: 60px;
+    }
+}
