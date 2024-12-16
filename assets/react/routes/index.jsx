@@ -9,6 +9,7 @@ import Login from "../views/Public/Login";
 import EditorHome from "../views/Editor/EditorHome";
 import Create from "../views/Editor/Article/Create";
 import Example from "../views/Editor/Article/Example";
+import ManageFilter from "../views/Editor/Filter/Manage"
 
 function Routes() {
     return (
@@ -65,6 +66,16 @@ function Routes() {
                                 <Example />
                         </>
                     }
+            </Route>
+
+            // editors filter CRUD routes
+            <Route path="/filter/manage">
+                {() =>
+                    <>
+                        <TitleUpdater title="Gérer les filtres" />
+                        <ManageFilter />
+                    </>
+                }
             </Route>
 
             // footer routes
