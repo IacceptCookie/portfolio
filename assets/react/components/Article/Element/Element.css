@@ -37,14 +37,15 @@
 
 .element-video-wrapper {
     display: flex;
-    margin: 10px;
+    margin: 10px 0;
     width: 100%;
     flex-direction: column;
+    box-sizing: border-box;
 }
 
 .element-video {
     display: flex;
-    width: 100%;
+    width: auto;
     aspect-ratio: 16/9;
     height: auto;
 }
