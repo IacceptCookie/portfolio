@@ -21,6 +21,8 @@ function Example() {
                 />
                 <Element
                     type="picture"
+                    imageSrc="test.jpg"
+                    text="Une photo intéressante à partager"
                 />
                 <Element
                     type="link"

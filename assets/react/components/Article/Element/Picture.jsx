@@ -1,9 +1,21 @@
 import React from "react";
 
-function Picture({}) {
+function Picture(
+    {
+        src,
+        legend,
+    }
+) {
+    const imagePath = `/img/${src}`;
 
     return (
-        <p>Ceci est une image</p>
+        <div className="element-picture-wrapper">
+            <img className="element-picture"
+                    src={imagePath}
+                    alt={legend}
+            />
+            <p className="element-picture-legend">{legend}</p>
+        </div>
     );
 }
 

@@ -35,7 +35,7 @@
     text-align: left;
 }
 
-.element-video-wrapper {
+.element-video-wrapper, .element-picture-wrapper {
     display: flex;
     margin: 10px 0;
     width: 100%;
@@ -43,19 +43,21 @@
     box-sizing: border-box;
 }
 
-.element-video {
+.element-video, .element-picture {
     display: flex;
     width: auto;
     aspect-ratio: 16/9;
     height: auto;
 }
 
-.element-video-legend {
+.element-video-legend, .element-picture-legend {
     font-size: 20px;
     font-weight: bold;
     color: white;
     font-family: AltHaas, sans-serif;
-    margin: 4px;
+    padding: 4px;
+    margin: 0;
+    box-sizing: border-box;
     text-align: center;
     width: 100%;
 }
