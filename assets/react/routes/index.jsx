@@ -11,6 +11,7 @@ import Create from "../views/Editor/Article/Create";
 import Example from "../views/Editor/Article/Example";
 import ManageFilter from "../views/Editor/Filter/Manage";
 import ManageArticle from "../views/Editor/Article/Manage";
+import Contact from "../views/Public/Contact";
 
 function Routes() {
     return (
@@ -39,6 +40,14 @@ function Routes() {
                         <Login />
                     </>
                 }
+            </Route>
+            <Route path="/contact">
+                    {() =>
+                        <>
+                                <TitleUpdater title="Me contacter" />
+                                <Contact />
+                        </>
+                    }
             </Route>
 
             // editors commons routes

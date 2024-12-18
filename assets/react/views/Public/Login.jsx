@@ -8,7 +8,7 @@ import AnimatedText from "../../components/AnimatedText";
 function Login() {
     return (
         <div className="login-view">
-            <Stack aspectRatio="16/9" width="100%" maxHeight="25vh">
+            <Stack aspectRatio="16/9" width="100%" maxHeight="60vh">
                 <Layer
                     type="video"
                     src={backgroundVideo}
@@ -23,8 +23,8 @@ function Login() {
             <div className="login-container">
                 <form className="login-form">
                     <h1>Connexion</h1>
-                    <input type="text" name="email" placeholder="Adresse email" id="email"/>
-                    <input type="password" name="password" placeholder="Mot de passe" id="password"/>
+                    <input type="text" name="email" placeholder="Adresse email" id="email" required={true} />
+                    <input type="password" name="password" placeholder="Mot de passe" id="password" required={true} />
                     <input type="submit" value="Envoyer" id="submit" />
                 </form>
                 <AnimatedText
