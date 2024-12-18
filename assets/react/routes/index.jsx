@@ -9,7 +9,8 @@ import Login from "../views/Public/Login";
 import EditorHome from "../views/Editor/EditorHome";
 import Create from "../views/Editor/Article/Create";
 import Example from "../views/Editor/Article/Example";
-import ManageFilter from "../views/Editor/Filter/Manage"
+import ManageFilter from "../views/Editor/Filter/Manage";
+import ManageArticle from "../views/Editor/Article/Manage";
 
 function Routes() {
     return (
@@ -64,6 +65,14 @@ function Routes() {
                         <>
                                 <TitleUpdater title="Exemple d'article" />
                                 <Example />
+                        </>
+                    }
+            </Route>
+            <Route path="/article/manage">
+                    {() =>
+                        <>
+                                <TitleUpdater title="Gérer les articles" />
+                                <ManageArticle />
                         </>
                     }
             </Route>

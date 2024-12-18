@@ -9,6 +9,7 @@
     padding: 12px;
     justify-content: space-between;
     align-self: center;
+    margin: 15px 0;
 }
 
 .searchbar__search-text {

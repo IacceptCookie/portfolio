@@ -2,6 +2,7 @@ import React from "react";
 import "./Result.css";
 import EditorTagResult from "./Editor/TagResult";
 import EditorCategoryResult from "./Editor/CategoryResult";
+import EditorArticleResult from "./Editor/ArticleResult";
 
 function Result(
     {
@@ -14,7 +15,7 @@ function Result(
         //article: <ArticleResult resultData={resultData} />,
         //tag: <TagResult resultData={resultData} />,
         //category: <CategoryResult resultData={resultData} />,
-        //editorArticle: <EditorArticleResult resultData={resultData} />,
+        editorArticle: <EditorArticleResult resultData={resultData} />,
         editorTag: <EditorTagResult resultData={resultData} />,
         editorCategory: <EditorCategoryResult resultData={resultData} />
     };
