@@ -4,8 +4,11 @@ RUN apt-get update && apt-get install -y \
     git \
     unzip \
     wget \
+    grep \
     libpq-dev \
-    && docker-php-ext-install pdo pdo_pgsql
+    libicu-dev \
+    && docker-php-ext-configure intl \
+    && docker-php-ext-install intl pdo pdo_pgsql
 
 RUN git config --global --add safe.directory /var/www/symfony
 
