@@ -61,3 +61,13 @@ npm run watch
 ```
 
 once the compilation and the containers are launched, the webapp is available at [https://localhost](https://localhost)
+
+create the database schema and load fixtures :
+```
+composer docker-db
+```
+
+generate keys for authentication (only once when you install the project) :
+```
+composer jwt-generate-keys
+```

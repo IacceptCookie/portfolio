@@ -6,6 +6,7 @@ services:
     container_name: portfolio_backend
     volumes:
       - .:/var/www/symfony
+      - jwt_keys:/var/www/symfony/var/jwt
     environment:
       DATABASE_URL: "postgresql://portfolio:portfolio@db:5432/portfolio?serverVersion=17&charset=utf8"
     depends_on:
@@ -56,3 +57,4 @@ networks:
 
 volumes:
   portfolio_postgres:
+  jwt_keys:

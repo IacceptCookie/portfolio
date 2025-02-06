@@ -7,8 +7,10 @@ RUN apt-get update && apt-get install -y \
     grep \
     libpq-dev \
     libicu-dev \
+    libsodium-dev \
+    openssl \
     && docker-php-ext-configure intl \
-    && docker-php-ext-install intl pdo pdo_pgsql
+    && docker-php-ext-install intl pdo pdo_pgsql sodium
 
 RUN git config --global --add safe.directory /var/www/symfony
 
