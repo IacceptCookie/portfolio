@@ -61,7 +61,7 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     #[Groups(['User_read', 'User_me'])]
     private ?int $id = null;
 
-    #[ORM\Column(length: 180, unique: true)]
+    #[ORM\Column(length: 50, unique: true)]
     #[Groups(['User_read', 'User_write', 'User_me'])]
     #[Assert\Regex('/[^&"<>]/')]
     #[ApiProperty(
@@ -97,6 +97,11 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
 
     #[ORM\OneToMany(mappedBy: 'author', targetEntity: Article::class, orphanRemoval: true)]
     private Collection $articles;
+
+    #[ORM\Column(length: 180, unique: true)]
+    #[Groups(['User_write', 'User_me'])]
+    #[Assert\Email(message: "L'email '{{ value }}' n'est pas valide.")]
+    private ?string $email = null;
 
     public function __construct()
     {
@@ -223,6 +228,18 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
                 $article->setAuthor(null);
             }
         }
+
+        return $this;
+    }
+
+    public function getEmail(): ?string
+    {
+        return $this->email;
+    }
+
+    public function setEmail(string $email): static
+    {
+        $this->email = $email;
 
         return $this;
     }

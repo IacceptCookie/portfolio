@@ -10,7 +10,14 @@ class UserFixtures extends Fixture
 {
     public function load(ObjectManager $manager): void
     {
-        UserFactory::createOne(['login' => 'IacceptCookie', 'firstname' => 'Raphaël', 'lastname' => 'Durand']);
+        UserFactory::createOne(
+            [
+                'login' => 'IacceptCookie',
+                'firstname' => 'Raphaël',
+                'lastname' => 'Durand',
+                'email' => 'admin@raphael-durand.fr',
+            ]
+        );
         UserFactory::createMany(5);
     }
 }
