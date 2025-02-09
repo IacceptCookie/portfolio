@@ -71,3 +71,5 @@ generate keys for authentication (only once when you install the project) :
 ```
 composer jwt-generate-keys
 ```
+
+[test mail local](https://mailtrap.io/)

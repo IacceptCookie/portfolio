@@ -10,7 +10,9 @@ use App\Repository\UserRepository;
 use App\State\MeProvider;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
+use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
+use Scheb\TwoFactorBundle\Model\Email\TwoFactorInterface;
 use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 use Symfony\Component\Security\Core\User\PasswordAuthenticatedUserInterface;
 use Symfony\Component\Security\Core\User\UserInterface;
@@ -53,7 +55,7 @@ use Symfony\Component\Validator\Constraints as Assert;
 #[UniqueEntity('login')]
 #[ORM\Entity(repositoryClass: UserRepository::class)]
 #[ORM\Table(name: '`user`')]
-class User implements UserInterface, PasswordAuthenticatedUserInterface
+class User implements UserInterface, PasswordAuthenticatedUserInterface, TwoFactorInterface
 {
     #[ORM\Id]
     #[ORM\GeneratedValue]
@@ -102,6 +104,61 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     #[Groups(['User_write', 'User_me'])]
     #[Assert\Email(message: "L'email '{{ value }}' n'est pas valide.")]
     private ?string $email = null;
+
+    #[ORM\Column(type: 'boolean')]
+    private bool $is2faEnabled = true;
+
+    #[ORM\Column(type: 'string', nullable: true)]
+    private ?string $emailAuthCode = null;
+
+    #[ORM\Column(type: 'datetime', nullable: true)]
+    private ?\DateTime $emailAuthCodeExpiresAt = null;
+
+    #[ORM\Column(type: 'datetime', nullable: true)]
+    private ?\DateTime $emailAuthCanRegenerateUntil = null;
+
+    #[ORM\Column(type: Types::SMALLINT, nullable: true)]
+    private ?int $attempts = null;
+
+    public function getEmailAuthCanRegenerateUntil(): ?\DateTime
+    {
+        return $this->emailAuthCanRegenerateUntil;
+    }
+
+    public function setEmailAuthCanRegenerateUntil(?\DateTime $expiresAt): void
+    {
+        $this->emailAuthCanRegenerateUntil = $expiresAt;
+    }
+
+    public function getEmailAuthCodeExpiresAt(): ?\DateTime
+    {
+        return $this->emailAuthCodeExpiresAt;
+    }
+
+    public function setEmailAuthCodeExpiresAt(?\DateTime $expiresAt): void
+    {
+        $this->emailAuthCodeExpiresAt = $expiresAt;
+    }
+
+    public function isEmailAuthEnabled(): bool
+    {
+        return $this->is2faEnabled;
+    }
+
+    public function getEmailAuthRecipient(): string
+    {
+        return $this->email;
+    }
+
+    public function getEmailAuthCode(): ?string
+    {
+        return $this->emailAuthCode;
+    }
+
+    public function setEmailAuthCode(?string $authCode): void
+    {
+        $this->emailAuthCode = $authCode;
+    }
 
     public function __construct()
     {
@@ -240,6 +297,18 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     public function setEmail(string $email): static
     {
         $this->email = $email;
+
+        return $this;
+    }
+
+    public function getAttempts(): ?int
+    {
+        return $this->attempts;
+    }
+
+    public function setAttempts(?int $attempts): static
+    {
+        $this->attempts = $attempts;
 
         return $this;
     }

@@ -15,7 +15,7 @@ class UserFixtures extends Fixture
                 'login' => 'IacceptCookie',
                 'firstname' => 'Raphaël',
                 'lastname' => 'Durand',
-                'email' => 'admin@raphael-durand.fr',
+                'email' => 'durandraphael.courriel@gmail.com',
                 'roles' => ['ROLE_EDITOR'],
             ]
         );

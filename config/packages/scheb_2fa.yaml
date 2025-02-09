@@ -1,0 +1,10 @@
+# See the configuration reference at https://symfony.com/bundles/SchebTwoFactorBundle/6.x/configuration.html
+scheb_two_factor:
+    security_tokens:
+        - Lexik\Bundle\JWTAuthenticationBundle\Security\Authentication\Token\JWTUserToken
+        - Symfony\Component\Security\Http\Authenticator\Token\PostAuthenticationToken
+    email:
+        enabled: true
+        mailer: 'mailer'
+        sender_email: 'noreply@raphael-durand.fr'
+        digits: 6
