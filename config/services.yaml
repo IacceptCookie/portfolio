@@ -21,6 +21,11 @@ services:
             - '../src/Kernel.php'
     App\Controller\ReactController:
         tags: [ 'controllers.service_arguments' ]
+    App\EventListener\CsrfListener:
+        arguments:
+            - '@Symfony\Component\Security\Csrf\CsrfTokenManagerInterface'
+        tags:
+            - { name: 'kernel.event_listener', event: 'kernel.request', priority: 10 }
 
     # add more service definitions when explicit configuration is needed
     # please note that last definitions always *replace* previous ones

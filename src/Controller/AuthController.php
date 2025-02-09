@@ -8,10 +8,12 @@ use App\Service\TwoFactorService;
 use Doctrine\ORM\EntityManagerInterface;
 use Lexik\Bundle\JWTAuthenticationBundle\Services\JWTTokenManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\HttpFoundation\Cookie;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Attribute\Route;
+use Symfony\Component\Security\Csrf\CsrfTokenManagerInterface;
 use Symfony\Component\Security\Http\Attribute\CurrentUser;
 
 final class AuthController extends AbstractController
@@ -75,6 +77,7 @@ final class AuthController extends AbstractController
         UserRepository $repository,
         EntityManagerInterface $entityManager,
         JWTTokenManagerInterface $jwtManager,
+        CsrfTokenManagerInterface $csrfTokenManager,
     ): JsonResponse {
         $userId = $request->getSession()->get('user_id');
         if (null === $userId) {
@@ -122,11 +125,27 @@ final class AuthController extends AbstractController
         $entityManager->persist($user);
         $entityManager->flush();
 
-        $token = $jwtManager->create($user);
+        $jwtToken = $jwtManager->create($user);
+        $csrfToken = $csrfTokenManager->getToken('api-csrf-token');
 
-        return $this->json([
+        $cookie = new Cookie(
+            'BEARER',
+            $jwtToken,
+            time() + 1800,
+            '/',
+            null,
+            true,
+            true,
+            false,
+        );
+        $response = $this->json([
             'user' => $user->getUserIdentifier(),
-            'token' => $token,
+            'csrf_token' => $csrfToken,
+            'roles' => $user->getRoles(),
         ], Response::HTTP_OK);
+
+        $response->headers->setCookie($cookie);
+
+        return $response;
     }
 }
