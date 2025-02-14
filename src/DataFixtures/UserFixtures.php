@@ -16,7 +16,7 @@ class UserFixtures extends Fixture
                 'firstname' => 'Raphaël',
                 'lastname' => 'Durand',
                 'email' => 'durandraphael.courriel@gmail.com',
-                'roles' => ['ROLE_EDITOR'],
+                'roles' => ['ROLE_EDITOR', 'ROLE_READER'],
             ]
         );
         UserFactory::createMany(5);

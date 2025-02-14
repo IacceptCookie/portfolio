@@ -11,10 +11,14 @@ function TwoFactorCheck() {
     const inputsRef = useRef([]);
     const [, navigate] = useLocation();
 
+    const params = new URLSearchParams(window.location.search);
+    const redirectParam = decodeURI(params.get("redirect"));
+    const redirectTo = redirectParam ? `?redirect=${redirectParam}` : '';
+
     useEffect(() => {
         const isWaitingFor2FA = sessionStorage.getItem("isWaitingFor2FA");
         if (isWaitingFor2FA !== "true") {
-            navigate("/login");
+            navigate(`/login${redirectTo}`);
         }
     }, [navigate]);
 
@@ -61,16 +65,15 @@ function TwoFactorCheck() {
                 if (status === 200) {
                     sessionStorage.setItem("isWaitingFor2FA", "false");
                     sessionStorage.setItem("csrf_token", JSON.stringify(body.csrf_token.value));
-                    sessionStorage.setItem("roles", JSON.stringify(body.roles));
-                    navigate("/dashboard");
+                    navigate(redirectParam ?? '/dashboard');
                 } else if (body.message.startsWith("User not found") || body.message.startsWith("Expired code")) {
                     sessionStorage.setItem("isWaitingFor2FA", "false");
-                    navigate("/login");
+                    navigate(`/login${redirectTo}`);
                 } else if (body.message.startsWith("Invalid code")) {
                     setErrorMessage("Le code est incorrect");
                 }
             })
-            .catch(() => navigate("/login"));
+            .catch(() => navigate(`/login${redirectTo}`));
     };
 
     return (

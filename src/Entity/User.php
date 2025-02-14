@@ -41,13 +41,13 @@ use Symfony\Component\Validator\Constraints as Assert;
                 ],
             ],
             normalizationContext: ['groups' => ['User_me']],
-            security: "is_granted('ROLE_USER') and object == user",
+            security: "is_granted('ROLE_READER') and object == user",
             provider: MeProvider::class,
         ),
         new Patch(
             normalizationContext: ['groups' => ['User_read', 'User_me']],
             denormalizationContext: ['groups' => ['User_write']],
-            security: "is_granted('ROLE_USER') and object == user",
+            security: "is_granted('ROLE_READER') and object == user",
         ),
     ],
     normalizationContext: ['groups' => ['User_read']],
@@ -72,6 +72,7 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface, TwoFact
     private ?string $login = null;
 
     #[ORM\Column]
+    #[Groups(['User_me'])]
     private array $roles = [];
 
     /**

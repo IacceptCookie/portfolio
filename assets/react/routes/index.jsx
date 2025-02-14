@@ -13,6 +13,7 @@ import ManageFilter from "../views/Editor/Filter/Manage";
 import ManageArticle from "../views/Editor/Article/Manage";
 import Contact from "../views/Public/Contact";
 import TwoFactorCheck from "../views/Public/TwoFactorCheck";
+import PrivateRoute from "../tools/PrivateRoute";
 
 function Routes() {
     return (
@@ -62,46 +63,46 @@ function Routes() {
             // editors commons routes
             <Route path="/dashboard">
                 {() =>
-                    <>
+                    <PrivateRoute role="ROLE_READER">
                         <TitleUpdater title="Tableau de bord" />
                         <EditorHome />
-                    </>
+                    </PrivateRoute>
                 }
             </Route>
 
             // editors article CRUD routes
             <Route path="/article/create">
                 {() =>
-                    <>
+                    <PrivateRoute role="ROLE_EDITOR">
                         <TitleUpdater title="Création d'un article" />
                         <Create />
-                    </>
+                    </PrivateRoute>
                 }
             </Route>
             <Route path="/article/example">
                     {() =>
-                        <>
+                        <PrivateRoute role="ROLE_EDITOR">
                                 <TitleUpdater title="Exemple d'article" />
                                 <Example />
-                        </>
+                        </PrivateRoute>
                     }
             </Route>
             <Route path="/article/manage">
                     {() =>
-                        <>
+                        <PrivateRoute role="ROLE_READER">
                                 <TitleUpdater title="Gérer les articles" />
                                 <ManageArticle />
-                        </>
+                        </PrivateRoute>
                     }
             </Route>
 
             // editors filter CRUD routes
             <Route path="/filter/manage">
                 {() =>
-                    <>
+                    <PrivateRoute role="ROLE_READER">
                         <TitleUpdater title="Gérer les filtres" />
                         <ManageFilter />
-                    </>
+                    </PrivateRoute>
                 }
             </Route>
 

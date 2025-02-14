@@ -3,16 +3,21 @@ import { useLocation } from "wouter";
 import "./Login.css";
 import AnimatedText from "../../components/AnimatedText";
 import EditorHeader from "../../components/Editor/EditorHeader";
+import redirectParams from "core-js/internals/map-helpers";
 
 function Login() {
     const [, setLocation] = useLocation();
     const [error, setError] = useState("");
     const [, navigate] = useLocation();
 
+    const params = new URLSearchParams(window.location.search);
+    const redirectParam = decodeURI(params.get("redirect"));
+    const redirectTo = redirectParam ? `?redirect=${redirectParam}` : '';
+
     useEffect(() => {
         const isWaitingFor2FA = sessionStorage.getItem("isWaitingFor2FA");
         if (isWaitingFor2FA === "true") {
-            navigate("/login/2fa");
+            navigate(`/login/2fa${redirectTo}`);
         }
     }, [navigate]);
 
@@ -37,7 +42,7 @@ function Login() {
             }
 
             sessionStorage.setItem("isWaitingFor2FA", "true");
-            setLocation("/login/2fa");
+            setLocation(`/login/2fa${redirectTo}`);
         } catch (error) {
             setError("Identifiant ou mot de passe incorrect");
         }

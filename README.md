@@ -7,7 +7,7 @@ This project aim to be a tool that i can use to display my work, share stuff, an
 
 - php 8.2
 - react 18.3
-- symfony 6.3
+- symfony 7.2
 - api platform 3.2
 - postgresql 17
 - nginx

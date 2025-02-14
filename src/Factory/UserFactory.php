@@ -31,7 +31,7 @@ final class UserFactory extends PersistentProxyObjectFactory
             'login' => self::faker()->unique()->numerify('user-###'),
             'email' => self::faker()->unique()->email(),
             'password' => 'test',
-            'roles' => [],
+            'roles' => ['ROLE_READER'],
         ];
     }
 
