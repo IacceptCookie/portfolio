@@ -1,8 +1,10 @@
 import {useEffect, useState} from "react";
 import {Redirect} from "wouter";
+import {useAuth} from "../../providers/AuthProvider";
 
 function Logout() {
     const [ready, setReady] = useState(false);
+    const {fetchUser} = useAuth();
 
     const handleLogout = async () => {
         await fetch('/authentication/logout', { method: 'POST', credentials: 'include' });
@@ -10,7 +12,10 @@ function Logout() {
     };
 
     useEffect(() => {
-        handleLogout().then(() => setReady(true));
+        handleLogout()
+            .then(
+                () => fetchUser().then(() => setReady(true))
+            );
     }, [])
 
     if (ready) {
