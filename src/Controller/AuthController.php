@@ -148,4 +148,21 @@ final class AuthController extends AbstractController
 
         return $response;
     }
+
+    #[Route('/authentication/logout', name: 'authentication_logout', methods: ['POST'])]
+    public function logout(): Response
+    {
+        $response = new Response('Logout');
+
+        $response->headers->clearCookie(
+            'BEARER',
+            '/',
+            null,
+            true,
+            true,
+            false
+        );
+
+        return $response;
+    }
 }

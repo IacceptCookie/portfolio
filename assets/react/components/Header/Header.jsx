@@ -4,11 +4,13 @@ import Logo from "../../../img/logo-complete.png";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faBars } from '@fortawesome/free-solid-svg-icons';
 import "./Header.css";
+import {useAuth} from "../../providers/AuthProvider";
 
 function Header() {
     const [folded, setFoldedState] = useState(true);
     const [blurred, setBlurredState] = useState(false);
     const navRef = useRef(null);
+    const {hasRole} = useAuth();
 
     useEffect(() => {
         const navElement = navRef.current;
@@ -31,7 +33,11 @@ function Header() {
                 <section className="header__center">
                     <Link to="/profile" className="header__link rollon">Profil</Link>
                     <Link to="/articles" className="header__link rollon">Articles</Link>
-                    <Link to="/login" className="header__link rollon">Connexion</Link>
+                    {
+                        hasRole('ROLE_READER') ?
+                            <Link to="/dashboard" className="header__link rollon">Dashboard</Link> :
+                            <Link to="/login" className="header__link rollon">Connexion</Link>
+                    }
                 </section>
                 <section className="header__right">
                     <Link to="/contact" className="header__link highlight">Contact</Link>
@@ -58,6 +64,11 @@ function Header() {
                 <nav ref={navRef} className={`header__nav ${folded ? "folded" : "unfolded"}`}>
                     <Link to="/profile" className="header__link-small rollon">Profil</Link>
                     <Link to="/articles" className="header__link-small rollon">Articles</Link>
+                    {
+                        hasRole('ROLE_READER') ?
+                            <Link to="/dashboard" className="header__link-small rollon">Dashboard</Link> :
+                            <Link to="/login" className="header__link-small rollon">Connexion</Link>
+                    }
                     <Link to="/login" className="header__link-small rollon">Connexion</Link>
                     <Link to="/contact" className="header__link-small rollon">Contact</Link>
                 </nav>

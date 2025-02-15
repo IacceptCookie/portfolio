@@ -36,6 +36,11 @@ function Footer() {
                             {
                                 label: 'Besoin d\'aide ?',
                                 href: '/help',
+                            },
+                            {
+                                label: 'Déconnexion',
+                                href: '/logout',
+                                role: 'ROLE_READER',
                             }
                         ]
                     }

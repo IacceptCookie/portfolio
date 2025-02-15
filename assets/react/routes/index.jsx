@@ -14,6 +14,7 @@ import ManageArticle from "../views/Editor/Article/Manage";
 import Contact from "../views/Public/Contact";
 import TwoFactorCheck from "../views/Public/TwoFactorCheck";
 import PrivateRoute from "../tools/PrivateRoute";
+import Logout from "../views/Public/Logout";
 
 function Routes() {
     return (
@@ -40,6 +41,14 @@ function Routes() {
                     <>
                         <TitleUpdater title="Connexion" />
                         <Login />
+                    </>
+                }
+            </Route>
+            <Route path="/logout">
+                {() =>
+                    <>
+                        <TitleUpdater title="Déconnexion" />
+                        <Logout />
                     </>
                 }
             </Route>
