@@ -12,7 +12,7 @@ function Login() {
 
     const params = new URLSearchParams(window.location.search);
     const redirectParam = decodeURI(params.get("redirect"));
-    const redirectTo = redirectParam ? `?redirect=${redirectParam}` : '';
+    const redirectTo = redirectParam !== 'null' ? `?redirect=${redirectParam}` : '';
 
     useEffect(() => {
         const isWaitingFor2FA = sessionStorage.getItem("isWaitingFor2FA");

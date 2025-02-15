@@ -13,7 +13,7 @@ function TwoFactorCheck() {
 
     const params = new URLSearchParams(window.location.search);
     const redirectParam = decodeURI(params.get("redirect"));
-    const redirectTo = redirectParam ? `?redirect=${redirectParam}` : '';
+    const redirectTo = redirectParam !== "null" ? `?redirect=${redirectParam}` : '';
 
     useEffect(() => {
         const isWaitingFor2FA = sessionStorage.getItem("isWaitingFor2FA");
@@ -65,7 +65,7 @@ function TwoFactorCheck() {
                 if (status === 200) {
                     sessionStorage.setItem("isWaitingFor2FA", "false");
                     sessionStorage.setItem("csrf_token", JSON.stringify(body.csrf_token.value));
-                    navigate(redirectParam ?? '/dashboard');
+                    navigate(redirectParam !== 'null' ? redirectParam : '/dashboard');
                 } else if (body.message.startsWith("User not found") || body.message.startsWith("Expired code")) {
                     sessionStorage.setItem("isWaitingFor2FA", "false");
                     navigate(`/login${redirectTo}`);
