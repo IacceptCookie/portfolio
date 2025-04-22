@@ -21,7 +21,7 @@ class CsrfListener
         $request = $event->getRequest();
         $currentRoute = $request->attributes->get('_route');
 
-        if (str_starts_with($currentRoute, 'authentication')) {
+        if (str_starts_with($currentRoute, 'authentication') || str_starts_with($currentRoute, 'email/contact')) {
             return;
         }
 

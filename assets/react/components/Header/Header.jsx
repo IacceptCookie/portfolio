@@ -69,7 +69,6 @@ function Header() {
                             <Link to="/dashboard" className="header__link-small rollon">Dashboard</Link> :
                             <Link to="/login" className="header__link-small rollon">Connexion</Link>
                     }
-                    <Link to="/login" className="header__link-small rollon">Connexion</Link>
                     <Link to="/contact" className="header__link-small rollon">Contact</Link>
                 </nav>
             </div>

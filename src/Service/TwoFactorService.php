@@ -33,6 +33,10 @@ class TwoFactorService
             ->subject('Votre code de connexion')
             ->text("Votre code de vérification est : $code. (Ce code est valable 5 minutes)");
 
+        $email
+            ->getHeaders()
+            ->addTextHeader('X-Auto-Response-Suppress', 'OOF, DR, RN, NRN, AutoReply');
+
         $this->mailer->send($email);
     }
 }

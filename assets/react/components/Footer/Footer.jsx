@@ -41,6 +41,12 @@ function Footer() {
                                 label: 'Déconnexion',
                                 href: '/logout',
                                 role: 'ROLE_READER',
+                            },
+                            {
+                                label: 'API',
+                                href: '/api',
+                                role: 'ROLE_EDITOR',
+                                outer: true,
                             }
                         ]
                     }

@@ -9,7 +9,7 @@ function FooterSection({ title, linksData }) {
             <p className="footer__section-title">{title}</p>
             <ul className="footer__section-links">
                 {linksData
-                    .filter(linkData => !linkData.role || hasRole(linkData.role))
+                    .filter(linkData => (!linkData.role || hasRole(linkData.role)) && !linkData.outer)
                     .map((linkData, index) => (
                         <li key={index} className="footer__section-link-item">
                             <Link
@@ -20,6 +20,20 @@ function FooterSection({ title, linksData }) {
                             >
                                 {linkData.label}
                             </Link>
+                        </li>
+                    ))
+                }
+                {linksData
+                    .filter(linkData => (!linkData.role || hasRole(linkData.role)) && linkData.outer)
+                    .map((linkData, index) => (
+                        <li key={index} className="footer__section-link-item">
+                            <button
+                                className="footer__section-link outer-button"
+                                onClick={() => window.location.href = linkData.href}
+                                rel="noopener noreferrer"
+                            >
+                                {linkData.label}
+                            </button>
                         </li>
                     ))
                 }
