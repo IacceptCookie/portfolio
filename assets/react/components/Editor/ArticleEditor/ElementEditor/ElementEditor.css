@@ -1,0 +1,208 @@
+.element-main-editor-area {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    padding: 0 20px;
+    flex: 3;
+}
+
+.element-type-selector, .element-text {
+    outline: none;
+    background-color: white;
+    font-family: AltHaas, sans-serif;
+    font-weight: bold;
+    font-size: 24px;
+    width: 100%;
+    padding: 12px;
+    box-sizing: border-box;
+    border-radius: 30px;
+    border: solid 4px #7577CD;
+    margin: 10px 0;
+}
+
+.element-text {
+    display: flex;
+    flex: 1;
+}
+
+.element-type-selector {
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    text-indent: 1px;
+    text-overflow: '';
+}
+
+.element-side-editor-area {
+    flex-direction: column-reverse;
+}
+
+.element-side-editor-area {
+    display: flex;
+    justify-content: space-between;
+    padding: 0 20px;
+    flex: 1;
+    align-items: center;
+}
+
+.element-editor, .element-list {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 10px;
+}
+
+.element-editor-menu {
+    align-items: center;
+}
+
+.element-editor-add-button, .element-editor-counter, .element-editor-readingtime-estimation {
+    margin: 10px 0;
+}
+
+.element-editor-menu, .element {
+    display: flex;
+    max-width: 1200px;
+    width: 100%;
+    align-self: center;
+    justify-content: space-around;
+    background-color: #0E1084;
+    box-shadow: 2px 2px 3px #7577CD;
+    border-radius: 20px;
+    padding: 15px 10px;
+    margin-top: 20px;
+    box-sizing: border-box;
+    flex-direction: column;
+}
+
+.element-editor-add-button {
+    color: white;
+    font-family: AltHaas, sans-serif;
+    font-weight: bold;
+    font-size: 24px;
+    cursor: pointer;
+    background-color: #A0A3FF;
+    padding: 6px 12px;
+    border-radius: 12px;
+    outline: none;
+    border: none;
+}
+
+.element-editor-add-button:hover {
+    background-color: #7577CD;
+    transition: .3s;
+}
+
+.element-editor-counter, .element-editor-readingtime-estimation {
+    display: flex;
+    align-items: center;
+    background-color: #7577CD;
+    color: white;
+    font-family: AltHaas, sans-serif;
+    font-weight: bold;
+    font-size: 24px;
+    padding: 12px;
+    text-align: center;
+    border-radius: 18px;
+    width: 100%;
+    max-width: fit-content;
+    height: fit-content;
+}
+
+.element-editor-button-area {
+    display: flex;
+    justify-content: center;
+    width: 100%;
+}
+
+.element-up-button, .element-down-button, .element-delete-button {
+    width: 60px;
+    height: 60px;
+    border-radius: 30px;
+    border: solid 4px #7577CD;
+    background-color: white;
+    padding: 3px;
+    box-sizing: border-box;
+    margin: 12px;
+    cursor: pointer;
+}
+
+.element-delete-button {
+    border: solid 4px red;
+}
+
+.element-up-button:hover, .element-down-button:hover {
+    background-color: #A0A3FF;
+    transition: .3s;
+}
+
+.element-delete-button:hover {
+    background-color: #ffb0b0;
+    transition: .3s;
+}
+
+.element-up-button>*, .element-down-button>*, .element-delete-button>* {
+    width: 100%;
+    height: 100%;
+    color: #0E1084;
+}
+
+.element-delete-button>* {
+    color: red;
+}
+
+.element-image-displayer {
+    width: 180px;
+    height: 180px;
+    color: white;
+    font-family: AltHaas, sans-serif;
+    font-weight: bold;
+    font-size: 24px;
+    cursor: pointer;
+    background-color: #A0A3FF;
+    border-radius: 18px;
+    text-align: center;
+    margin: 12px;
+}
+
+.element-image-displayer:hover {
+    background-color: #7577CD;
+    transition: .3s;
+}
+
+.element-image-selector {
+    display: none;
+}
+
+.element-image {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 18px;
+}
+
+@media only screen and (min-width: 600px) {
+    .element-editor-counter {
+        margin: 0 0 0 5px;
+    }
+}
+
+@media only screen and (min-width: 800px) {
+    .element-editor-menu, .element {
+        flex-direction: row;
+        padding: 15px 10px;
+    }
+
+    .element-editor-readingtime-estimation {
+        margin: 0 0 0 5px;
+    }
+
+    .element-editor-button-area {
+        justify-content: end;
+    }
+
+    .element-side-editor-area {
+        flex-direction: column;
+    }
+}

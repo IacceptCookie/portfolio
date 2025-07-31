@@ -12,9 +12,8 @@ function SearchBar(
     }
 ) {
     return (
-        <form
+        <div
             className="searchbar"
-            onSubmit={(event) => event.preventDefault()}
         >
             <input
                 type="text"
@@ -25,7 +24,7 @@ function SearchBar(
                 onChange={(event) => updateTextState(event.target.value)}
             />
             <FontAwesomeIcon icon={faMagnifyingGlass} className="searchbar__search-icon" />
-        </form>
+        </div>
     );
 }
 

@@ -9,7 +9,7 @@ function MenuCard(
 )
 {
     return (
-        <a href={cardData.to} target="_blank" className="menu-card">
+        <a href={cardData.to} className="menu-card">
             <Stack className="menu-card-illustration-stack">
                 <Layer
                     type="text"

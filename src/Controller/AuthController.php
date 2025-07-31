@@ -134,7 +134,7 @@ final class AuthController extends AbstractController
             time() + 1800,
             '/',
             null,
-            true,
+            false,
             true,
             false,
         );
@@ -158,7 +158,7 @@ final class AuthController extends AbstractController
             'BEARER',
             '/',
             null,
-            true,
+            false,
             true,
             false
         );

@@ -1,6 +1,6 @@
 import { React, useState } from "react";
 import "./Filter.css";
-import EditorHeader from "../../../components/Editor/EditorHeader";
+import EditorHeader from "../../../components/Editor/EditorHeader/EditorHeader";
 import SearchBar from "../../../components/Search/SearchBar";
 import ResultList from "../../../components/Search/Result/ResultList";
 import {Link} from "wouter";
