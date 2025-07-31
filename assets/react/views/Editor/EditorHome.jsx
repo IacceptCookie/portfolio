@@ -5,7 +5,7 @@ import caseIllustration from "../../../img/case.png";
 import statIllustration from "../../../img/stats.png";
 import writeIllustration from "../../../img/writer.png";
 import filterIllustration from "../../../img/checkboxes.png";
-import EditorHeader from "../../components/Editor/EditorHeader";
+import EditorHeader from "../../components/Editor/EditorHeader/EditorHeader";
 
 function EditorHome() {
     return (

@@ -15,6 +15,9 @@ import Contact from "../views/Public/Contact";
 import TwoFactorCheck from "../views/Public/TwoFactorCheck";
 import PrivateRoute from "../tools/PrivateRoute";
 import Logout from "../views/Public/Logout";
+import Preview from "../views/Editor/Article/Preview";
+import {useArticlePreview} from "../providers/ArticlePreviewProvider";
+import ArticlePreviewRoute from "./ArticlePreviewRoute";
 
 function Routes() {
     return (
@@ -96,6 +99,10 @@ function Routes() {
                         </PrivateRoute>
                     }
             </Route>
+            <Route
+                path="/article/preview"
+                component={ArticlePreviewRoute}
+            />
             <Route path="/article/manage">
                     {() =>
                         <PrivateRoute role="ROLE_READER">
