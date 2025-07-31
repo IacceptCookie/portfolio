@@ -1,4 +1,4 @@
-import React, {useEffect, useRef, useState} from "react";
+import React, {useEffect, useState} from "react";
 import SearchBar from "../../Search/SearchBar";
 import Tag from "../../Tag/Tag";
 import {searchTags} from "../../../services/api/Tags";
@@ -164,7 +164,7 @@ function ArticleEditorMenu (
                                     (obj, index, self) =>
                                         index === self.findIndex((o) => o.id === obj.id)
                                 )
-                                .map((tag, index) => (
+                                .map((tag) => (
                                 <label className="tag-label" key={tag.id}>
                                     <Tag tagTitle={tag.title} tagColorCode={tag.colorCode} />
                                     <input

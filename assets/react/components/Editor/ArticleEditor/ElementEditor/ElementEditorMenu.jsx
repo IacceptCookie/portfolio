@@ -1,4 +1,4 @@
-import React, {useState} from "react";
+import React from "react";
 import "./ElementEditor.css";
 import ElementEditor from "./ElementEditor";
 

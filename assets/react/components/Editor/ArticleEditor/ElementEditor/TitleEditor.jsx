@@ -2,8 +2,6 @@ import React from "react";
 import ElementEditorButtonArea from "./ElementEditorButtonArea";
 import {useElementTypes} from "../../../../providers/ElementTypesProvider";
 
-;
-
 function TitleEditor(
     {
         order,
