@@ -10,6 +10,6 @@ class ImageFixtures extends Fixture
 {
     public function load(ObjectManager $manager): void
     {
-        ImageFactory::createOne(['imagePath' => '/img/test.jpg']);
+        ImageFactory::createOne(['imagePath' => 'test.jpg']);
     }
 }

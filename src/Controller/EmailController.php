@@ -21,7 +21,7 @@ final class EmailController extends AbstractController
         foreach ($requiredFields as $field) {
             if (empty($data[$field])) {
                 return $this->json([
-                    'error' => "field '$field' required."
+                    'error' => "field '$field' required.",
                 ], Response::HTTP_BAD_REQUEST);
             }
         }
@@ -33,7 +33,7 @@ final class EmailController extends AbstractController
 
         if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
             return $this->json([
-                'error' => 'invalid email address'
+                'error' => 'invalid email address',
             ], Response::HTTP_BAD_REQUEST);
         }
 

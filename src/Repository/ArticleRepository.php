@@ -21,6 +21,36 @@ class ArticleRepository extends ServiceEntityRepository
         parent::__construct($registry, Article::class);
     }
 
+    public function search(string $search = '', array $tagIds = [], array $categoryIds = []): array
+    {
+        $qb = $this->createQueryBuilder('a')
+            ->leftJoin('a.tags', 't')
+            ->leftJoin('a.categories', 'c')
+            ->addSelect('t')
+            ->addSelect('c');
+
+        if (!empty($search)) {
+            $qb->andWhere('LOWER(a.articleTitle) LIKE :term OR LOWER(a.articleDescription) LIKE :term')
+                ->setParameter('term', '%'.strtolower($search).'%');
+        }
+
+        if (!empty($tagIds)) {
+            $qb->andWhere('t.id IN (:tagIds)')
+                ->setParameter('tagIds', $tagIds);
+        }
+
+        if (!empty($categoryIds)) {
+            $qb->andWhere('c.id IN (:categoryIds)')
+                ->setParameter('categoryIds', $categoryIds);
+        }
+
+        return $qb
+            ->distinct()
+            ->orderBy('a.articleTitle', 'ASC')
+            ->getQuery()
+            ->getResult();
+    }
+
     //    /**
     //     * @return Article[] Returns an array of Article objects
     //     */

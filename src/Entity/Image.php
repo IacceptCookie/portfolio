@@ -38,7 +38,7 @@ class Image
     private ?int $id = null;
 
     #[ORM\Column(length: 255)]
-    #[Groups(['Image_read', 'Image_write'])]
+    #[Groups(['Image_read', 'Image_write', 'Article_read', 'Article_write'])]
     private ?string $imagePath = null;
 
     #[ORM\OneToMany(mappedBy: 'illustration', targetEntity: Article::class)]

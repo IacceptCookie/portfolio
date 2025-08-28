@@ -8,6 +8,7 @@ api_platform:
         jsonopenapi: ['application/vnd.openapi+json']
         html: ['text/html']
     defaults:
+        paginationEnabled: false
         stateless: true
         cache_headers:
             vary: ['Content-Type', 'Authorization', 'Origin']
@@ -24,3 +25,6 @@ api_platform:
             JWT:
                 name: Authorization
                 type: header
+
+    exception_to_status:
+        Symfony\Component\HttpKernel\Exception\NotFoundHttpException: 404

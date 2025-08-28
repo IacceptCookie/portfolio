@@ -11,5 +11,10 @@ class TagFixtures extends Fixture
     public function load(ObjectManager $manager): void
     {
         TagFactory::createMany(20);
+        TagFactory::createOne(
+            [
+                'tagLabel' => 'PHP',
+            ]
+        );
     }
 }

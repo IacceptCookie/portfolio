@@ -8,6 +8,8 @@ use ApiPlatform\Metadata\Get;
 use ApiPlatform\Metadata\GetCollection;
 use ApiPlatform\Metadata\Patch;
 use ApiPlatform\Metadata\Post;
+use App\Controller\FilterSearchController;
+use App\Controller\TagSearchController;
 use App\Repository\TagRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
@@ -16,8 +18,54 @@ use Symfony\Component\Serializer\Annotation\Groups;
 
 #[ApiResource(
     operations: [
+        new GetCollection(
+            uriTemplate: '/tags/search',
+            controller: TagSearchController::class,
+            openapiContext: [
+                'parameters' => [
+                    [
+                        'name' => 'search',
+                        'in' => 'query',
+                        'required' => false,
+                        'schema' => ['type' => 'string'],
+                        'description' => 'Mot-clé pour rechercher des tags par nom',
+                    ],
+                ],
+            ],
+            normalizationContext: ['groups' => ['Tag_read']],
+            name: 'search_tags'
+        ),
+        new GetCollection(
+            uriTemplate: '/search/filter',
+            controller: FilterSearchController::class,
+            openapiContext: [
+                'summary' => 'Recherche mixte tags + catégories',
+                'parameters' => [
+                    [
+                        'name' => 'search',
+                        'in' => 'query',
+                        'required' => false,
+                        'schema' => ['type' => 'string'],
+                        'description' => 'Recherche par label de tag ou de catégorie',
+                    ],
+                    [
+                        'name' => 'page',
+                        'in' => 'query',
+                        'required' => false,
+                        'schema' => ['type' => 'integer'],
+                    ],
+                    [
+                        'name' => 'itemsPerPage',
+                        'in' => 'query',
+                        'required' => false,
+                        'schema' => ['type' => 'integer'],
+                    ],
+                ],
+            ],
+            output: false,
+            read: false,
+        ),
         new Get(),
-        new GetCollection(),
         new Post(),
         new Patch(),
         new Delete(),

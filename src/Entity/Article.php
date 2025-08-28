@@ -6,26 +6,68 @@ use ApiPlatform\Metadata\ApiResource;
 use ApiPlatform\Metadata\Delete;
 use ApiPlatform\Metadata\Get;
 use ApiPlatform\Metadata\GetCollection;
+use ApiPlatform\Metadata\Link;
 use ApiPlatform\Metadata\Patch;
 use ApiPlatform\Metadata\Post;
+use App\Controller\ArticleSearchController;
 use App\Repository\ArticleRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Serializer\Annotation\Groups;
+use Symfony\Component\String\Slugger\AsciiSlugger;
 
 #[ApiResource(
     operations: [
-        new Get(),
-        new GetCollection(),
+        new GetCollection(
+            uriTemplate: '/articles/search',
+            controller: ArticleSearchController::class,
+            openapiContext: [
+                'parameters' => [
+                    [
+                        'name' => 'search',
+                        'in' => 'query',
+                        'required' => false,
+                        'schema' => ['type' => 'string'],
+                        'description' => 'Mot-clé pour rechercher dans le titre ou la description',
+                    ],
+                    [
+                        'name' => 'tags[]',
+                        'in' => 'query',
+                        'required' => false,
+                        'schema' => ['type' => 'array', 'items' => ['type' => 'integer']],
+                        'style' => 'form',
+                        'explode' => true,
+                        'description' => 'Liste d\'IDs de tags à filtrer',
+                    ],
+                    [
+                        'name' => 'categories[]',
+                        'in' => 'query',
+                        'required' => false,
+                        'schema' => ['type' => 'array', 'items' => ['type' => 'integer']],
+                        'style' => 'form',
+                        'explode' => true,
+                        'description' => 'Liste d\'IDs de catégories à filtrer',
+                    ],
+                ],
+            ],
+            normalizationContext: ['groups' => ['Article_read']],
+            name: 'search_articles'
+        ),
+        new Get(
+            uriTemplate: '/articles/{slug}',
+            uriVariables: [
+                'slug' => new Link(fromClass: Article::class, identifiers: ['slug']),
+            ],
+            normalizationContext: ['groups' => ['Article_read']],
+        ),
         new Post(),
         new Patch(),
         new Delete(),
     ],
     normalizationContext: ['groups' => [
         'Article_read',
-        'Article_detail',
         'Article_write',
     ],
     ],
@@ -41,12 +83,16 @@ class Article
     #[Groups(['Article_read'])]
     private ?int $id = null;
 
+    #[ORM\Column(length: 100, unique: true)]
+    #[Groups(['Article_read'])]
+    private ?string $slug = null;
+
     #[ORM\Column(length: 80)]
     #[Groups(['Article_read', 'Article_write'])]
     private ?string $articleTitle = null;
 
     #[ORM\Column(length: 400)]
-    #[Groups(['Article_detail', 'Article_write'])]
+    #[Groups(['Article_read', 'Article_write'])]
     private ?string $articleDescription = null;
 
     #[ORM\Column]
@@ -54,7 +100,7 @@ class Article
     private ?int $readingTime = null;
 
     #[ORM\Column(type: Types::DATETIME_MUTABLE)]
-    #[Groups(['Article_detail'])]
+    #[Groups(['Article_read'])]
     private ?\DateTimeInterface $creationDate = null;
 
     #[ORM\ManyToOne(inversedBy: 'articles')]
@@ -67,11 +113,13 @@ class Article
     #[ORM\ManyToMany(targetEntity: Tag::class, inversedBy: 'articles')]
     private Collection $tags;
 
-    #[ORM\OneToMany(mappedBy: 'article', targetEntity: Element::class, orphanRemoval: true)]
+    #[ORM\OneToMany(mappedBy: 'article', targetEntity: Element::class, cascade: ['persist'], orphanRemoval: true)]
+    #[Groups(['Article_read', 'Article_write'])]
     private Collection $elements;
 
-    #[ORM\ManyToOne(inversedBy: 'articles')]
+    #[ORM\ManyToOne(cascade: ['persist'], inversedBy: 'articles')]
     #[ORM\JoinColumn(nullable: false)]
+    #[Groups(['Article_read', 'Article_write'])]
     private ?Image $illustration = null;
 
     public function __construct()
@@ -79,6 +127,27 @@ class Article
         $this->categories = new ArrayCollection();
         $this->tags = new ArrayCollection();
         $this->elements = new ArrayCollection();
+    }
+
+    #[ORM\PrePersist]
+    public function setSlugValue(): void
+    {
+        if (!$this->slug && $this->articleTitle) {
+            $slugger = new AsciiSlugger();
+            $this->slug = strtolower($slugger->slug($this->articleTitle)->toString());
+        }
+    }
+
+    public function getSlug(): ?string
+    {
+        return $this->slug;
+    }
+
+    public function setSlug(string $slug): self
+    {
+        $this->slug = $slug;
+
+        return $this;
     }
 
     public function getId(): ?int

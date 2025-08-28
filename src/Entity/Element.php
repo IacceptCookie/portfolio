@@ -3,11 +3,7 @@
 namespace App\Entity;
 
 use ApiPlatform\Metadata\ApiResource;
-use ApiPlatform\Metadata\Delete;
 use ApiPlatform\Metadata\Get;
-use ApiPlatform\Metadata\GetCollection;
-use ApiPlatform\Metadata\Patch;
-use ApiPlatform\Metadata\Post;
 use App\Repository\ElementRepository;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
@@ -16,10 +12,6 @@ use Symfony\Component\Serializer\Annotation\Groups;
 #[ApiResource(
     operations: [
         new Get(),
-        new GetCollection(),
-        new Post(),
-        new Patch(),
-        new Delete(),
     ],
     normalizationContext: ['groups' => [
         'Element_read',
@@ -33,27 +25,28 @@ class Element
     #[ORM\Id]
     #[ORM\GeneratedValue]
     #[ORM\Column]
-    #[Groups(['Element_read'])]
+    #[Groups(['Element_read', 'Article_read'])]
     private ?int $id = null;
 
     #[ORM\Column(type: Types::TEXT)]
-    #[Groups(['Element_read', 'Element_write'])]
+    #[Groups(['Element_read', 'Element_write', 'Article_read', 'Article_write'])]
     private ?string $elementText = null;
 
     #[ORM\Column(length: 50)]
-    #[Groups(['Element_read', 'Element_write'])]
+    #[Groups(['Element_read', 'Element_write', 'Article_read', 'Article_write'])]
     private ?string $elementComponentName = null;
 
     #[ORM\Column]
-    #[Groups(['Element_read', 'Element_write'])]
+    #[Groups(['Element_read', 'Element_write', 'Article_read', 'Article_write'])]
     private ?int $elementNumber = null;
 
     #[ORM\ManyToOne(inversedBy: 'elements')]
     #[ORM\JoinColumn(nullable: false)]
     private ?Article $article = null;
 
-    #[ORM\ManyToOne(inversedBy: 'elements')]
+    #[ORM\ManyToOne(cascade: ['persist'], inversedBy: 'elements')]
     #[ORM\JoinColumn(nullable: false)]
+    #[Groups(['Article_read', 'Article_write'])]
     private ?Image $image = null;
 
     public function getId(): ?int
