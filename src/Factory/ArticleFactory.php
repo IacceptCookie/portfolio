@@ -27,6 +27,7 @@ final class ArticleFactory extends PersistentProxyObjectFactory
             'author' => UserFactory::new(),
             'illustration' => ImageFactory::new(),
             'readingTime' => self::faker()->randomNumber(),
+            'isPublic' => true,
         ];
     }
 

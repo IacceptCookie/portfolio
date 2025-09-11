@@ -34,6 +34,13 @@ use Symfony\Component\String\Slugger\AsciiSlugger;
                         'description' => 'Mot-clé pour rechercher dans le titre ou la description',
                     ],
                     [
+                        'name' => 'isPublic',
+                        'in' => 'query',
+                        'required' => false,
+                        'schema' => ['type' => 'bool'],
+                        'description' => 'Confidentialité des articles à rechercher',
+                    ],
+                    [
                         'name' => 'tags[]',
                         'in' => 'query',
                         'required' => false,
@@ -129,6 +136,10 @@ class Article
     #[ORM\JoinColumn(nullable: false)]
     #[Groups(['Article_read', 'Article_write'])]
     private ?Image $illustration = null;
+
+    #[ORM\Column]
+    #[Groups(['Article_read', 'Article_write'])]
+    private ?bool $isPublic = null;
 
     public function __construct()
     {
@@ -317,6 +328,18 @@ class Article
     public function setCreationDate(\DateTimeInterface $creationDate): static
     {
         $this->creationDate = $creationDate;
+
+        return $this;
+    }
+
+    public function isPublic(): ?bool
+    {
+        return $this->isPublic;
+    }
+
+    public function setIsPublic(bool $isPublic): static
+    {
+        $this->isPublic = $isPublic;
 
         return $this;
     }

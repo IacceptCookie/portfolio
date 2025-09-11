@@ -21,7 +21,7 @@ class ArticleRepository extends ServiceEntityRepository
         parent::__construct($registry, Article::class);
     }
 
-    public function search(string $search = '', array $tagIds = [], array $categoryIds = []): array
+    public function search(string $search = '', bool $isPublic = false, array $tagIds = [], array $categoryIds = []): array
     {
         $qb = $this->createQueryBuilder('a')
             ->leftJoin('a.tags', 't')
@@ -42,6 +42,11 @@ class ArticleRepository extends ServiceEntityRepository
         if (!empty($categoryIds)) {
             $qb->andWhere('c.id IN (:categoryIds)')
                 ->setParameter('categoryIds', $categoryIds);
+        }
+
+        if (!empty($isPublic) && $isPublic) {
+            $qb->andWhere('a.isPublic = (:isPublic)')
+                ->setParameter('isPublic', $isPublic);
         }
 
         return $qb

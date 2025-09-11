@@ -21,10 +21,11 @@ final class ArticleSearchController extends AbstractController
     public function __invoke(Request $request): JsonResponse
     {
         $search = $request->query->get('search', '');
+        $isPublic = $request->query->get('isPublic', '');
         $tagIds = $request->query->all('tags');
         $categoryIds = $request->query->all('categories');
 
-        $articles = $this->articleRepository->search($search, $tagIds, $categoryIds);
+        $articles = $this->articleRepository->search($search, $isPublic, $tagIds, $categoryIds);
 
         $data = $this->serializer->normalize(
             $articles,
