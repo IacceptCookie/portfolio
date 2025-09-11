@@ -8,10 +8,12 @@ use ApiPlatform\Metadata\Get;
 use ApiPlatform\Metadata\GetCollection;
 use ApiPlatform\Metadata\Patch;
 use ApiPlatform\Metadata\Post;
+use App\Controller\ImageUploadController;
 use App\Repository\ImageRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\HttpFoundation\File\UploadedFile;
 use Symfony\Component\Serializer\Annotation\Groups;
 
 #[ApiResource(
@@ -21,9 +23,51 @@ use Symfony\Component\Serializer\Annotation\Groups;
         new Post(),
         new Patch(),
         new Delete(),
+        new Post(
+            uriTemplate: '/images/upload',
+            controller: ImageUploadController::class,
+            openapiContext: [
+                'summary' => 'Upload a file',
+                'requestBody' => [
+                    'content' => [
+                        'multipart/form-data' => [
+                            'schema' => [
+                                'type' => 'object',
+                                'properties' => [
+                                    'file' => [
+                                        'type' => 'string',
+                                        'format' => 'binary',
+                                    ],
+                                ],
+                            ],
+                        ],
+                    ],
+                ],
+                'responses' => [
+                    '200' => [
+                        'description' => 'path to the saved file',
+                        'content' => [
+                            'application/json' => [
+                                'schema' => [
+                                    'type' => 'object',
+                                    'properties' => [
+                                        'path' => ['type' => 'string'],
+                                    ],
+                                ],
+                            ],
+                        ],
+                    ],
+                ],
+            ],
+            deserialize: false,
+            name: 'image_upload',
+        ),
     ],
     normalizationContext: ['groups' => [
         'Image_read',
+    ],
+    ],
+    denormalizationContext: ['groups' => [
         'Image_write',
     ],
     ],
@@ -40,6 +84,8 @@ class Image
     #[ORM\Column(length: 255)]
     #[Groups(['Image_read', 'Image_write', 'Article_read', 'Article_write'])]
     private ?string $imagePath = null;
+
+    private ?UploadedFile $file = null;
 
     #[ORM\OneToMany(mappedBy: 'illustration', targetEntity: Article::class)]
     private Collection $articles;
@@ -128,5 +174,17 @@ class Image
         }
 
         return $this;
+    }
+
+    public function setFile(?UploadedFile $file): self
+    {
+        $this->file = $file;
+
+        return $this;
+    }
+
+    public function getFile(): ?UploadedFile
+    {
+        return $this->file;
     }
 }

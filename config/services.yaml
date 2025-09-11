@@ -23,9 +23,26 @@ services:
         tags: [ 'controllers.service_arguments' ]
     App\EventListener\CsrfListener:
         arguments:
-            - '@Symfony\Component\Security\Csrf\CsrfTokenManagerInterface'
+            - '@App\Service\StatelessCsrfTokenManager'
         tags:
             - { name: 'kernel.event_listener', event: 'kernel.request', priority: 10 }
+
+    App\State\ArticleProcessor:
+        decorates: 'api_platform.doctrine.orm.state.persist_processor'
+        arguments:
+            $decorated: '@App\State\ArticleProcessor.inner'
+            $security: '@security.helper'
+
+    App\Service\StatelessCsrfTokenManager:
+        arguments:
+            $secret: '%env(APP_CSRF_SECRET)%'
+        public: true
+
+    App\Controller\ImageUploadController:
+      tags: ['controller.service_arguments']
+      autowire: true
+      autoconfigure: true
+      public: true
 
     # add more service definitions when explicit configuration is needed
     # please note that last definitions always *replace* previous ones

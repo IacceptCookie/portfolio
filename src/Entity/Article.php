@@ -2,6 +2,7 @@
 
 namespace App\Entity;
 
+use ApiPlatform\Metadata\ApiProperty;
 use ApiPlatform\Metadata\ApiResource;
 use ApiPlatform\Metadata\Delete;
 use ApiPlatform\Metadata\Get;
@@ -60,7 +61,7 @@ use Symfony\Component\String\Slugger\AsciiSlugger;
             uriVariables: [
                 'slug' => new Link(fromClass: Article::class, identifiers: ['slug']),
             ],
-            normalizationContext: ['groups' => ['Article_read']],
+            normalizationContext: ['groups' => ['Article_read', 'Article_read_alone']],
         ),
         new Post(),
         new Patch(),
@@ -68,6 +69,9 @@ use Symfony\Component\String\Slugger\AsciiSlugger;
     ],
     normalizationContext: ['groups' => [
         'Article_read',
+    ],
+    ],
+    denormalizationContext: ['groups' => [
         'Article_write',
     ],
     ],
@@ -84,6 +88,7 @@ class Article
     private ?int $id = null;
 
     #[ORM\Column(length: 100, unique: true)]
+    #[ApiProperty(readable: true, writable: false)]
     #[Groups(['Article_read'])]
     private ?string $slug = null;
 
@@ -105,16 +110,19 @@ class Article
 
     #[ORM\ManyToOne(inversedBy: 'articles')]
     #[ORM\JoinColumn(nullable: false)]
+    #[ApiProperty(readable: true, writable: false)]
     private ?User $author = null;
 
     #[ORM\ManyToMany(targetEntity: Category::class, inversedBy: 'articles')]
+    #[Groups(['Article_read_alone', 'Article_write'])]
     private Collection $categories;
 
     #[ORM\ManyToMany(targetEntity: Tag::class, inversedBy: 'articles')]
+    #[Groups(['Article_read', 'Article_write'])]
     private Collection $tags;
 
     #[ORM\OneToMany(mappedBy: 'article', targetEntity: Element::class, cascade: ['persist'], orphanRemoval: true)]
-    #[Groups(['Article_read', 'Article_write'])]
+    #[Groups(['Article_read_alone', 'Article_write'])]
     private Collection $elements;
 
     #[ORM\ManyToOne(cascade: ['persist'], inversedBy: 'articles')]

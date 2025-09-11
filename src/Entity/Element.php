@@ -15,6 +15,9 @@ use Symfony\Component\Serializer\Annotation\Groups;
     ],
     normalizationContext: ['groups' => [
         'Element_read',
+    ],
+    ],
+    denormalizationContext: ['groups' => [
         'Element_write',
     ],
     ],
@@ -25,19 +28,19 @@ class Element
     #[ORM\Id]
     #[ORM\GeneratedValue]
     #[ORM\Column]
-    #[Groups(['Element_read', 'Article_read'])]
+    #[Groups(['Element_read', 'Article_read_alone'])]
     private ?int $id = null;
 
     #[ORM\Column(type: Types::TEXT)]
-    #[Groups(['Element_read', 'Element_write', 'Article_read', 'Article_write'])]
+    #[Groups(['Element_read', 'Element_write', 'Article_read_alone', 'Article_write'])]
     private ?string $elementText = null;
 
     #[ORM\Column(length: 50)]
-    #[Groups(['Element_read', 'Element_write', 'Article_read', 'Article_write'])]
+    #[Groups(['Element_read', 'Element_write', 'Article_read_alone', 'Article_write'])]
     private ?string $elementComponentName = null;
 
     #[ORM\Column]
-    #[Groups(['Element_read', 'Element_write', 'Article_read', 'Article_write'])]
+    #[Groups(['Element_read', 'Element_write', 'Article_read_alone', 'Article_write'])]
     private ?int $elementNumber = null;
 
     #[ORM\ManyToOne(inversedBy: 'elements')]

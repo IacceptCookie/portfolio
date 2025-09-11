@@ -24,6 +24,9 @@ use Symfony\Component\Serializer\Annotation\Groups;
     ],
     normalizationContext: ['groups' => [
         'Category_read',
+    ],
+    ],
+    denormalizationContext: ['groups' => [
         'Category_write',
     ],
     ],
@@ -35,11 +38,11 @@ class Category
     #[ORM\Id]
     #[ORM\GeneratedValue]
     #[ORM\Column]
-    #[Groups(['Category_read'])]
+    #[Groups(['Article_read_alone', 'Category_read'])]
     private ?int $id = null;
 
     #[ORM\Column(length: 50)]
-    #[Groups(['Category_read', 'Category_write'])]
+    #[Groups(['Article_read_alone', 'Category_read', 'Category_write'])]
     private ?string $categoryLabel = null;
 
     #[ORM\ManyToMany(targetEntity: Article::class, mappedBy: 'categories')]

@@ -4,6 +4,7 @@ namespace App\Controller;
 
 use App\Entity\User;
 use App\Repository\UserRepository;
+use App\Service\StatelessCsrfTokenManager;
 use App\Service\TwoFactorService;
 use Doctrine\ORM\EntityManagerInterface;
 use Lexik\Bundle\JWTAuthenticationBundle\Services\JWTTokenManagerInterface;
@@ -13,7 +14,6 @@ use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Attribute\Route;
-use Symfony\Component\Security\Csrf\CsrfTokenManagerInterface;
 use Symfony\Component\Security\Http\Attribute\CurrentUser;
 
 final class AuthController extends AbstractController
@@ -77,7 +77,7 @@ final class AuthController extends AbstractController
         UserRepository $repository,
         EntityManagerInterface $entityManager,
         JWTTokenManagerInterface $jwtManager,
-        CsrfTokenManagerInterface $csrfTokenManager,
+        StatelessCsrfTokenManager $csrfTokenManager,
     ): JsonResponse {
         $userId = $request->getSession()->get('user_id');
         if (null === $userId) {

@@ -2,16 +2,16 @@
 
 namespace App\EventListener;
 
+use App\Service\StatelessCsrfTokenManager;
 use Symfony\Component\HttpKernel\Event\RequestEvent;
 use Symfony\Component\HttpKernel\Exception\BadRequestHttpException;
 use Symfony\Component\Security\Csrf\CsrfToken;
-use Symfony\Component\Security\Csrf\CsrfTokenManagerInterface;
 
 class CsrfListener
 {
-    private CsrfTokenManagerInterface $csrfTokenManager;
+    private StatelessCsrfTokenManager $csrfTokenManager;
 
-    public function __construct(CsrfTokenManagerInterface $csrfTokenManager)
+    public function __construct(StatelessCsrfTokenManager $csrfTokenManager)
     {
         $this->csrfTokenManager = $csrfTokenManager;
     }
@@ -25,7 +25,7 @@ class CsrfListener
             return;
         }
 
-        if (in_array($request->getMethod(), ['POST', 'PUT', 'DELETE'], true)) {
+        if (in_array($request->getMethod(), ['POST', 'PUT', 'PATCH', 'DELETE'], true)) {
             $csrfToken = $request->headers->get('X-CSRF-TOKEN');
 
             if (!$csrfToken) {

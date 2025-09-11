@@ -72,6 +72,9 @@ use Symfony\Component\Serializer\Annotation\Groups;
     ],
     normalizationContext: ['groups' => [
         'Tag_read',
+    ],
+    ],
+    denormalizationContext: ['groups' => [
         'Tag_write',
     ],
     ],
@@ -83,15 +86,15 @@ class Tag
     #[ORM\Id]
     #[ORM\GeneratedValue]
     #[ORM\Column]
-    #[Groups(['Tag_read'])]
+    #[Groups(['Article_read', 'Tag_read'])]
     private ?int $id = null;
 
     #[ORM\Column(length: 50)]
-    #[Groups(['Tag_read', 'Tag_write'])]
+    #[Groups(['Article_read', 'Tag_read', 'Tag_write'])]
     private ?string $tagLabel = null;
 
     #[ORM\Column(length: 6)]
-    #[Groups(['Tag_read', 'Tag_write'])]
+    #[Groups(['Article_read', 'Tag_read', 'Tag_write'])]
     private ?string $tagColor = null;
 
     #[ORM\ManyToMany(targetEntity: Article::class, mappedBy: 'tags')]
