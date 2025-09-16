@@ -1,17 +1,19 @@
+import {renameKeys} from "../remaper";
+
 export function searchTags (
     searchText = ""
 )
 {
-    const tags = [
-        {id: 1, title: "PHP", colorCode: "4d73e1"},
-        {id: 2, title: "Javascript", colorCode: "f8f407"}
-    ];
-
     if (searchText === "") {
-        return [];
+        return Promise.resolve([]);
     }
 
-    return tags.filter(tag =>
-        tag.title && tag.title.toLowerCase().includes(searchText.toLowerCase())
-    );
+
+    const mapping = { tagLabel: "title", tagColor: "colorCode" };
+
+    return fetch(`/api/tags/search?search=${encodeURIComponent(searchText)}`)
+        .then(response => response.json())
+        .then(tags => {
+            return tags.map(tag => renameKeys(tag, mapping));
+        });
 }

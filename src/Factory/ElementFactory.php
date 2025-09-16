@@ -26,6 +26,7 @@ final class ElementFactory extends PersistentProxyObjectFactory
             'elementComponentName' => self::faker()->text(50),
             'elementNumber' => self::faker()->randomNumber(),
             'elementText' => self::faker()->text(),
+            'elementHref' => self::faker()->text(),
             'image' => ImageFactory::new(),
         ];
     }

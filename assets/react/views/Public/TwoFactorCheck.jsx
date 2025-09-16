@@ -64,7 +64,7 @@ function TwoFactorCheck() {
             .then(({ status, body }) => {
                 if (status === 200) {
                     sessionStorage.setItem("isWaitingFor2FA", "false");
-                    sessionStorage.setItem("csrf_token", JSON.stringify(body.csrf_token.value));
+                    sessionStorage.setItem("csrf_token", body.csrf_token.value);
                     navigate(redirectParam !== 'null' ? redirectParam : '/dashboard');
                 } else if (body.message.startsWith("User not found") || body.message.startsWith("Expired code")) {
                     sessionStorage.setItem("isWaitingFor2FA", "false");

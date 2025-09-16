@@ -1,9 +1,14 @@
-import React, {useContext, createContext} from "react";
+import React, {useContext, createContext, useState, useEffect} from "react";
+import {fetchCategories} from "../services/api/Categories";
 
 const CategoriesContext = createContext(null);
 
 function CategoriesProvider({ children }) {
-    const categories = ['article', 'projet'];
+    const [categories, setCategories] = useState([]);
+
+    useEffect(() => {
+        fetchCategories().then((response) => setCategories(response));
+    }, [])
 
     return (
         <CategoriesContext.Provider value={categories}>

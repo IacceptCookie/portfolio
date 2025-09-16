@@ -52,6 +52,10 @@ class Element
     #[Groups(['Article_read', 'Article_write'])]
     private ?Image $image = null;
 
+    #[ORM\Column(type: Types::TEXT)]
+    #[Groups(['Element_read', 'Element_write', 'Article_read_alone', 'Article_write'])]
+    private ?string $elementHref = null;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -113,6 +117,18 @@ class Element
     public function setImage(?Image $image): static
     {
         $this->image = $image;
+
+        return $this;
+    }
+
+    public function getElementHref(): ?string
+    {
+        return $this->elementHref;
+    }
+
+    public function setElementHref(string $elementHref): static
+    {
+        $this->elementHref = $elementHref;
 
         return $this;
     }

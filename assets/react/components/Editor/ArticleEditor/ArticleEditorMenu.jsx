@@ -13,8 +13,8 @@ function ArticleEditorMenu (
     }
 )
 {
-    const categories = useCategories();
-    const [category, setCategory] = useState("");
+    const categoriesContext = useCategories();
+    const [categories, setCategories] = useState([]);
     const [title, setTitle] = useState("");
     const [description, setDescription] = useState("");
     const [tags, setTags] = useState([]);
@@ -26,7 +26,9 @@ function ArticleEditorMenu (
     const [_, navigate] = useLocation();
 
     useEffect(() => {
-        setTags(searchTags(searchText));
+        searchTags(searchText).then((response) => {
+            setTags(response);
+        });
     }, [searchText]);
 
     useEffect(() => {
@@ -35,7 +37,7 @@ function ArticleEditorMenu (
         // On évite d'écraser les inputs s’ils ont déjà été édités par l'utilisateur
         setTitle((prev) => prev || article.title || "");
         setDescription((prev) => prev || article.description || "");
-        setCategory((prev) => prev || article.category || "");
+        setCategories((prev) => prev || article.categories || "");
         updatePrivacy((prev) => prev || article.visibility || "private");
         setThumbnailPreview((prev) => prev || article.thumbnail || "");
         setTags(prev => prev || article.tags || "");
@@ -48,9 +50,9 @@ function ArticleEditorMenu (
             description,
             thumbnail: thumbnailPreview,
             visibility: privacy,
-            category,
+            categories,
         }));
-    }, [title, description, thumbnailPreview, privacy, category]);
+    }, [title, description, thumbnailPreview, privacy, categories]);
 
     const previewArticle = () => {
         setContextArticle(article);
@@ -77,7 +79,8 @@ function ArticleEditorMenu (
         const isChecked = e.target.checked;
 
         setArticle(prev => {
-            const alreadyExists = prev.tags.some(t => t.id === tag.id);
+            const currentTags = prev.tags ?? [];
+            const alreadyExists = currentTags.some(t => t.id === tag.id);
             let updatedTags;
 
             if (isChecked && !alreadyExists) {
@@ -116,12 +119,19 @@ function ArticleEditorMenu (
                 <select
                     className="article-editor-input-categories"
                     required
-                    onChange={(e) => setCategory(e.target.value)}
+                    value={categories?.[0]?.id || ""}
+                    onChange={(e) => {
+                        const selected = categoriesContext.find(c => c.id === Number(e.target.value));
+                        if (selected) {
+                            setCategories([selected]);
+                            setArticle(prev => ({ ...prev, categories: [selected] }));
+                        }
+                    }}
                 >
                     <option defaultValue value="">Choisir la catégorie</option>
                     {
-                        categories.map((category, index) => (
-                            <option key={index} value={category}>{category.charAt(0).toUpperCase() + category.slice(1)}</option>
+                        categoriesContext.map((category) => (
+                            <option key={category.id} value={category.id}>{category.title.charAt(0).toUpperCase() + category.title.slice(1)}</option>
                         ))
                     }
                 </select>
