@@ -1,0 +1,103 @@
+.filter-editor {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 10px;
+}
+
+.filter-editor-menu {
+    display: flex;
+    max-width: 1200px;
+    width: 100%;
+    align-self: center;
+    justify-content: space-around;
+    background-color: #0E1084;
+    box-shadow: 2px 2px 3px #7577CD;
+    border-radius: 20px;
+    padding: 15px 10px;
+    margin: 0 10px;
+    box-sizing: border-box;
+    flex-direction: column;
+}
+
+.filter-editor-input-label, .filter-editor-input-color, .filter-editor-input-type {
+    outline: none;
+    background-color: white;
+    font-family: AltHaas, sans-serif;
+    font-weight: bold;
+    font-size: 24px;
+    width: 100%;
+    max-width: 600px;
+    align-self: center;
+    padding: 12px;
+    box-sizing: border-box;
+    border-radius: 30px;
+    border: solid 4px #7577CD;
+    margin: 10px 0;
+}
+
+.filter-editor-input-type {
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    text-indent: 1px;
+    text-overflow: '';
+}
+
+.filter-editor-buttons {
+    display: flex;
+    justify-content: space-around;
+    width: 100%;
+    padding: 10px;
+    box-sizing: border-box;
+    flex-direction: column;
+}
+
+.filter-save-button {
+    background-color: #199e05;
+    color: white;
+    width: fit-content;
+    box-sizing: border-box;
+    padding: 20px;
+    align-self: center;
+    margin: 15px 0;
+    font-family: AlteHaas, sans-serif;
+    font-weight: bold;
+    font-size: 32px;
+    border-radius: 15px;
+    border: none;
+    outline: none;
+    cursor: pointer;
+}
+
+.filter-save-button:hover {
+    background-color: #116c04;
+    transition: 0.3s;
+}
+
+.filter-delete-button {
+    background-color: red;
+    color: white;
+    width: fit-content;
+    box-sizing: border-box;
+    padding: 20px;
+    align-self: center;
+    margin: 15px 0;
+    font-family: AlteHaas, sans-serif;
+    font-weight: bold;
+    font-size: 32px;
+    border-radius: 15px;
+    border: none;
+    outline: none;
+    cursor: pointer;
+}
+
+.filter-delete-button:hover {
+    background-color: #850000;
+    transition: 0.3s;
+}
+
+@media only screen and (min-width: 600px) {
+    .filter-editor-buttons {
+        flex-direction: row;
+    }
+}

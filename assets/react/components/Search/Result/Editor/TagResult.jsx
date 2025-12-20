@@ -1,5 +1,6 @@
 import React from "react";
 import "../Result.css";
+import {Link} from "wouter";
 
 function TagResult(
     {
@@ -8,12 +9,13 @@ function TagResult(
 )
 {
     return (
-        <div
+        <Link
             style={{
                 backgroundColor: `#${resultData.color}`,
                 borderColor: `color-mix(in srgb, #${resultData.color}, white 50%)`
             }}
             className="editor-tag-result result"
+            to={`/filter/update/tag/${resultData.id}`}
         >
             <p className="editor-tag-result__label">
                 {resultData.label}
@@ -24,7 +26,7 @@ function TagResult(
             >
                 {resultData.useCount ?? 0} utilisation(s)
             </p>
-        </div>
+        </Link>
     );
 }
 

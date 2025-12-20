@@ -14,40 +14,68 @@ final class EmailController extends AbstractController
     #[Route('/email/contact', name: 'app_contact_email', methods: ['POST'])]
     public function contact(Request $request, MailerInterface $mailer): Response
     {
-        $data = json_decode($request->getContent(), true);
+        $firstname = strip_tags(trim($request->request->get('firstname')));
+        $lastname = strip_tags(trim($request->request->get('lastname')));
+        $sender = filter_var(trim($request->request->get('email')), FILTER_SANITIZE_EMAIL);
+        $subject = strip_tags(trim($request->request->get('subject')));
+        $message = strip_tags(trim($request->request->get('message')));
+        $file = $request->files->get('file');
 
-        $requiredFields = ['firstname', 'lastname', 'email', 'subject-selector'];
-
-        foreach ($requiredFields as $field) {
-            if (empty($data[$field])) {
+        $requiredFields = ['firstname' => $firstname, 'lastname' => $lastname, 'email' => $sender, 'subject' => $subject, 'message' => $message];
+        foreach ($requiredFields as $field => $value) {
+            if (empty($value)) {
                 return $this->json([
                     'error' => "field '$field' required.",
                 ], Response::HTTP_BAD_REQUEST);
             }
         }
 
-        $firstname = strip_tags(trim($data['firstname']));
-        $lastname = strip_tags(trim($data['lastname']));
-        $email = filter_var(trim($data['email']), FILTER_SANITIZE_EMAIL);
-        $subjectSelector = strip_tags(trim($data['subject-selector']));
-
-        if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
+        if (!filter_var($sender, FILTER_VALIDATE_EMAIL)) {
             return $this->json([
                 'error' => 'invalid email address',
             ], Response::HTTP_BAD_REQUEST);
         }
 
-        // TODO: Set up a template for the Contact form email (and another one for the 2FA code)
+        $allowedMimeTypes = ['application/pdf', 'image/png', 'image/jpeg', 'image/webp'];
+        $maxFileSize = 5 * 1024 * 1024;
+
+        if ($file) {
+            if (!in_array($file->getMimeType(), $allowedMimeTypes)) {
+                return $this->json([
+                    'error' => 'File type is not allowed.',
+                ], Response::HTTP_BAD_REQUEST);
+            }
+            if ($file->getSize() > $maxFileSize) {
+                return $this->json([
+                    'error' => 'File size is too large.',
+                ], Response::HTTP_BAD_REQUEST);
+            }
+        }
+
         $email = (new Email())
             ->from('contact@raphael-durand.fr')
             ->to('durandraphael.courriel@gmail.com')
-            ->subject('C: '.$data['subject-selector'].' '.$firstname.' '.$lastname)
-            ->text('Votre code de vérification est : . (Ce code est valable 5 minutes)');
+            ->subject('C: '.$subject.' - '.$firstname.' '.$lastname)
+            ->text("New message from: $firstname $lastname ($sender)\n\n$message");
 
-        $mailer->send($email);
+        if ($file) {
+            $email->attachFromPath(
+                $file->getPathname(),
+                $file->getClientOriginalName(),
+                $file->getMimeType()
+            );
+        }
 
-        return $this->json([
-            'message' => 'Contact request successfully sent',
-        ], Response::HTTP_OK);
+        try {
+            $mailer->send($email);
+
+            return $this->json([
+                'message' => 'Contact request successfully sent',
+            ], Response::HTTP_OK);
+        } catch (\Exception $e) {
+            return $this->json([
+                'error' => 'Error happened while sending email, try again later',
+            ], Response::HTTP_INTERNAL_SERVER_ERROR);
+        }
     }
 }

@@ -1,0 +1,78 @@
+.accordion {
+    display: flex;
+    flex-direction: column;
+    max-width: 1000px;
+    width: calc(100% - 20px);
+    margin: 10px;
+    border-radius: 24px;
+    overflow: hidden;
+    transition: box-shadow 0.2s ease;
+}
+
+.auto-unfolded {
+    transition: box-shadow 0.6s ease;
+}
+
+.accordion.unfolded {
+    box-shadow: 1px 1px 4px 2px #7577cd;
+}
+
+.accordion.unfolded .accordion-title {
+    background-color: #5a5bae;
+}
+
+.auto-unfolded .accordion-title {
+    transition: 0.6s;
+}
+
+.accordion-title {
+    color: white;
+    background-color: #7577CD;
+    padding: 16px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    transition: 0.2s;
+    cursor: pointer;
+}
+
+.accordion-title:hover {
+    background-color: #5a5bae;
+}
+
+.accordion-title h1 {
+    font-size: 24px;
+    font-weight: bold;
+    font-family: AlteHaas, sans-serif;
+    margin: 0;
+}
+
+.accordion-title svg {
+    font-size: 24px;
+    transition: transform 0.3s ease;
+    transform: rotate(0deg);
+    margin-left: 10px;
+}
+
+.accordion-title:not(.folded) svg {
+    transform: rotate(180deg);
+}
+
+.accordion-content {
+    background-color: #0E1084;
+    padding: 16px;
+    box-sizing: border-box;
+    overflow: hidden;
+    transition: max-height 0.3s ease, padding 0.3s ease;
+    margin: 0;
+    max-height: 1000px;
+}
+
+.auto-unfolded .accordion-content {
+    transition: max-height 0.9s ease, padding 0.9s ease;
+}
+
+.accordion-content.folded {
+    max-height: 0;
+    padding: 0;
+}

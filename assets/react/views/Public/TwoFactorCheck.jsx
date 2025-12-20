@@ -1,6 +1,6 @@
 import React, { useState, useRef, useEffect } from "react";
 import "./TwoFactorCheck.css";
-import AnimatedText from "../../components/AnimatedText";
+import AnimatedText from "../../components/Text/AnimatedText";
 import { useLocation } from "wouter";
 import EditorHeader from "../../components/Editor/EditorHeader/EditorHeader";
 

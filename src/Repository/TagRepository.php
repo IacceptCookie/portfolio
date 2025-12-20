@@ -21,16 +21,24 @@ class TagRepository extends ServiceEntityRepository
         parent::__construct($registry, Tag::class);
     }
 
-    public function search(string $search): array
+    public function search(string $search, bool $withCount = false): array
     {
         $qb = $this->createQueryBuilder('t');
 
         if (!empty($search)) {
-            $qb->where('LOWER(t.tagLabel) LIKE :term')
+            $qb->where('lower(t.tagLabel) like :term')
                 ->setParameter('term', '%'.strtolower($search).'%');
         }
 
-        return $qb->orderBy('t.tagLabel', 'ASC')->getQuery()->getResult();
+        if ($withCount) {
+            $qb->addSelect('count(a.id) as articleCount')
+                ->leftJoin('t.articles', 'a')
+                ->groupBy('t.id');
+        }
+
+        return $qb->orderBy('t.tagLabel', 'asc')
+            ->getQuery()
+            ->getResult();
     }
 
     //    /**

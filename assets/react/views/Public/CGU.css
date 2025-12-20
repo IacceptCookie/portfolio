@@ -1,0 +1,38 @@
+.terms-of-use p {
+    font-size: 20px;
+    font-family: AlteHaas, sans-serif;
+    font-style: normal;
+    color: white;
+}
+
+.terms-of-use h1 {
+    font-size: 32px;
+    font-family: AlteHaas, sans-serif;
+    font-style: normal;
+    color: white;
+}
+
+.terms-of-use h2 {
+    font-size: 28px;
+    font-family: AlteHaas, sans-serif;
+    font-style: normal;
+    color: white;
+}
+
+.terms-of-use h3 {
+    font-size: 24px;
+    font-family: AlteHaas, sans-serif;
+    font-style: normal;
+    color: white;
+}
+
+.terms-of-use p a {
+    font-size: 20px;
+    font-family: AlteHaas, sans-serif;
+    font-style: normal;
+    color: white;
+}
+
+.terms-of-use {
+    padding: 20px;
+}

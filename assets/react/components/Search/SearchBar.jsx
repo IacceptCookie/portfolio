@@ -1,7 +1,7 @@
 import React from "react";
 import "./Search.css";
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faMagnifyingGlass } from '@fortawesome/free-solid-svg-icons';
+import CommonSearchBar from "./CommonSearchBar";
+import FilterSearchBar from "./FilterSearchBar";
 
 function SearchBar(
     {
@@ -9,23 +9,35 @@ function SearchBar(
         updateTextState,
         placeholder = "Recherchez",
         value = "",
+        type = "common",
+        selectedTags,
+        updateSelectedTags,
+        selectedCategories,
+        updateSelectedCategories,
+        resultNumber,
     }
 ) {
-    return (
-        <div
-            className="searchbar"
-        >
-            <input
-                type="text"
-                className="searchbar__search-text"
-                name={inputName}
-                placeholder={placeholder}
-                value={value}
-                onChange={(event) => updateTextState(event.target.value)}
-            />
-            <FontAwesomeIcon icon={faMagnifyingGlass} className="searchbar__search-icon" />
-        </div>
-    );
+    const searchBars = {
+        common: <CommonSearchBar
+            inputName={inputName}
+            updateTextState={updateTextState}
+            placeholder={placeholder}
+            value={value}
+        />,
+        filter: <FilterSearchBar
+            inputName={inputName}
+            updateTextState={updateTextState}
+            placeholder={placeholder}
+            value={value}
+            selectedTags={selectedTags}
+            updateSelectedTags={updateSelectedTags}
+            selectedCategories={selectedCategories}
+            updateSelectedCategories={updateSelectedCategories}
+            resultNumber={resultNumber}
+        />
+    }
+
+    return searchBars[type];
 }
 
 export default SearchBar;

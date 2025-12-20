@@ -2,7 +2,7 @@ import React from "react";
 import Stack from "../../components/Stack/Stack";
 import Layer from "../../components/Stack/Layer/Layer";
 import backgroundVideo from "../../../video/back.webm";
-import AnimatedText from "../../components/AnimatedText";
+import AnimatedText from "../../components/Text/AnimatedText";
 import "./Home.css";
 import Card from "../../components/Card/Card";
 import cardIllustration from "../../../img/background.jpg";

@@ -21,3 +21,19 @@
 .create-filter-button:hover {
     background-color: #116c04;
 }
+
+.filter-usage-wrapper {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.filter-usage-title {
+    color: white;
+    font-weight: bold;
+    font-size: 32px;
+    justify-content: center;
+    display: flex;
+    font-family: AlteHaas, sans-serif;
+}

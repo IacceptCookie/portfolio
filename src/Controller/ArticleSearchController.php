@@ -18,14 +18,16 @@ final class ArticleSearchController extends AbstractController
     ) {
     }
 
-    public function __invoke(Request $request): JsonResponse
+    public function __invoke(Request $request, bool $isPublic, int $limit): JsonResponse
     {
         $search = $request->query->get('search', '');
-        $isPublic = $request->query->get('isPublic', '');
         $tagIds = $request->query->all('tags');
         $categoryIds = $request->query->all('categories');
 
-        $articles = $this->articleRepository->search($search, $isPublic, $tagIds, $categoryIds);
+        $page = max(1, (int) $request->query->get('page', 1));
+        $offset = ($page - 1) * $limit;
+
+        [$articles, $total] = $this->articleRepository->search($search, $isPublic, $tagIds, $categoryIds, $limit, $offset);
 
         $data = $this->serializer->normalize(
             $articles,
@@ -33,6 +35,14 @@ final class ArticleSearchController extends AbstractController
             [AbstractNormalizer::GROUPS => ['Article_read']]
         );
 
-        return new JsonResponse($data, Response::HTTP_OK);
+        $response = [
+            'current_page' => $page,
+            'total_pages' => (int) ceil($total / $limit),
+            'total_items' => $total,
+            'items_per_page' => $limit,
+            'items' => $data,
+        ];
+
+        return new JsonResponse($response, Response::HTTP_OK);
     }
 }

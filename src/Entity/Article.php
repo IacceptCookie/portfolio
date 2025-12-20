@@ -15,6 +15,7 @@ use App\Repository\ArticleRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\DBAL\Types\Types;
+use Doctrine\ORM\Event\PreUpdateEventArgs;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Serializer\Annotation\Groups;
 use Symfony\Component\String\Slugger\AsciiSlugger;
@@ -23,6 +24,10 @@ use Symfony\Component\String\Slugger\AsciiSlugger;
     operations: [
         new GetCollection(
             uriTemplate: '/articles/search',
+            defaults: [
+                'isPublic' => true,
+                'limit' => 2,
+            ],
             controller: ArticleSearchController::class,
             openapiContext: [
                 'parameters' => [
@@ -32,13 +37,6 @@ use Symfony\Component\String\Slugger\AsciiSlugger;
                         'required' => false,
                         'schema' => ['type' => 'string'],
                         'description' => 'Mot-clé pour rechercher dans le titre ou la description',
-                    ],
-                    [
-                        'name' => 'isPublic',
-                        'in' => 'query',
-                        'required' => false,
-                        'schema' => ['type' => 'bool'],
-                        'description' => 'Confidentialité des articles à rechercher',
                     ],
                     [
                         'name' => 'tags[]',
@@ -58,10 +56,63 @@ use Symfony\Component\String\Slugger\AsciiSlugger;
                         'explode' => true,
                         'description' => 'Liste d\'IDs de catégories à filtrer',
                     ],
+                    [
+                        'name' => 'page',
+                        'in' => 'query',
+                        'required' => false,
+                        'schema' => ['type' => 'integer'],
+                        'description' => 'Page d\'article à récupérer',
+                    ],
                 ],
             ],
             normalizationContext: ['groups' => ['Article_read']],
             name: 'search_articles'
+        ),
+        new GetCollection(
+            uriTemplate: '/articles/editor/search',
+            defaults: [
+                'isPublic' => true,
+                'limit' => 6,
+            ],
+            controller: ArticleSearchController::class,
+            openapiContext: [
+                'parameters' => [
+                    [
+                        'name' => 'search',
+                        'in' => 'query',
+                        'required' => false,
+                        'schema' => ['type' => 'string'],
+                        'description' => 'Mot-clé pour rechercher dans le titre ou la description',
+                    ],
+                    [
+                        'name' => 'tags[]',
+                        'in' => 'query',
+                        'required' => false,
+                        'schema' => ['type' => 'array', 'items' => ['type' => 'integer']],
+                        'style' => 'form',
+                        'explode' => true,
+                        'description' => 'Liste d\'IDs de tags à filtrer',
+                    ],
+                    [
+                        'name' => 'categories[]',
+                        'in' => 'query',
+                        'required' => false,
+                        'schema' => ['type' => 'array', 'items' => ['type' => 'integer']],
+                        'style' => 'form',
+                        'explode' => true,
+                        'description' => 'Liste d\'IDs de catégories à filtrer',
+                    ],
+                    [
+                        'name' => 'page',
+                        'in' => 'query',
+                        'required' => false,
+                        'schema' => ['type' => 'integer'],
+                        'description' => 'Page d\'article à récupérer',
+                    ],
+                ],
+            ],
+            normalizationContext: ['groups' => ['Article_read']],
+            name: 'search_articles_editor'
         ),
         new Get(
             uriTemplate: '/articles/{slug}',
@@ -149,9 +200,22 @@ class Article
     }
 
     #[ORM\PrePersist]
-    public function setSlugValue(): void
+    public function setSlugOnCreate(): void
     {
-        if (!$this->slug && $this->articleTitle) {
+        $this->updateSlug();
+    }
+
+    #[ORM\PreUpdate]
+    public function setSlugOnUpdate(PreUpdateEventArgs $event): void
+    {
+        if ($event->hasChangedField('articleTitle')) {
+            $this->updateSlug();
+        }
+    }
+
+    private function updateSlug(): void
+    {
+        if ($this->articleTitle) {
             $slugger = new AsciiSlugger();
             $this->slug = strtolower($slugger->slug($this->articleTitle)->toString());
         }
@@ -332,7 +396,7 @@ class Article
         return $this;
     }
 
-    public function isPublic(): ?bool
+    public function getIsPublic(): ?bool
     {
         return $this->isPublic;
     }

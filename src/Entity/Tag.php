@@ -53,12 +53,7 @@ use Symfony\Component\Serializer\Annotation\Groups;
                         'in' => 'query',
                         'required' => false,
                         'schema' => ['type' => 'integer'],
-                    ],
-                    [
-                        'name' => 'itemsPerPage',
-                        'in' => 'query',
-                        'required' => false,
-                        'schema' => ['type' => 'integer'],
+                        'description' => 'Page de filtre à récupérer',
                     ],
                 ],
             ],

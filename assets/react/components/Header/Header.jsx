@@ -1,5 +1,5 @@
 import React, { useState, useRef, useEffect } from "react";
-import { Link } from "wouter";
+import {Link, useLocation} from "wouter";
 import Logo from "../../../img/logo-complete.png";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faBars } from '@fortawesome/free-solid-svg-icons';
@@ -11,6 +11,7 @@ function Header() {
     const [blurred, setBlurredState] = useState(false);
     const navRef = useRef(null);
     const {hasRole} = useAuth();
+    const [location] = useLocation();
 
     useEffect(() => {
         const navElement = navRef.current;
@@ -21,6 +22,11 @@ function Header() {
             navElement.style.maxHeight = '0';
         }
     }, [folded]);
+
+    useEffect(() => {
+        setFoldedState(true);
+        setBlurredState(false);
+    }, [location]);
 
     return (
         <header className={`header ${blurred ? "blurred" : "unblurred"}`}>

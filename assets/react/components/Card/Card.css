@@ -3,7 +3,7 @@
     text-decoration: none;
     flex-direction: column;
     margin: 8px;
-    width: 100%;
+    width: calc(100% - 16px);
     max-width: 600px;
     background: #0E1084;
     box-shadow: 1px 1px 2px #7577CD;
@@ -72,7 +72,7 @@
     text-decoration: none;
     flex-direction: column;
     margin: 8px;
-    width: 100%;
+    width: calc(100% - 16px);
     max-width: 250px;
     background: #0E1084;
     box-shadow: 1px 1px 2px #7577CD;
@@ -160,7 +160,7 @@
 
 @media only screen and (min-width: 800px) {
     .large-card {
-        margin: 30px;
+        margin: 20px 8px;
         max-width: 750px;
         transition: 0.5s;
     }

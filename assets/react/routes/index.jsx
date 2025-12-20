@@ -7,7 +7,7 @@ import Articles from "../views/Public/Articles";
 import ExternalRedirect from "../tools/ExternalRedirect";
 import Login from "../views/Public/Login";
 import EditorHome from "../views/Editor/EditorHome";
-import Create from "../views/Editor/Article/Create";
+import CreateArticle from "../views/Editor/Article/Create";
 import Example from "../views/Editor/Article/Example";
 import ManageFilter from "../views/Editor/Filter/Manage";
 import ManageArticle from "../views/Editor/Article/Manage";
@@ -16,6 +16,13 @@ import TwoFactorCheck from "../views/Public/TwoFactorCheck";
 import PrivateRoute from "../tools/PrivateRoute";
 import Logout from "../views/Public/Logout";
 import ArticlePreviewRoute from "./ArticlePreviewRoute";
+import ArticleRoute from "./ArticleRoute";
+import UpdateArticleRoute from "./UpdateArticleRoute";
+import CreateFilter from "../views/Editor/Filter/Create";
+import UpdateFilterRoute from "./UpdateFilterRoute";
+import CGU from "../views/Public/CGU";
+import Help from "../views/Public/Help";
+import Profile from "../views/Public/Profile";
 
 function Routes() {
     return (
@@ -24,8 +31,16 @@ function Routes() {
             <Route path="/">
                 {() =>
                     <>
-                        <TitleUpdater title="Home page" />
+                        <TitleUpdater title="Bienvenue" />
                         <Home />
+                    </>
+                }
+            </Route>
+            <Route path="/profile">
+                {() =>
+                    <>
+                        <TitleUpdater title="Mon profil" />
+                        <Profile />
                     </>
                 }
             </Route>
@@ -85,7 +100,7 @@ function Routes() {
                 {() =>
                     <PrivateRoute role="ROLE_EDITOR">
                         <TitleUpdater title="Création d'un article" />
-                        <Create />
+                        <CreateArticle />
                     </PrivateRoute>
                 }
             </Route>
@@ -109,8 +124,28 @@ function Routes() {
                         </PrivateRoute>
                     }
             </Route>
+            <Route
+                path="/article/update/:slug"
+                component={UpdateArticleRoute}
+            />
+            <Route
+                path="/article/:slug"
+                component={ArticleRoute}
+            />
 
             // editors filter CRUD routes
+            <Route path="/filter/create">
+                {() =>
+                    <PrivateRoute role="ROLE_EDITOR">
+                        <TitleUpdater title="Création d'un filtre" />
+                        <CreateFilter />
+                    </PrivateRoute>
+                }
+            </Route>
+            <Route
+                path="/filter/update/:type/:id"
+                component={UpdateFilterRoute}
+            />
             <Route path="/filter/manage">
                 {() =>
                     <PrivateRoute role="ROLE_READER">
@@ -125,6 +160,22 @@ function Routes() {
             <Route path="/linkedin" component={
                 () => <ExternalRedirect url="https://www.linkedin.com/in/rapha%C3%ABl-durand-386720267" />
             } />
+            <Route path="/cgu">
+                {() =>
+                    <>
+                        <TitleUpdater title="Conditions générales d'utilisation" />
+                        <CGU />
+                    </>
+                }
+            </Route>
+            <Route path="/help">
+                {() =>
+                    <>
+                        <TitleUpdater title="Une question ?" />
+                        <Help />
+                    </>
+                }
+            </Route>
 
             // default not found route
             <Route>

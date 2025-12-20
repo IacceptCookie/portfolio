@@ -1,0 +1,36 @@
+.reveal-group {
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+.reveal {
+    opacity: 0;
+    transform: translateY(30px);
+    transition: opacity 0.8s ease, transform 0.8s ease;
+}
+
+.reveal.visible {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+}
+
+.reveal.fade-up {
+    transform: translateY(30px);
+}
+.reveal.fade-left {
+    transform: translateX(30px);
+}
+.reveal.fade-right {
+    transform: translateX(-30px);
+}
+.reveal.fade-zoom {
+    transform: scale(0.9);
+}
+
+.reveal.visible.fade-up { transform: translateY(0) scale(1); }
+.reveal.visible.fade-left { transform: translateX(0) scale(1); }
+.reveal.visible.fade-right { transform: translateX(0) scale(1); }
+.reveal.visible.fade-zoom { transform: scale(1); }

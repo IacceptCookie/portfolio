@@ -1,5 +1,6 @@
 import React from "react";
 import "../Result.css";
+import {Link} from "wouter";
 
 function CategoryResult(
     {
@@ -8,9 +9,10 @@ function CategoryResult(
 )
 {
     return (
-        <div
+        <Link
             style={{backgroundColor: "#0E1084", borderColor: "color-mix(in srgb, #0E1084, white 50%)"}}
             className="editor-category-result result"
+            to={`/filter/update/category/${resultData.id}`}
         >
             <p className="editor-category-result__label">
                 {resultData.label}
@@ -21,7 +23,7 @@ function CategoryResult(
             >
                 {resultData.useCount} utilisation(s)
             </p>
-        </div>
+        </Link>
     );
 }
 

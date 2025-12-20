@@ -1,0 +1,82 @@
+.logo {
+    display: flex;
+    align-items: center;
+    border-radius: 24px;
+    overflow: hidden;
+    cursor: pointer;
+    transition: 0.4s ease;
+    height: 80px;
+    width: fit-content;
+    box-shadow: 2px 2px 3px #7577cd;
+    margin: 10px;
+    max-width: 100%;
+    transform: scale(1.05);
+}
+
+.logo:hover {
+    transform: scale(1.1);
+}
+
+.logo.folded {
+    max-width: 80px;
+}
+
+.logo-image {
+    flex-shrink: 0;
+    width: 80px;
+    height: 80px;
+    background-color: white;
+    padding: 10px;
+    box-sizing: border-box;
+}
+
+.logo-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+}
+
+.logo-text {
+    background-color: #0e1084;
+    color: white;
+    font-family: AlteHaas, sans-serif;
+    font-size: 18px;
+    font-weight: bold;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 5px;
+    box-sizing: border-box;
+    transition: max-width 0.4s ease, padding 0.4s ease, opacity 0.4s ease;
+    overflow: hidden;
+    white-space: nowrap;
+    max-width: 100%;
+    min-width: 80px;
+    opacity: 1;
+}
+
+.logo-text>span {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+    width: 100%;
+}
+
+.logo.folded .logo-text {
+    max-width: 0;
+    min-width: 0;
+    padding: 0;
+    opacity: 0;
+}
+
+@media only screen and (min-width: 400px) {
+    .logo-text {
+        max-width: 240px;
+    }
+
+    .logo {
+        max-width: 320px;
+    }
+}

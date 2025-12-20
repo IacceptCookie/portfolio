@@ -1,0 +1,18 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 48 48" fill="none">
+  <!-- Écran -->
+  <rect x="10" y="4" width="28" height="14" rx="2" fill="#336791" stroke="#F9F9FA" stroke-width="2"/>
+  <!-- Texte écran -->
+  <rect x="14" y="8" width="16" height="2" rx="1" fill="#689DC9"/>
+  <rect x="14" y="12" width="10" height="2" rx="1" fill="#689DC9" opacity="0.6"/>
+  <!-- Corps caisse -->
+  <rect x="6" y="18" width="36" height="22" rx="3" fill="#689DC9" stroke="#F9F9FA" stroke-width="2"/>
+  <!-- Touches -->
+  <rect x="10" y="22" width="6" height="5" rx="1" fill="#F9F9FA" opacity="0.9"/>
+  <rect x="18" y="22" width="6" height="5" rx="1" fill="#F9F9FA" opacity="0.9"/>
+  <rect x="26" y="22" width="6" height="5" rx="1" fill="#F9F9FA" opacity="0.9"/>
+  <rect x="10" y="29" width="6" height="5" rx="1" fill="#F9F9FA" opacity="0.9"/>
+  <rect x="18" y="29" width="6" height="5" rx="1" fill="#F9F9FA" opacity="0.9"/>
+  <rect x="26" y="29" width="6" height="5" rx="1" fill="#336791"/>
+  <!-- Tiroir -->
+  <rect x="34" y="24" width="6" height="12" rx="1" fill="#336791" stroke="#F9F9FA" stroke-width="1"/>
+</svg>

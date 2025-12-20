@@ -1,0 +1,288 @@
+.logo-wrapper {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-self: center;
+    max-width: 1000px;
+    width: 100%;
+}
+
+.logo-accordions {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+}
+
+.logo-accordions>* {
+    max-width: 1000px;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+}
+
+.centered-text {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 5px 30px;
+    background-color: #080957;
+}
+
+.centered-text>p {
+    text-align: center;
+    color: white;
+    font-family: Altone, sans-serif;
+    font-weight: bold;
+    font-size: 28px;
+    max-width: 1000px;
+}
+
+.cv-display {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    max-width: 1000px;
+    padding: 10px;
+    box-sizing: border-box;
+    align-self: center;
+    align-items: center;
+}
+
+.cv-display-img {
+    width: 100%;
+    height: 100%;
+    max-height: 90vh;
+    max-width: 90vh;
+    object-fit: contain;
+    display: block;
+    margin: 20px 0;
+}
+
+.cv-download-button {
+    display: flex;
+    color: white;
+    background-color: #A0A3FF;
+    border: none;
+    text-decoration: none;
+    border-radius: 24px;
+    font-size: 30px;
+    font-weight: bold;
+    font-family: AlteHaas, sans-serif;
+    padding: 12px 18px;
+    margin: 30px 0;
+}
+
+.cv-download-button:hover {
+    background-color: #7577cd;
+}
+
+.logo-accordions > * > .accordion {
+    margin:  10px 0;
+    align-self: center;
+}
+
+.grafana-section-presentation {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    padding: 10px;
+    box-sizing: border-box;
+}
+
+.grafana-section-logo {
+    display: flex;
+    flex-direction: row;
+    align-items: start;
+    justify-content: center;
+    margin: 10px 0;
+}
+
+.grafana-section-logo>span {
+    color: #bdbecd;
+    font-size: 16px;
+    font-weight: bold;
+    font-family: AlteHaas, sans-serif;
+}
+
+.grafana-section-logo>img {
+    max-width: 280px;
+    width: 100%;
+    height: auto;
+}
+
+.grafana-section-text, .grafana-section-text-centered {
+    color: #bdbecd;
+    font-family: AlteHaas, sans-serif;
+}
+
+.grafana-section-text-centered {
+    text-align: center;
+    margin: 12px 0;
+    padding: 0 15px;
+    font-size: 24px;
+}
+
+.grafana-section-text {
+    width: fit-content;
+    align-self: center;
+    margin: 10px 0;
+    font-size: 20px;
+    font-weight: normal;
+}
+
+.grafana-section-text>p {
+    margin: 0;
+}
+
+.postgresql-section-presentation {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    padding: 10px;
+    box-sizing: border-box;
+}
+
+.postgresql-section-logo {
+    display: flex;
+    flex-direction: row;
+    align-items: start;
+    justify-content: center;
+    margin: 10px 0;
+}
+
+.postgresql-section-logo>p {
+    color: #bdbecd;
+    margin: 0 0 0 5px;
+    font-size: 32px;
+    font-weight: bold;
+    font-family: AlteHaas, sans-serif;
+    align-self: center;
+}
+
+.postgresql-section-logo>span {
+    color: #bdbecd;
+    font-size: 16px;
+    font-weight: bold;
+    font-family: AlteHaas, sans-serif;
+}
+
+.postgresql-section-logo>img {
+    max-width: 60px;
+    width: 100%;
+    height: auto;
+}
+
+.postgresql-section-text, .postgresql-section-text-centered {
+    color: #bdbecd;
+    font-family: AlteHaas, sans-serif;
+}
+
+.postgresql-section-text-centered {
+    text-align: center;
+    margin: 12px 0;
+    padding: 0 15px;
+    font-size: 24px;
+}
+
+.postgresql-section-text {
+    width: fit-content;
+    align-self: center;
+    margin: 10px 0 0 0;
+    font-size: 20px;
+    font-weight: normal;
+}
+
+.postgresql-section-text>p {
+    margin: 0;
+}
+
+.react-section-presentation {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    padding: 10px;
+    box-sizing: border-box;
+}
+
+.react-section-logo {
+    display: flex;
+    flex-direction: row;
+    align-items: start;
+    justify-content: center;
+    margin: 10px 0;
+}
+
+.react-section-logo>p {
+    color: #bdbecd;
+    margin: 0 0 0 5px;
+    font-size: 32px;
+    font-weight: bold;
+    font-family: AlteHaas, sans-serif;
+    align-self: center;
+}
+
+.react-section-logo>span {
+    color: #bdbecd;
+    font-size: 16px;
+    font-weight: bold;
+    font-family: AlteHaas, sans-serif;
+}
+
+.react-section-logo>img {
+    max-width: 60px;
+    width: 100%;
+    height: auto;
+}
+
+.react-section-text, .react-section-text-centered {
+    color: #bdbecd;
+    font-family: AlteHaas, sans-serif;
+}
+
+.react-section-text-centered {
+    text-align: center;
+    margin: 12px 0;
+    padding: 0 15px;
+    font-size: 24px;
+}
+
+.react-section-text {
+    width: fit-content;
+    align-self: center;
+    margin: 10px 0 0 0;
+    font-size: 20px;
+    font-weight: normal;
+}
+
+.react-section-text>p {
+    margin: 0;
+}
+
+@media only screen and (min-width: 800px) {
+    .react-section-logo>p {
+        font-size: 54px;
+    }
+
+    .react-section-logo>img {
+        max-width: 80px;
+    }
+
+    .react-section-text {
+        margin: 10px 0;
+    }
+
+    .postgresql-section-logo>p {
+        font-size: 54px;
+    }
+
+    .postgresql-section-logo>img {
+        max-width: 80px;
+    }
+
+    .postgresql-section-text {
+        margin: 10px 0;
+    }
+}

@@ -9,7 +9,6 @@
     padding: 12px;
     justify-content: space-between;
     align-self: center;
-    margin: 15px 0;
 }
 
 .searchbar__search-text {
@@ -26,4 +25,175 @@
     height: 30px;
     width: 30px;
     align-self: center;
+}
+
+.filter-searchbar {
+    display: flex;
+    flex-direction: column;
+    width: calc(100% - 20px);
+    max-width: 1000px;
+    padding: 6px;
+    align-self: center;
+    background-color: #0E1084;
+    box-sizing: border-box;
+    border-radius: 30px;
+    margin: 10px;
+    box-shadow: 1px 1px 4px 2px #7577cd;
+}
+
+.filter-bar {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+}
+
+.filter-bar-menu {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    margin: 10px;
+}
+
+.filter-bar-result-number {
+    display: flex;
+    background-color: white;
+    color: #7577CD;
+    font-family: AlteHaas, sans-serif;
+    font-weight: bold;
+    font-size: 30px;
+    width: fit-content;
+    box-sizing: border-box;
+    padding: 6px 12px;
+    margin: 8px 0;
+    border-radius: 24px;
+}
+
+.filter-bar-menu-buttons {
+    display: flex;
+    flex-direction: column;
+    background-color: white;
+    width: fit-content;
+    box-sizing: border-box;
+    padding: 6px 12px;
+    margin: 0;
+    border-radius: 24px;
+}
+
+.filter-bar-menu-buttons>* {
+    background-color: #7577CD;
+    color: white;
+    font-family: AlteHaas, sans-serif;
+    font-weight: bold;
+    font-size: 26px;
+    outline: none;
+    border: none;
+    box-sizing: border-box;
+    border-radius: 24px;
+    margin: 4px 0;
+    padding: 4px 8px;
+    cursor: pointer;
+    transition: 0.1s;
+}
+
+.filter-bar-menu-buttons>*:hover {
+    background-color: #5a5bae;
+}
+
+.filter-bar-label {
+    display: flex;
+    color: white;
+    font-family: AlteHaas, sans-serif;
+    font-weight: bold;
+    font-size: 30px;
+    width: fit-content;
+    box-sizing: border-box;
+    padding: 6px 12px;
+    margin: 0;
+}
+
+.filter-bar-foldable-section {
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+    background-color: white;
+    border-radius: 0 0 24px 24px;
+}
+
+.hidden-section.filter-bar-foldable-section__categories-selection,
+.hidden-section.filter-bar-foldable-section__tags-selection {
+    max-height: 0;
+    padding: 0 10px;
+    visibility: hidden;
+}
+
+.filter-bar-foldable-section__categories-selection {
+    display: flex;
+    background-color: white;
+    max-height: 500px;
+    padding: 10px;
+    visibility: visible;
+    box-sizing: border-box;
+    justify-content: center;
+    transition: max-height 0.2s cubic-bezier(0.4, 0, 0.2, 1), padding 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.filter-bar-foldable-section__categories-picker {
+    outline: none;
+    background-color: white;
+    font-family: AltHaas, sans-serif;
+    font-weight: bold;
+    font-size: 24px;
+    width: 100%;
+    padding: 12px;
+    box-sizing: border-box;
+    border-radius: 30px;
+    border: solid 4px #7577CD;
+    margin: 10px 0;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    text-indent: 1px;
+    text-overflow: '';
+}
+
+.filter-bar-foldable-section__tags-selection {
+    display: flex;
+    background-color: white;
+    max-height: 500px;
+    padding: 10px;
+    visibility: visible;
+    box-sizing: border-box;
+    flex-direction: column;
+    justify-content: center;
+    transition: max-height 0.2s cubic-bezier(0.4, 0, 0.2, 1), padding 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.filter-bar-foldable-section__tags-list {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    max-height: 300px;
+    overflow: scroll;
+}
+
+@media only screen and (min-width: 800px) {
+    .filter-bar-menu {
+        flex-direction: row;
+    }
+
+    .filter-bar-menu-buttons {
+        flex-direction: row;
+    }
+
+    .filter-bar-menu-buttons>* {
+        margin: 0 4px;
+    }
+
+    .filter-bar-result-number {
+        margin: 0;
+    }
+
+    .filter-bar-foldable-section__categories-picker {
+        width: fit-content;
+    }
 }

@@ -25,6 +25,33 @@ security:
                 max_attempts: 5
                 interval: '5 minutes'
 
+        email_contact:
+            pattern: ^/email/contact
+            stateless: true
+
+        api_articles_editor:
+            pattern: ^/api/articles/editor.*
+            stateless: true
+            provider: app_user_provider
+            jwt: ~
+
+        api_me:
+            pattern: ^/api/me
+            stateless: true
+            provider: app_user_provider
+            jwt: ~
+
+        api_root:
+            pattern: ^/api$
+            stateless: true
+            provider: app_user_provider
+            jwt: ~
+
+        public_api:
+            pattern: ^/api
+            methods: [GET]
+            stateless: true
+
         api:
             pattern: ^/api
             stateless: true
@@ -35,16 +62,11 @@ security:
             lazy: true
             provider: app_user_provider
 
-            # activate different ways to authenticate
-            # https://symfony.com/doc/current/security.html#the-firewall
-
-            # https://symfony.com/doc/current/security/impersonating_user.html
-            # switch_user: true
-
-    # Easy way to control access for large sections of your site
-    # Note: Only the *first* access control that matches will be used
     access_control:
         - { path: ^/authentication, roles: PUBLIC_ACCESS }
+        - { path: ^/email/contact, roles: PUBLIC_ACCESS }
+        - { path: ^/api$, roles: ROLE_EDITOR }
+        - { path: ^/api, roles: PUBLIC_ACCESS, methods: [GET] }
         - { path: ^/api, roles: ROLE_EDITOR }
 
 when@test:

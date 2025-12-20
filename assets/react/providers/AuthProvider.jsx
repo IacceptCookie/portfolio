@@ -7,7 +7,7 @@ function AuthProvider({ children }) {
 
     const fetchUser = async () => {
         try {
-            const csrfToken = localStorage.getItem("csrf_token");
+            const csrfToken = sessionStorage.getItem("csrf_token");
 
             const res = await fetch("/api/me", {
                 method: "GET",

@@ -21,16 +21,24 @@ class CategoryRepository extends ServiceEntityRepository
         parent::__construct($registry, Category::class);
     }
 
-    public function search(string $search): array
+    public function search(string $search, bool $withCount = false): array
     {
         $qb = $this->createQueryBuilder('c');
 
         if (!empty($search)) {
-            $qb->where('LOWER(c.categoryLabel) LIKE :term')
+            $qb->where('lower(c.categoryLabel) like :term')
                 ->setParameter('term', '%'.strtolower($search).'%');
         }
 
-        return $qb->orderBy('c.categoryLabel', 'ASC')->getQuery()->getResult();
+        if ($withCount) {
+            $qb->addSelect('count(a.id) as articleCount')
+                ->leftJoin('c.articles', 'a')
+                ->groupBy('c.id');
+        }
+
+        return $qb->orderBy('c.categoryLabel', 'asc')
+            ->getQuery()
+            ->getResult();
     }
 
     //    /**

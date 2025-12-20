@@ -48,9 +48,14 @@ function LargeCard(
                 </article>
                 <div className="large-card-tag-list">
                     {
-                        cardData.tags.map(tag => (
-                            <Tag key={tag.id} tagTitle={tag.title} tagColorCode={tag.colorCode} />
-                        ))
+                        cardData.tags.map((tag, index) => {
+                                if (index < 3) {
+                                    return (
+                                        <Tag key={tag.id} tagTitle={tag.title} tagColorCode={tag.colorCode} />
+                                    );
+                                }
+                            }
+                        )
                     }
                 </div>
             </div>

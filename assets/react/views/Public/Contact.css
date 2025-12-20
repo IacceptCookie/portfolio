@@ -67,7 +67,7 @@
     margin: 15px;
 }
 
-#subject-selector {
+#subject {
     width: 100%;
     padding: 8px 18px;
     border: 2px solid #7577CD;
@@ -81,7 +81,7 @@
     margin-bottom: 15px;
 }
 
-#subject-selector:focus {
+#subject:focus {
     outline: none;
     margin-bottom: 15px;
 }
@@ -142,6 +142,34 @@
     text-align: center;
 }
 
+#file {
+    display: none;
+}
+
+#file-label {
+    display: inline-block;
+    background-color: #A0A3FF;
+    color: white;
+    font-family: AlteHaas, sans-serif;
+    font-weight: bold;
+    font-size: 18px;
+    padding: 10px 25px;
+    border-radius: 30px;
+    cursor: pointer;
+    transition: background-color 0.3s, transform 0.2s;
+    text-align: center;
+    margin: 10px 0 15px 0;
+    box-shadow: 2px 2px 3px #7577CD;
+}
+
+#file-label:hover {
+    background-color: #5A5AA3;
+}
+
+#file-label:active {
+    background-color: #3F3F85;
+}
+
 @media only screen and (min-width: 400px) {
     .input-group {
         flex-direction: row;
@@ -165,7 +193,7 @@
         font-size: 30px;
     }
 
-    #submit, #email, #firstname, #lastname, #subject-selector,
+    #submit, #email, #firstname, #lastname, #subject,
     #message {
         font-size: 26px;
     }

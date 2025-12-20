@@ -1,0 +1,385 @@
+.grafana-table-panel, .grafana-bar-chart-panel, .grafana-xy-chart-panel {
+    padding: 8px;
+    color: #CCCCDCFF;
+    font-variant-ligatures: no-contextual;
+    font-family: "Inter", "Helvetica", "Arial", sans-serif;
+    font-weight: 400;
+    font-size: 1rem;
+    line-height: 1.57143;
+    letter-spacing: 0.01071em;
+    font-variant-numeric: initial;
+    background-color: #181b1f;
+    scrollbar-color: rgba(255, 255, 255, 0.333) rgba(255, 255, 255, 0.067);
+    display: flex;
+    flex-direction: column;
+    border: 1px solid #CCCCDC1E;
+    box-sizing: border-box;
+    border-radius: 6px;
+    overflow: hidden;
+    width: 100%;
+    margin: 10px;
+    height: 400px;
+}
+
+.grafana-table-panel {
+    max-width: 100%;
+}
+
+.grafana-table-panel-content {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+}
+
+.grafana-table-panel-content > *:not(:last-child) {
+    border-bottom: 1px solid #CCCCDC1E;
+}
+
+.grafana-table-panel__header > *:not(:last-child),
+.grafana-table-panel__row > *:not(:last-child) {
+    border-right: 1px solid #CCCCDC1E;
+}
+
+.grafana-table-panel__header {
+    font-weight: normal;
+    color: #8b8c98;
+    height: 28px;
+    display: flex;
+    box-sizing: border-box;
+    flex-wrap: nowrap;
+    width: max-content;
+}
+
+.grafana-table-panel__header-cell {
+    padding: 0 6px 6px 6px;
+    box-sizing: border-box;
+    display: flex;
+    flex-wrap: nowrap;
+    overflow: hidden;
+    flex: 0 0 auto;
+    width: 100%;
+}
+
+.grafana-table-panel__row {
+    display: flex;
+    flex-wrap: nowrap;
+    height: 36px;
+    box-sizing: border-box;
+    color: #CCCCDCFF;
+    width: max-content;
+}
+
+.grafana-table-panel__row:hover {
+    background-color: #22252b;
+}
+
+.grafana-table-panel__row-cell {
+    padding: 6px;
+    box-sizing: border-box;
+    display: flex;
+    flex-wrap: nowrap;
+    overflow: hidden;
+    flex: 0 0 auto;
+    width: 100%;
+}
+
+.grafana-table-panel__row-cell:hover {
+    position: relative;
+    z-index: 1;
+    box-shadow: rgba(1, 4, 9, 0.75) 0 4px 8px;
+}
+
+.grafana-table-panel__row-cell>span, .grafana-table-panel__header-cell>span {
+    display: flex;
+    flex-wrap: nowrap;
+    width: 100%;
+    box-sizing: border-box;
+    flex: 0 0 auto;
+}
+
+.grafana-bar-chart-panel,
+.grafana-xy-chart-panel {
+    height: 400px;
+    width: 100%;
+}
+
+.grafana-bar-chart-panel-content,
+.grafana-xy-chart-panel-content {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    height: 100%;
+    flex: 1;
+    min-height: 0;
+}
+
+.grafana-bar-chart-panel__legend,
+.grafana-xy-chart-panel__legend {
+    display: flex;
+    align-items: center;
+    padding: 4px;
+    box-sizing: border-box;
+}
+
+.grafana-bar-chart-panel__legend-color,
+.grafana-xy-chart-panel__legend-color {
+    width: 14px;
+    height: 4px;
+    margin-right: 8px;
+    border-radius: 9999px;
+}
+
+.grafana-bar-chart-panel__legend-text,
+.grafana-xy-chart-panel__legend-text {
+    white-space: nowrap;
+    background: none;
+    border: medium;
+    font-size: 12px;
+    padding: 0;
+    margin: 0;
+    user-select: text;
+}
+
+.grafana-bar-chart-panel__chart,
+.grafana-xy-chart-panel__chart {
+    display: flex;
+    align-items: center;
+    width: 100%;
+    height: 100%;
+    flex: 1;
+    min-height: 0;
+}
+
+.grafana-bar-chart-panel__chart-y-axis,
+.grafana-xy-chart-panel__chart-y-axis {
+    display: flex;
+    justify-content: space-between;
+    flex-direction: column;
+    width: 43px;
+    height: calc(100% - 31px);
+    box-sizing: border-box;
+    margin-bottom: 31px;
+    font-weight: 400;
+    font-size: 1rem;
+    color: rgb(204, 204, 220);
+    font-variant-ligatures: no-contextual;
+    letter-spacing: 0.01071em;
+    font-variant-numeric: initial;
+}
+
+.grafana-bar-chart-panel__chart-visual-wrapper {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    height: calc(100% - 19px);
+    flex: 1;
+    min-height: 0;
+}
+
+.grafana-xy-chart-panel__chart-visual-wrapper {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    height: 100%;
+    flex: 1;
+    min-height: 0;
+}
+
+.grafana-bar-chart-panel__chart-x-axis,
+.grafana-xy-chart-panel__chart-x-axis {
+    height: 31px;
+    width: 100%;
+    font-weight: 400;
+    font-size: 1rem;
+    color: rgb(204, 204, 220);
+    font-variant-ligatures: no-contextual;
+    letter-spacing: 0.01071em;
+    font-variant-numeric: initial;
+    display: flex;
+    align-items: center;
+}
+
+.grafana-bar-chart-panel__chart-x-axis {
+    justify-content: space-around;
+}
+
+.grafana-xy-chart-panel__chart-x-axis {
+    justify-content: space-between;
+}
+
+.grafana-bar-chart-panel__chart-visual,
+.grafana-xy-chart-panel__chart-visual {
+    width: 100%;
+    height: 100%;
+    position: relative;
+    flex: 1;
+    min-height: 0;
+}
+
+.grafana-xy-chart-panel__chart-visual {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.grafana-bar-chart-panel__chart-visual__background {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    z-index: 0;
+    top: 0;
+    left: 0;
+}
+
+.grafana-xy-chart-panel__chart-visual__background-horizontal {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    width: 100%;
+    height: calc(100% - 19px);
+    position: absolute;
+    z-index: 0;
+    top: 9.5px;
+    left: 0;
+}
+
+.grafana-xy-chart-panel__chart-visual__background-vertical {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    width: calc(100% - 50px);
+    height: 100%;
+    position: absolute;
+    z-index: 1;
+    top: 0;
+    left: 25px;
+}
+
+.grafana-xy-chart-panel__chart-visual__line {
+    position: absolute;
+    width: calc(100% - 50px);
+    height: calc(100% - 19px);
+    top: 9.5px;
+    left: 25px;
+    z-index: 2;
+}
+
+.grafana-xy-chart-panel__chart-visual__dot-wrapper {
+    display: flex;
+    position: relative;
+    width: calc(100% - 50px);
+    height: calc(100% - 19px);
+    margin: 4.75px 12.5px;
+}
+
+.grafana-xy-chart-panel__chart-visual__dot-hover-wrapper {
+    display: flex;
+    position: absolute;
+    width: calc(100% - 50px);
+    height: calc(100% - 19px);
+    z-index: 5;
+    top: 9.5px;
+    left: 25px;
+}
+
+.grafana-xy-chart-panel__chart-visual__dot {
+    width: 5px;
+    height: 5px;
+    border-radius: 50%;
+    position: absolute;
+    z-index: 4;
+    background-color: rgb(115, 191, 105);
+}
+
+.grafana-xy-chart-panel__chart-visual__dot-hover {
+    width: 5px;
+    height: 5px;
+    border-radius: 50%;
+    position: absolute;
+    z-index: 5;
+}
+
+.grafana-xy-chart-panel__chart-visual__dot-hover:hover {
+    background-color: rgba(255, 255, 255, 0.4);
+    border: 2px rgb(155, 231, 145) solid;
+}
+
+.grafana-bar-chart-panel__chart-visual__background-line,
+.grafana-xy-chart-panel__chart-visual__background-horizontal-line {
+    width: 100%;
+    height: 1px;
+    background-color: #CCCCDC1E;
+    border-radius: 9999px;
+}
+
+.grafana-xy-chart-panel__chart-visual__background-vertical-line {
+    height: 100%;
+    width: 1px;
+    background-color: #CCCCDC1E;
+    border-radius: 9999px;
+}
+
+.grafana-bar-chart-panel__chart-visual__bar-wrapper,
+.grafana-bar-chart-panel__chart-visual__bar-hover-wrapper {
+    display: flex;
+    justify-content: space-around;
+    align-items: end;
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    z-index: 1;
+    top: 0;
+    left: 0;
+}
+
+.grafana-bar-chart-panel__chart-visual__bar,
+.grafana-bar-chart-panel__chart-visual__bar-hover {
+    box-sizing: border-box;
+}
+
+.grafana-bar-chart-panel__chart-visual__bar-hover {
+    background-color: transparent;
+}
+
+.grafana-bar-chart-panel__chart-visual__bar-hover:hover {
+    background-color: rgba(255, 255, 255, 0.4);
+}
+
+.grafana-bar-chart-panel__chart-x-axis__label,
+.grafana-bar-chart-panel__chart-y-axis__label,
+.grafana-xy-chart-panel__chart-x-axis__label,
+.grafana-xy-chart-panel__chart-y-axis__label {
+    white-space: nowrap;
+    background: none;
+    border: medium;
+    font-size: 12px;
+    padding: 0;
+    margin: 0;
+    user-select: text;
+    text-align: center;
+    justify-content: center;
+    display: flex;
+    align-items: center;
+}
+
+.grafana-bar-chart-panel__chart-x-axis__label,
+.grafana-xy-chart-panel__chart-x-axis__label {
+    height: 100%;
+}
+
+.grafana-xy-chart-panel__chart-x-axis__label {
+    width: 50px;
+}
+
+.grafana-bar-chart-panel__chart-y-axis__label,
+.grafana-xy-chart-panel__chart-y-axis__label {
+    width: 100%;
+    height: 19px;
+}
+
+

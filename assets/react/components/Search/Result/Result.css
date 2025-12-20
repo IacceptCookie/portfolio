@@ -5,11 +5,14 @@
     max-width: 1000px;
     padding: 8px;
     box-sizing: border-box;
-    overflow: auto;
+    align-items: center;
+    overflow: scroll;
+    scrollbar-color: #7577CD rgba(0,0,0,0);
 }
 
 .result {
     cursor: pointer;
+    text-decoration: none;
 }
 
 .editor-tag-result, .editor-category-result, .editor-article-result {

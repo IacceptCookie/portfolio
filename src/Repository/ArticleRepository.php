@@ -4,6 +4,7 @@ namespace App\Repository;
 
 use App\Entity\Article;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
+use Doctrine\ORM\Tools\Pagination\Paginator;
 use Doctrine\Persistence\ManagerRegistry;
 
 /**
@@ -21,39 +22,49 @@ class ArticleRepository extends ServiceEntityRepository
         parent::__construct($registry, Article::class);
     }
 
-    public function search(string $search = '', bool $isPublic = false, array $tagIds = [], array $categoryIds = []): array
-    {
+    public function search(
+        string $search = '',
+        bool $isPublic = false,
+        array $tagIds = [],
+        array $categoryIds = [],
+        int $limit = 10,
+        int $offset = 0,
+    ): array {
         $qb = $this->createQueryBuilder('a')
             ->leftJoin('a.tags', 't')
             ->leftJoin('a.categories', 'c')
-            ->addSelect('t')
-            ->addSelect('c');
+            ->addSelect('t', 'c');
 
-        if (!empty($search)) {
-            $qb->andWhere('LOWER(a.articleTitle) LIKE :term OR LOWER(a.articleDescription) LIKE :term')
+        if ('' !== $search) {
+            $qb->andWhere('lower(a.articleTitle) like :term or lower(a.articleDescription) like :term')
                 ->setParameter('term', '%'.strtolower($search).'%');
         }
 
-        if (!empty($tagIds)) {
-            $qb->andWhere('t.id IN (:tagIds)')
+        if ($tagIds) {
+            $qb->andWhere('t.id in (:tagIds)')
                 ->setParameter('tagIds', $tagIds);
         }
 
-        if (!empty($categoryIds)) {
-            $qb->andWhere('c.id IN (:categoryIds)')
+        if ($categoryIds) {
+            $qb->andWhere('c.id in (:categoryIds)')
                 ->setParameter('categoryIds', $categoryIds);
         }
 
-        if (!empty($isPublic) && $isPublic) {
-            $qb->andWhere('a.isPublic = (:isPublic)')
-                ->setParameter('isPublic', $isPublic);
+        if ($isPublic) {
+            $qb->andWhere('a.isPublic = :isPublic')
+                ->setParameter('isPublic', true);
         }
 
-        return $qb
-            ->distinct()
-            ->orderBy('a.articleTitle', 'ASC')
-            ->getQuery()
-            ->getResult();
+        $qb->orderBy('a.articleTitle', 'asc')
+            ->setFirstResult($offset)
+            ->setMaxResults($limit);
+
+        $paginator = new Paginator($qb, true);
+        $total = count($paginator);
+
+        $articles = iterator_to_array($paginator);
+
+        return [$articles, $total];
     }
 
     //    /**

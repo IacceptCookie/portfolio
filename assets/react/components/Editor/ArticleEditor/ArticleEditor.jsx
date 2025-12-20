@@ -4,10 +4,11 @@ import ElementEditorMenu from "./ElementEditor/ElementEditorMenu";
 import ArticleEditorMenu from "./ArticleEditorMenu";
 import {useArticlePreview} from "../../../providers/ArticlePreviewProvider";
 import {useLocation} from "wouter";
-import {dataURLtoFile} from "../../../services/remaper";
+import {dataURLtoFile} from "../../../tools/remaper";
 import {getArticleBySlug} from "../../../services/api/Articles";
 
 const defaultArticle = {
+    id: undefined,
     title: "",
     description: "",
     categories: [],
@@ -17,37 +18,46 @@ const defaultArticle = {
     elements: [],
 }
 
+const filePathRegex = /^([a-z]:)?([\\/][a-z0-9\s_@\-^!#$%&+={}\[\]]+)+\.(?!jpg|jpeg|png|webp)[a-z0-9]+$/i;
+
 function ArticleEditor(
     {
         updateArticle = defaultArticle,
     }
 )
 {
-    const [article, setArticle] = useState(updateArticle);
     const {contextArticle, setContextArticle} = useArticlePreview();
     const [_, navigate] = useLocation();
+    const [article, setArticle] = useState(() => {
+        const saved = sessionStorage.getItem("article");
+        if (saved) {
+            try {
+                const article = JSON.parse(saved);
+                if(article.id === updateArticle.id) {
+                    return article;
+                }
+            } catch (e) {
+                console.error("error while parsing articlePreview :", e);
+            }
+        }
+        return updateArticle;
+    });
 
     useEffect(() => {
-        if (contextArticle) {
+        console.log("reading context article")
+        if (contextArticle && JSON.stringify(contextArticle) !== JSON.stringify(article)) {
+            console.log("update article using context")
             setArticle(contextArticle);
         }
     }, [contextArticle]);
 
     useEffect(() => {
-        const saved = sessionStorage.getItem("article");
-        if (saved) {
-            try {
-                const parsed = JSON.parse(saved);
-                setArticle(parsed);
-            } catch (e) {
-                console.error("Erreur parsing articlePreview :", e);
-            }
+        console.log("update session storage")
+        const prev = sessionStorage.getItem("article");
+        const next = JSON.stringify(article);
+        if (prev !== next) {
+            sessionStorage.setItem("article", next);
         }
-    }, []);
-
-    useEffect(() => {
-        sessionStorage.setItem("article", JSON.stringify(article));
-        console.log(article);
     }, [article]);
 
     const saveArticle = async (event) => {
@@ -56,21 +66,6 @@ function ArticleEditor(
         // check title
         if (article.title === '') {
             alert("Title is empty");
-            return
-        }
-
-        if ((await getArticleBySlug(
-                article.title.toString()
-                    .trim()
-                    .toLowerCase()
-                    .replace(/\s+/g, '-')
-                    .replace(/[^\w\-]+/g, '')
-                    .replace(/\-\-+/g, '-')
-                    .replace(/^-+/, '')
-                    .replace(/-+$/, '')
-            )).ok
-        ) {
-            alert("Title slug is already used");
             return
         }
 
@@ -83,57 +78,63 @@ function ArticleEditor(
         if (
             updateArticle !== defaultArticle
         ) {
-            console.log("updating");
-            // sauvegarde de l'article à rajouter ici (update)
-        } else {
-            console.log("creating");
-            // sauvegarde de l'article à rajouter ici (création)
             let thumbnailPath = "";
-            if (article.thumbnail !== "") {
-                const formData = new FormData();
-                formData.append("file", dataURLtoFile(article.thumbnail));
-                // get thumbnail path after it has been uploaded
-                const response = await fetch("/api/images/upload", {
-                    method: "POST",
-                    headers: {
-                        "X-CSRF-TOKEN": sessionStorage.getItem("csrf_token"),
-                        "accept": "application/json",
-                    },
-                    body: formData,
-                })
-                .catch(() => console.log(`fail on getting image with ${article.thumbnail}`))
-                .then(response => response.json())
-                .then(data => {
-                    thumbnailPath += data['path'];
-                });
+            if (article.thumbnail !== updateArticle.thumbnail && article.thumbnail !== "") {
+                if (!filePathRegex.test(article.thumbnail)) {
+                    const formData = new FormData();
+                    formData.append("file", dataURLtoFile(article.thumbnail));
+                    // get thumbnail path after it has been uploaded
+                    const response = await fetch("/api/images/upload", {
+                        method: "POST",
+                        headers: {
+                            "X-CSRF-TOKEN": sessionStorage.getItem("csrf_token"),
+                            "accept": "application/json",
+                        },
+                        body: formData,
+                    })
+                    .catch(() => console.log(`fail on getting image with ${article.thumbnail}`))
+                    .then(response => response.json())
+                    .then(data => {
+                        thumbnailPath += data['path'];
+                    });
+                } else {
+                    thumbnailPath += article.thumbnail;
+                }
             }
 
-            article.elements.map(
-                async (element) => {
-                    if (element.image !== "") {
-                        const formData = new FormData();
-                        formData.append("file", dataURLtoFile(element.image));
-                        const response = await fetch("/api/images/upload", {
-                            method: "POST",
-                            headers: {
-                                "X-CSRF-TOKEN": sessionStorage.getItem("csrf_token"),
-                                "accept": "application/json",
-                            },
-                            body: formData,
-                        })
-                        .catch(() => console.log(`fail on getting image with ${element.image}`))
-                        .then(response => response.json())
-                        .then(data =>
-                            element.imagePath = data['path']
-                        )
+            await Promise.all(
+                article.elements.map(
+                    async (element, index) => {
+                        if (element.image !== updateArticle.elements[index].image && element.image !== "") {
+                            if (!filePathRegex.test(element.image)) {
+                                const formData = new FormData();
+                                formData.append("file", dataURLtoFile(element.image));
+                                const response = await fetch("/api/images/upload", {
+                                    method: "POST",
+                                    headers: {
+                                        "X-CSRF-TOKEN": sessionStorage.getItem("csrf_token"),
+                                        "accept": "application/json",
+                                    },
+                                    body: formData,
+                                })
+                                .catch(() => console.log(`fail on getting image with ${element.image}`))
+                                .then(response => response.json())
+                                .then(data => {
+                                        element.imagePath = data['path']
+                                    }
+                                )
+                            } else {
+                                element.imagePath = element.image;
+                            }
+                        }
                     }
-                }
-            )
+                )
+            );
 
             const payload = {
                 articleTitle: article.title,
                 articleDescription: article.description,
-                readingTime: 0,
+                readingTime: Math.round(article.elements.length * 1.5),
                 categories: article.categories.map((category) =>
                     `/api/categories/${category.id}`
                 ),
@@ -155,7 +156,115 @@ function ArticleEditor(
                 isPublic: article.visibility === "public",
             };
 
-            console.log(payload);
+            const response = await fetch(`/api/articles/${article.id}`, {
+                method: "PATCH",
+                headers: {
+                    "X-CSRF-TOKEN": sessionStorage.getItem("csrf_token"),
+                    "accept": "application/ld+json",
+                    "Content-Type": "application/merge-patch+json",
+                },
+                body: JSON.stringify(payload),
+            });
+            if (!response.ok) {
+                alert("error while sending changes");
+                return
+            }
+        } else {
+
+            // check title is available
+            if ((await getArticleBySlug(
+                article.title.toString()
+                    .trim()
+                    .toLowerCase()
+                    .replace(/\s+/g, '-')
+                    .replace(/[^\w\-]+/g, '')
+                    .replace(/\-\-+/g, '-')
+                    .replace(/^-+/, '')
+                    .replace(/-+$/, '')
+            )).ok
+            ) {
+                alert("Title slug is already used");
+                return
+            }
+
+            let thumbnailPath = "";
+            if (article.thumbnail !== "") {
+                if (!filePathRegex.test(article.thumbnail)) {
+                    const formData = new FormData();
+                    formData.append("file", dataURLtoFile(article.thumbnail));
+                    // get thumbnail path after it has been uploaded
+                    const response = await fetch("/api/images/upload", {
+                        method: "POST",
+                        headers: {
+                            "X-CSRF-TOKEN": sessionStorage.getItem("csrf_token"),
+                            "accept": "application/json",
+                        },
+                        body: formData,
+                    })
+                    .catch(() => console.log(`fail on getting image with ${article.thumbnail}`))
+                    .then(response => response.json())
+                    .then(data => {
+                        thumbnailPath += data['path'];
+                    });
+                } else {
+                    thumbnailPath += article.thumbnail;
+                }
+            }
+
+            await Promise.all(
+                article.elements.map(
+                    async (element) => {
+                        if (element.image !== "") {
+                            if (!filePathRegex.test(element.image)) {
+                                const formData = new FormData();
+                                formData.append("file", dataURLtoFile(element.image));
+                                const response = await fetch("/api/images/upload", {
+                                    method: "POST",
+                                    headers: {
+                                        "X-CSRF-TOKEN": sessionStorage.getItem("csrf_token"),
+                                        "accept": "application/json",
+                                    },
+                                    body: formData,
+                                })
+                                .catch(() => console.log(`fail on getting image with ${element.image}`))
+                                .then(response => response.json())
+                                .then(data => {
+                                        element.imagePath = data['path']
+                                    }
+                                )
+                            } else {
+                                element.imagePath = element.image;
+                            }
+                        }
+                    }
+                )
+            );
+
+            const payload = {
+                articleTitle: article.title,
+                articleDescription: article.description,
+                readingTime: Math.round(article.elements.length * 1.5),
+                categories: article.categories.map((category) =>
+                    `/api/categories/${category.id}`
+                ),
+                tags: article.tags.map((tag) =>
+                    `/api/tags/${tag.id}`
+                ),
+                elements: article.elements.map((element) => ({
+                    elementText: element.text,
+                    elementComponentName: element.type,
+                    elementNumber: element.order,
+                    image: {
+                        imagePath: element.imagePath ?? '',
+                    },
+                    elementHref: element.href,
+                })),
+                illustration: {
+                    imagePath: thumbnailPath ?? '',
+                },
+                isPublic: article.visibility === "public",
+            };
+
             const response = await fetch("/api/articles", {
                 method: "POST",
                 headers: {
@@ -169,19 +278,27 @@ function ArticleEditor(
                 alert("error while sending changes");
                 return
             }
-
-            console.log(response.json());
         }
         sessionStorage.removeItem("article");
         setContextArticle(null);
         navigate("/dashboard");
     }
 
-    const deleteArticle = () => {
+    const deleteArticle = async () => {
         if (
             updateArticle !== defaultArticle
         ) {
-            // suppression de l'article si c'est une mise à jour
+            const response = await fetch(`/api/articles/${article.id}`, {
+                method: "DELETE",
+                headers: {
+                    "X-CSRF-TOKEN": sessionStorage.getItem("csrf_token"),
+                    "accept": "*/*",
+                },
+            });
+            if (!response.ok) {
+                alert("error while deleting");
+                return
+            }
         }
 
         sessionStorage.removeItem("article");

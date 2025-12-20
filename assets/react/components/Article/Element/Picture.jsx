@@ -6,7 +6,7 @@ function Picture(
         legend,
     }
 ) {
-    const imagePath = `/img/article/${src}`;
+    const imagePath = `${src}`;
 
     return (
         <div className="element-picture-wrapper">

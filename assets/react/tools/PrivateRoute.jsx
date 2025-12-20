@@ -1,6 +1,7 @@
 import {Redirect, useLocation} from "wouter";
 import { useAuth } from "../providers/AuthProvider";
 import {useEffect, useState} from "react";
+import Loading from "../components/Loading/Loading";
 
 function PrivateRoute({ children, role }) {
     const { hasRole, fetchUser } = useAuth();
@@ -14,7 +15,7 @@ function PrivateRoute({ children, role }) {
     if (ready) {
         return hasRole(role) ? children : <Redirect to={`/login${location ? `?redirect=${encodeURI(location)}` : ''}`} />;
     }
-    return <p>Loading...</p>;
+    return <Loading />;
 }
 
 export default PrivateRoute;

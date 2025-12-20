@@ -1,4 +1,4 @@
-import {renameKeys} from "../remaper";
+import {renameKeys} from "../../tools/remaper";
 
 export function fetchCategories ()
 {

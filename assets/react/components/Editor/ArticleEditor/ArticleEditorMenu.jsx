@@ -18,7 +18,7 @@ function ArticleEditorMenu (
     const [title, setTitle] = useState("");
     const [description, setDescription] = useState("");
     const [tags, setTags] = useState([]);
-    const [privacy, updatePrivacy] = useState("private");
+    const [privacy, updatePrivacy] = useState("");
     const [thumbnailPreview, setThumbnailPreview] = useState("");
     const [searchText, updateSearchText] = useState("");
     const [thumbnailInputLabel, updateThumbnailInputLabel] = useState("Choisir une miniature");
@@ -33,25 +33,33 @@ function ArticleEditorMenu (
 
     useEffect(() => {
         if (!article) return;
-
-        // On évite d'écraser les inputs s’ils ont déjà été édités par l'utilisateur
-        setTitle((prev) => prev || article.title || "");
-        setDescription((prev) => prev || article.description || "");
-        setCategories((prev) => prev || article.categories || "");
-        updatePrivacy((prev) => prev || article.visibility || "private");
-        setThumbnailPreview((prev) => prev || article.thumbnail || "");
-        setTags(prev => prev || article.tags || "");
-    }, [article]);
+        setTitle(article.title || "");
+        setDescription(article.description || "");
+        setCategories(article.categories || []);
+        setThumbnailPreview(article.thumbnail || "");
+        setTags(article.tags || []);
+        updatePrivacy(article.visibility || "private");
+    }, [article?.id]);
 
     useEffect(() => {
-        setArticle(prev => ({
-            ...prev,
-            title,
-            description,
-            thumbnail: thumbnailPreview,
-            visibility: privacy,
-            categories,
-        }));
+        console.log("maj article", privacy);
+        setArticle(prev => {
+            const updated = {
+                ...prev,
+                title,
+                description,
+                thumbnail: thumbnailPreview,
+                visibility: privacy,
+                categories,
+            };
+
+            if (JSON.stringify(prev) !== JSON.stringify(updated)) {
+                return updated;
+            }
+            return prev;
+        });
+
+        console.log("après coup : ", article.visibility);
     }, [title, description, thumbnailPreview, privacy, categories]);
 
     const previewArticle = () => {
@@ -140,7 +148,12 @@ function ArticleEditorMenu (
                 <div className="article-editor-menu-options-wrapper">
                     <div className="article-privacy-area">
                         <label className="switch-privacy">
-                            <input onInput={() => updatePrivacy(privacy === "private" ? "public" : "private")} type="checkbox" name="privacy" value="checked"/>
+                            <input
+                                onChange={() => updatePrivacy(privacy === "private" ? "public" : "private")}
+                                type="checkbox"
+                                name="privacy"
+                                checked={privacy === "public"}
+                            />
                             <span className="switch-button-slider"></span>
                         </label>
                         <p className="privacy-label">

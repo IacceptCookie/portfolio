@@ -1,0 +1,234 @@
+/* Container principal */
+.microservices-container {
+    background: #111217;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+    width: 100%;
+    box-sizing: border-box;
+    margin-bottom: 20px;
+}
+
+/* Wrapper du contenu */
+.microservices-wrapper {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 24px;
+    width: 100%;
+    max-width: 1100px;
+}
+
+/* Container du SVG */
+.microservices-visual {
+    position: relative;
+    flex-shrink: 0;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+}
+
+/* SVG responsive */
+.microservices-svg {
+    width: 100%;
+    height: auto;
+    max-width: 600px;
+}
+
+/* Noeud de service */
+.service-node {
+    cursor: pointer;
+}
+
+/* Glow au hover */
+.service-glow {
+    transition: opacity 0.2s ease;
+}
+
+/* Ligne de connexion icône -> BDD */
+.service-connector {
+    transition: opacity 0.2s ease;
+}
+
+/* Icône du service */
+.service-icon {
+    transition: opacity 0.2s ease, filter 0.2s ease;
+}
+
+.service-icon--hovered {
+    filter: brightness(1.15);
+}
+
+/* Label du service */
+.service-label {
+    transition: fill 0.2s ease;
+    font-weight: 500;
+}
+
+.service-label--default {
+    fill: rgba(249, 249, 250, 0.7);
+}
+
+.service-label--hovered {
+    fill: #F9F9FA;
+}
+
+/* Lignes de connexion entre services */
+.connection-line {
+    transition: opacity 0.2s ease, stroke-width 0.2s ease;
+}
+
+.connection-line--default {
+    stroke-width: 1;
+    opacity: 0.15;
+}
+
+.connection-line--highlighted {
+    stroke-width: 2;
+    opacity: 0.6;
+}
+
+/* Texte central */
+.central-label-title {
+    font-family: 'JetBrains Mono', monospace;
+    font-weight: 600;
+    fill: #689DC9;
+    letter-spacing: 1px;
+}
+
+/* Tooltip */
+.microservices-tooltip {
+    position: absolute;
+    bottom: -40px;
+    left: 50%;
+    transform: translateX(-50%);
+    background: rgba(17, 18, 23, 0.95);
+    border: 1px solid rgba(104, 157, 201, 0.4);
+    border-radius: 6px;
+    padding: 8px 12px;
+    color: #F9F9FA;
+    font-size: 14px;
+    white-space: nowrap;
+    z-index: 10;
+    pointer-events: none;
+}
+
+/* Indicateur d'auto-rotation */
+.auto-cycle-indicator {
+    position: absolute;
+    top: 8px;
+    right: 8px;
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: #689DC9;
+    opacity: 0.6;
+    animation: pulse-indicator 2s ease-in-out infinite;
+}
+
+.auto-cycle-indicator--paused {
+    animation: none;
+    opacity: 0.2;
+}
+
+@keyframes pulse-indicator {
+    0%, 100% {
+        opacity: 0.3;
+        transform: scale(1);
+    }
+    50% {
+        opacity: 0.8;
+        transform: scale(1.2);
+    }
+}
+
+/* Très petits écrans (250px - 359px) */
+@media screen and (max-width: 359px) {
+    .microservices-tooltip {
+        font-size: 16px;
+        padding: 6px 10px;
+        max-width: calc(100vw - 32px);
+        white-space: normal;
+        text-align: center;
+    }
+}
+
+/* Petits écrans (360px - 479px) */
+@media screen and (min-width: 360px) {
+    .microservices-tooltip {
+        bottom: -20px
+    }
+
+    .microservices-tooltip {
+        font-size: 16px;
+        padding: 8px 12px;
+    }
+}
+
+/* Écrans moyens (480px - 767px) */
+@media screen and (min-width: 480px) {
+    .microservices-wrapper {
+        gap: 32px;
+    }
+
+    .microservices-tooltip {
+        font-size: 16px;
+    }
+}
+
+/* Tablettes (768px - 1023px) */
+@media screen and (min-width: 768px) {
+    .microservices-wrapper {
+        gap: 40px;
+    }
+
+    .microservices-svg {
+        max-width: 550px;
+    }
+}
+
+/* Desktop (1024px+) */
+@media screen and (min-width: 1024px) {
+    .microservices-wrapper {
+        flex-direction: row;
+        gap: 60px;
+    }
+
+    .microservices-svg {
+        max-width: 600px;
+    }
+
+    .microservices-tooltip {
+        font-size: 16px;
+        padding: 10px 16px;
+    }
+}
+
+/* Large desktop (1200px+) */
+@media screen and (min-width: 1200px) {
+    .microservices-wrapper {
+        gap: 80px;
+    }
+}
+
+.react-assembly-container {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 16px;
+    box-sizing: border-box;
+    overflow: hidden;
+}
+
+.react-assembly-svg {
+    width: 100%;
+    max-width: 500px;
+    height: auto;
+}
+
+.react-assembly-label {
+    font-family: 'JetBrains Mono', monospace;
+    font-weight: 500;
+}

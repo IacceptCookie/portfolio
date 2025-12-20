@@ -1,5 +1,6 @@
 import React from "react";
 import "../Result.css";
+import {Link} from "wouter";
 
 function ArticleResult(
     {
@@ -8,9 +9,10 @@ function ArticleResult(
 )
 {
     return (
-        <div
+        <Link
             style={{backgroundColor: "#0E1084", borderColor: "#7577CD"}}
             className="editor-article-result result"
+            to={resultData.slug}
         >
             <p className="editor-article-result__title">
                 {resultData.title}
@@ -21,7 +23,7 @@ function ArticleResult(
             >
                 {resultData.readingTime} minutes
             </p>
-        </div>
+        </Link>
     );
 }
 

@@ -15,7 +15,7 @@ function Preview(
         <>
             <ArticleIllustration
                 title={article.title}
-                readingTime={article.elements.length * 1.5}
+                readingTime={Math.round(article.elements.length * 1.5)}
                 picture={article.thumbnail}
             />
             <ArticleContentWrapper>

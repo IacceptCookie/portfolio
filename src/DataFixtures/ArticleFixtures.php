@@ -16,7 +16,7 @@ class ArticleFixtures extends Fixture implements DependentFixtureInterface
     public function load(ObjectManager $manager): void
     {
         $user = UserFactory::repository()->findOneBy(['login' => 'IacceptCookie']);
-        $image = ImageFactory::repository()->findOneBy(['imagePath' => 'test.jpg']);
+        $image = ImageFactory::repository()->findOneBy(['imagePath' => '/img/article/test.jpg']);
         $tag = TagFactory::repository()->findOneBy(['tagLabel' => 'PHP']);
         $category = CategoryFactory::repository()->findOneBy(['categoryLabel' => 'article']);
 

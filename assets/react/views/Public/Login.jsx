@@ -1,7 +1,7 @@
 import React, {useEffect, useState} from "react";
 import { useLocation } from "wouter";
 import "./Login.css";
-import AnimatedText from "../../components/AnimatedText";
+import AnimatedText from "../../components/Text/AnimatedText";
 import EditorHeader from "../../components/Editor/EditorHeader/EditorHeader";
 
 function Login() {
