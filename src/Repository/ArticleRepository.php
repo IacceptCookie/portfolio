@@ -36,6 +36,26 @@ class ArticleRepository extends ServiceEntityRepository
             ->getResult();
     }
 
+    /**
+     * @param string[] $slugs
+     *
+     * @return Article[]
+     */
+    public function findBySlugs(array $slugs): array
+    {
+        if (empty($slugs)) {
+            return [];
+        }
+
+        return $this->createQueryBuilder('a')
+            ->andWhere('a.slug IN (:slugs)')
+            ->andWhere('a.isPublic = :isPublic')
+            ->setParameter('slugs', $slugs)
+            ->setParameter('isPublic', true)
+            ->getQuery()
+            ->getResult();
+    }
+
     public function search(
         string $search = '',
         bool $isPublic = false,

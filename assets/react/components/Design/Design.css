@@ -232,3 +232,75 @@
     font-family: 'JetBrains Mono', monospace;
     font-weight: 500;
 }
+
+/* Profile Card Animation */
+.profile-card-animation-container {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 16px;
+    box-sizing: border-box;
+}
+
+.profile-card-animation-svg {
+    width: 100%;
+    max-width: 300px;
+    height: auto;
+}
+
+.profile-card-initials {
+    font-family: 'Altone', sans-serif;
+}
+
+.profile-card-name {
+    font-family: 'Altone', sans-serif;
+}
+
+.profile-card-title {
+    font-family: 'AlteHaas', sans-serif;
+}
+
+.profile-card-skill-label {
+    font-family: 'AlteHaas', sans-serif;
+}
+
+/* Contact Animation */
+.contact-animation-container {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 16px;
+    box-sizing: border-box;
+}
+
+.contact-animation-svg {
+    width: 100%;
+    max-width: 300px;
+    height: auto;
+}
+
+/* CV Loupe Animation */
+.cv-loupe-animation-container {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 16px;
+    box-sizing: border-box;
+}
+
+.cv-loupe-animation-svg {
+    width: 100%;
+    max-width: 320px;
+    height: auto;
+}
+
+.cv-document {
+    transition: opacity 0.3s ease;
+}
+
+.loupe {
+    filter: drop-shadow(2px 4px 6px rgba(0, 0, 0, 0.3));
+}

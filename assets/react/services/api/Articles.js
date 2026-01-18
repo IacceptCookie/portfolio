@@ -11,6 +11,11 @@ export function getLatestArticles() {
         .then(response => response.json());
 }
 
+export function getFeaturedArticles() {
+    return fetch('/api/articles/featured')
+        .then(response => response.json());
+}
+
 export function searchArticles(
     searchText = '',
     publicOnly = false,

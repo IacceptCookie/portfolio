@@ -44,5 +44,10 @@ services:
       autoconfigure: true
       public: true
 
+    App\Controller\FeaturedArticlesController:
+      tags: ['controller.service_arguments']
+      arguments:
+        $projectDir: '%kernel.project_dir%'
+
     # add more service definitions when explicit configuration is needed
     # please note that last definitions always *replace* previous ones

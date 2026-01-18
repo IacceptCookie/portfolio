@@ -11,6 +11,7 @@ use ApiPlatform\Metadata\Link;
 use ApiPlatform\Metadata\Patch;
 use ApiPlatform\Metadata\Post;
 use App\Controller\ArticleSearchController;
+use App\Controller\FeaturedArticlesController;
 use App\Controller\LatestArticlesController;
 use App\Repository\ArticleRepository;
 use Doctrine\Common\Collections\ArrayCollection;
@@ -123,6 +124,15 @@ use Symfony\Component\String\Slugger\AsciiSlugger;
             ],
             normalizationContext: ['groups' => ['Article_read']],
             name: 'latest_articles'
+        ),
+        new GetCollection(
+            uriTemplate: '/articles/featured',
+            controller: FeaturedArticlesController::class,
+            openapiContext: [
+                'summary' => 'Récupère les articles mis en avant (configurés dans featured_articles.json)',
+            ],
+            normalizationContext: ['groups' => ['Article_read']],
+            name: 'featured_articles'
         ),
         new Get(
             uriTemplate: '/articles/{slug}',
