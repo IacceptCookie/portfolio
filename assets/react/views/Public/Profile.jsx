@@ -108,7 +108,32 @@ function Profile() {
                     zIndex={2}
                 />
             </Stack>
-            <AnimatedText text="Mon parcours : " className="centered-text" delay={0.2} />
+            <section className="presentation-section">
+                <div className="presentation-portrait">
+                    {/* TODO: Remplacer par la vraie image portrait */}
+                    <div className="presentation-portrait-placeholder">
+                        <span>RD</span>
+                    </div>
+                </div>
+                <div className="presentation-content">
+                    <h1 className="presentation-title">Raphaël Durand</h1>
+                    <p className="presentation-subtitle">Data Engineer & Développeur Full-Stack</p>
+                    <div className="presentation-text">
+                        <p>
+                            Data Engineer chez <strong>Spacefoot</strong> depuis septembre 2024, une entreprise d'e-commerce française (28 magasins, budget Google Ads de 3M€) opérant en Europe et aux US sur les segments sport, lifestyle, animalerie et mobilier.
+                        </p>
+                        <p>
+                            Mon parcours : Licence en informatique (2021-2024), puis un choix pragmatique d'abandonner un Master jugé trop théorique. Je privilégie systématiquement les <strong>solutions concrètes et implémentables</strong>.
+                        </p>
+                        <p>
+                            Actuellement, je développe <strong>Liber Mundi</strong>, une plateforme d'intelligence globale visant à agréger 15-20k articles d'actualité quotidiens via une architecture medallion. J'explore les méthodologies de développement assistées par IA et privilégie les fournisseurs européens pour la souveraineté des données.
+                        </p>
+                        <p>
+                            Chez Spacefoot, j'automatise Google Ads (CLI Python, campagnes Shopping, ciblage géo), optimise PostgreSQL/Grafana/Prometheus, et explore Meta Ads API. Je travaille aussi sur du virtual try-on (VTON) avec FASHN API.
+                        </p>
+                    </div>
+                </div>
+            </section>
             <ExperienceScroll items={EXPERIENCE_DATA} />
             <AnimatedText text="Les technologies qui font la différence sur mon profil : " className="centered-text" delay={0.2} />
             <ShowSection
