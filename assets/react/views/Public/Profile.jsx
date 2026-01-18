@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import "./Profile.css";
 import Stack from "../../components/Stack/Stack";
 import Layer from "../../components/Stack/Layer/Layer";
@@ -16,6 +16,8 @@ import StackedCarousel from "../../components/Carousel/StackedCarousel";
 import MicroservicesArchitecture from "../../components/Design/MicroservicesArchitecture";
 import ReactComponentsAssembly from "../../components/Design/ReactComponentsAssembly";
 import ExperienceScroll, { CATEGORIES } from "../../components/ExperienceScroll/ExperienceScroll";
+import Carousel from "../../components/Carousel/Carousel";
+import { getLatestArticles } from "../../services/api/Articles";
 
 const EXPERIENCE_DATA = [
     {
@@ -93,6 +95,21 @@ const EXPERIENCE_DATA = [
 ];
 
 function Profile() {
+    const [latestArticles, setLatestArticles] = useState([]);
+
+    useEffect(() => {
+        getLatestArticles()
+            .then(articles => {
+                const carouselData = articles.map(article => ({
+                    to: `/article/${article.slug}`,
+                    title: article.articleTitle,
+                    description: article.articleDescription,
+                    image: article.illustration?.imagePath || '/img/placeholder.webp'
+                }));
+                setLatestArticles(carouselData);
+            })
+            .catch(error => console.error('Erreur chargement articles:', error));
+    }, []);
 
     return (
         <>
@@ -478,6 +495,9 @@ function Profile() {
                 </Accordion>
             </RevealGroup>
             <AnimatedText text="Et de nouvelles découvertes à venir ..." className="centered-text" delay={0.2} />
+            {latestArticles.length > 0 && (
+                <Carousel carouselData={latestArticles} />
+            )}
         </>
     );
 }

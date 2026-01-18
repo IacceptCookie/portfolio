@@ -11,6 +11,7 @@ use ApiPlatform\Metadata\Link;
 use ApiPlatform\Metadata\Patch;
 use ApiPlatform\Metadata\Post;
 use App\Controller\ArticleSearchController;
+use App\Controller\LatestArticlesController;
 use App\Repository\ArticleRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
@@ -113,6 +114,15 @@ use Symfony\Component\String\Slugger\AsciiSlugger;
             ],
             normalizationContext: ['groups' => ['Article_read']],
             name: 'search_articles_editor'
+        ),
+        new GetCollection(
+            uriTemplate: '/articles/latest',
+            controller: LatestArticlesController::class,
+            openapiContext: [
+                'summary' => 'Récupère les 3 derniers articles publics',
+            ],
+            normalizationContext: ['groups' => ['Article_read']],
+            name: 'latest_articles'
         ),
         new Get(
             uriTemplate: '/articles/{slug}',

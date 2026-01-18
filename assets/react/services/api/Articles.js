@@ -6,6 +6,11 @@ export function getArticleBySlug (
         .then(response => response);
 }
 
+export function getLatestArticles() {
+    return fetch('/api/articles/latest')
+        .then(response => response.json());
+}
+
 export function searchArticles(
     searchText = '',
     publicOnly = false,

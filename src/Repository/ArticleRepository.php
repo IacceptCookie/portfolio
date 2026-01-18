@@ -22,6 +22,20 @@ class ArticleRepository extends ServiceEntityRepository
         parent::__construct($registry, Article::class);
     }
 
+    /**
+     * @return Article[]
+     */
+    public function findLatestPublic(int $limit = 3): array
+    {
+        return $this->createQueryBuilder('a')
+            ->andWhere('a.isPublic = :isPublic')
+            ->setParameter('isPublic', true)
+            ->orderBy('a.creationDate', 'DESC')
+            ->setMaxResults($limit)
+            ->getQuery()
+            ->getResult();
+    }
+
     public function search(
         string $search = '',
         bool $isPublic = false,
