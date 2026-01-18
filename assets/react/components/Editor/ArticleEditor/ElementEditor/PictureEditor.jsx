@@ -1,4 +1,5 @@
 import React from "react";
+import imageCompression from 'browser-image-compression';
 import ElementEditorButtonArea from "./ElementEditorButtonArea";
 import {useElementTypes} from "../../../../providers/ElementTypesProvider";
 
@@ -19,14 +20,28 @@ function PictureEditor(
 {
     const types = useElementTypes();
 
-    const handleElementImageChange = (e) => {
+    const handleElementImageChange = async (e) => {
         const file = e.target.files?.[0];
         if (file) {
-            const elementImageReader = new FileReader();
-            elementImageReader.onload = () => {
-                updateImage(order, elementImageReader.result);
-            };
-            elementImageReader.readAsDataURL(file);
+            try {
+                const options = {
+                    maxSizeMB: 0.5,
+                    maxWidthOrHeight: 1920,
+                    useWebWorker: true,
+                    fileType: 'image/webp',
+                    initialQuality: 0.85
+                };
+
+                const compressedFile = await imageCompression(file, options);
+
+                const reader = new FileReader();
+                reader.onload = () => {
+                    updateImage(order, reader.result);
+                };
+                reader.readAsDataURL(compressedFile);
+            } catch (error) {
+                updateImage(order, "");
+            }
         } else {
             updateImage(order, "");
         }

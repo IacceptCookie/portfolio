@@ -73,7 +73,7 @@ use Symfony\Component\String\Slugger\AsciiSlugger;
         new GetCollection(
             uriTemplate: '/articles/editor/search',
             defaults: [
-                'isPublic' => true,
+                'isPublic' => false,
                 'limit' => 6,
             ],
             controller: ArticleSearchController::class,

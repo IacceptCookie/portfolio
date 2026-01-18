@@ -5,6 +5,7 @@ import {searchTags} from "../../../services/api/Tags";
 import {useCategories} from "../../../providers/CategoriesProvider";
 import {useArticlePreview} from "../../../providers/ArticlePreviewProvider";
 import {useLocation} from "wouter";
+import imageCompression from 'browser-image-compression';
 
 function ArticleEditorMenu (
     {
@@ -67,16 +68,31 @@ function ArticleEditorMenu (
         navigate("/article/preview");
     };
 
-    const handleThumbnailChange = (e) => {
+    const handleThumbnailChange = async (e) => {
         const file = e.target.files?.[0];
         if (file) {
             updateThumbnailInputLabel("Modifier la miniature");
 
-            const thumbnailReader = new FileReader();
-            thumbnailReader.onload = () => {
-                setThumbnailPreview(thumbnailReader.result);
-            };
-            thumbnailReader.readAsDataURL(file);
+            try {
+                const options = {
+                    maxSizeMB: 0.5,
+                    maxWidthOrHeight: 1920,
+                    useWebWorker: true,
+                    fileType: 'image/webp',
+                    initialQuality: 0.85
+                };
+
+                const compressedFile = await imageCompression(file, options);
+
+                const thumbnailReader = new FileReader();
+                thumbnailReader.onload = () => {
+                    setThumbnailPreview(thumbnailReader.result);
+                };
+                thumbnailReader.readAsDataURL(compressedFile);
+
+            } catch (error) {
+                updateThumbnailInputLabel("Erreur lors du traitement");
+            }
         } else {
             updateThumbnailInputLabel("Choisir une miniature");
             setThumbnailPreview("");
