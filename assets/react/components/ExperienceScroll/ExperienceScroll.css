@@ -1,0 +1,200 @@
+.experience-scroll {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px 0;
+    background-color: #080957;
+}
+
+.experience-scroll__filters {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    gap: 10px;
+    padding: 0 20px;
+    margin-bottom: 20px;
+    flex-wrap: wrap;
+}
+
+.experience-scroll__filter {
+    padding: 8px 16px;
+    border: 2px solid #7577CD;
+    border-radius: 20px;
+    background: transparent;
+    color: #bdbecd;
+    font-family: AlteHaas, sans-serif;
+    font-size: 14px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.experience-scroll__filter:hover {
+    background: rgba(117, 119, 205, 0.3);
+}
+
+.experience-scroll__filter--active {
+    background: #7577CD;
+    color: white;
+}
+
+.experience-scroll__container {
+    overflow-x: auto;
+    overflow-y: hidden;
+    scrollbar-width: thin;
+    scrollbar-color: #7577CD #0E1084;
+    padding: 10px 0;
+}
+
+.experience-scroll__container::-webkit-scrollbar {
+    height: 8px;
+}
+
+.experience-scroll__container::-webkit-scrollbar-track {
+    background: #0E1084;
+    border-radius: 4px;
+}
+
+.experience-scroll__container::-webkit-scrollbar-thumb {
+    background: #7577CD;
+    border-radius: 4px;
+}
+
+.experience-scroll__track {
+    display: flex;
+    flex-direction: row;
+    gap: 16px;
+    padding: 0 10px;
+    width: max-content;
+}
+
+.experience-card {
+    display: flex;
+    flex-direction: column;
+    min-width: 280px;
+    max-width: 280px;
+    padding: 16px;
+    background: #0E1084;
+    border-radius: 8px;
+    box-shadow: 1px 1px 2px #7577CD;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.experience-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 2px 4px 8px #7577CD;
+}
+
+.experience-card__header {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 12px;
+}
+
+.experience-card__date {
+    color: #A0A3FF;
+    font-family: AlteHaas, sans-serif;
+    font-size: 13px;
+    font-weight: bold;
+}
+
+.experience-card__category-badge {
+    padding: 4px 8px;
+    border-radius: 12px;
+    font-family: AlteHaas, sans-serif;
+    font-size: 11px;
+    font-weight: bold;
+    text-transform: uppercase;
+}
+
+.experience-card--experience .experience-card__category-badge {
+    background: rgba(115, 191, 105, 0.2);
+    color: #73BF69;
+}
+
+.experience-card--formation .experience-card__category-badge {
+    background: rgba(87, 148, 242, 0.2);
+    color: #5794F2;
+}
+
+.experience-card--projet .experience-card__category-badge {
+    background: rgba(255, 152, 48, 0.2);
+    color: #FF9830;
+}
+
+.experience-card__title {
+    margin: 0 0 8px 0;
+    color: white;
+    font-family: AlteHaas, sans-serif;
+    font-size: 16px;
+    font-weight: bold;
+    line-height: 1.3;
+}
+
+.experience-card__location {
+    margin: 0 0 12px 0;
+    color: #bdbecd;
+    font-family: AlteHaas, sans-serif;
+    font-size: 13px;
+    font-style: italic;
+}
+
+.experience-card__description {
+    margin: 0;
+    padding-left: 16px;
+    color: #bdbecd;
+    font-family: AlteHaas, sans-serif;
+    font-size: 13px;
+    line-height: 1.5;
+}
+
+.experience-card__description li {
+    margin-bottom: 4px;
+}
+
+.experience-scroll__hint {
+    display: flex;
+    justify-content: center;
+    margin-top: 12px;
+    color: #7577CD;
+    font-family: AlteHaas, sans-serif;
+    font-size: 12px;
+    opacity: 0.7;
+}
+
+@media only screen and (min-width: 800px) {
+    .experience-scroll__filter {
+        font-size: 16px;
+        padding: 10px 20px;
+    }
+
+    .experience-card {
+        min-width: 300px;
+        max-width: 300px;
+        padding: 20px;
+    }
+
+    .experience-card__title {
+        font-size: 18px;
+    }
+
+    .experience-card__date {
+        font-size: 14px;
+    }
+
+    .experience-card__location {
+        font-size: 14px;
+    }
+
+    .experience-card__description {
+        font-size: 14px;
+    }
+
+    .experience-scroll__hint {
+        display: none;
+    }
+}

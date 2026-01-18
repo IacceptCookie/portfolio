@@ -15,6 +15,82 @@ import XYChartPanel from "../../components/Grafana/XYChartPanel";
 import StackedCarousel from "../../components/Carousel/StackedCarousel";
 import MicroservicesArchitecture from "../../components/Design/MicroservicesArchitecture";
 import ReactComponentsAssembly from "../../components/Design/ReactComponentsAssembly";
+import ExperienceScroll, { CATEGORIES } from "../../components/ExperienceScroll/ExperienceScroll";
+
+const EXPERIENCE_DATA = [
+    {
+        category: CATEGORIES.EXPERIENCE,
+        date: "Sept. 2024 - Présent",
+        title: "Apprenti Data Analyst",
+        location: "Spacefoot SAS - Charleville-Mézières",
+        description: [
+            "Algorithme de recommandation",
+            "Achats prédictifs",
+            "Analyses et réflexions BI"
+        ]
+    },
+    {
+        category: CATEGORIES.EXPERIENCE,
+        date: "Avril - Juin 2024",
+        title: "Stage Data Analyst",
+        location: "Spacefoot SAS - Charleville-Mézières",
+        description: [
+            "Utilisation avancée de Grafana et PostgreSQL",
+            "Production de tableaux de bord décisionnels"
+        ]
+    },
+    {
+        category: CATEGORIES.EXPERIENCE,
+        date: "Juil. 2023 & Août 2024",
+        title: "Secrétaire (vacataire)",
+        location: "OPAL - Office Public de l'Habitat de l'Aisne, Laon",
+        description: [
+            "Gestion administrative"
+        ]
+    },
+    {
+        category: CATEGORIES.EXPERIENCE,
+        date: "2021 - 2022",
+        title: "Bénévole",
+        location: "Association Panier Solidaire - Villeneuve-sur-Aisne",
+        description: [
+            "Inventaire et remplissage des rayons",
+            "Aide aux bénéficiaires"
+        ]
+    },
+    {
+        category: CATEGORIES.FORMATION,
+        date: "2022 - 2025",
+        title: "BUT Informatique Parcours DATA",
+        location: "IUT de Reims Châlons Charleville",
+        description: [
+            "Développement Web solide",
+            "Spécialisation Python et Base de données",
+            "Projets en groupe"
+        ]
+    },
+    {
+        category: CATEGORIES.FORMATION,
+        date: "2019 - 2022",
+        title: "Baccalauréat Général - Mention Très Bien",
+        location: "Lycée technique Pierre Méchain - Laon",
+        description: [
+            "Spécialités Mathématiques et NSI"
+        ]
+    },
+    {
+        category: CATEGORIES.PROJET,
+        date: "2024",
+        title: "UrFridge - Gestion de recettes",
+        location: "Projet universitaire",
+        description: [
+            "Site de gestion de recettes en groupe",
+            "Méthode agile SCRUM",
+            "CRUD avec backoffice",
+            "Interface utilisateur conviviale"
+        ]
+    }
+];
 
 function Profile() {
 
@@ -32,6 +108,8 @@ function Profile() {
                     zIndex={2}
                 />
             </Stack>
+            <AnimatedText text="Mon parcours : " className="centered-text" delay={0.2} />
+            <ExperienceScroll items={EXPERIENCE_DATA} />
             <AnimatedText text="Les technologies qui font la différence sur mon profil : " className="centered-text" delay={0.2} />
             <ShowSection
                 orientation="left"
