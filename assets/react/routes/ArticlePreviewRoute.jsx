@@ -1,4 +1,4 @@
-import React, {useEffect} from "react";
+import React from "react";
 import {useArticlePreview} from "../providers/ArticlePreviewProvider";
 import TitleUpdater from "../tools/TitleUpdater";
 import NotFound from "../views/Public/NotFound";
@@ -6,22 +6,9 @@ import PrivateRoute from "../tools/PrivateRoute";
 import Preview from "../views/Editor/Article/Preview";
 
 function ArticlePreviewRoute() {
-    const { contextArticle, setContextArticle } = useArticlePreview();
+    const { contextArticle } = useArticlePreview();
 
-    useEffect(() => {
-        if (!contextArticle) {
-            const saved = sessionStorage.getItem("article");
-            if (saved) {
-                try {
-                    const parsed = JSON.parse(saved);
-                    setContextArticle(parsed);
-                } catch (e) {
-                    console.error("Erreur parsing article :", e);
-                }
-            }
-        }
-    }, []);
-
+    // contextArticle is automatically loaded from sessionStorage by the provider
     if (!contextArticle) {
         return (
             <>

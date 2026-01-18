@@ -1,4 +1,5 @@
 import React, {useContext, createContext, useState} from "react";
+import { API_ENDPOINTS } from "../config/api";
 
 const AuthContext = createContext(null);
 
@@ -9,7 +10,7 @@ function AuthProvider({ children }) {
         try {
             const csrfToken = sessionStorage.getItem("csrf_token");
 
-            const res = await fetch("/api/me", {
+            const res = await fetch(API_ENDPOINTS.AUTH.ME, {
                 method: "GET",
                 credentials: "include",
                 headers: {

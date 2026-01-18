@@ -1,18 +1,20 @@
+import { API_ENDPOINTS, buildQuery } from "../../config/api";
+
 export function getArticleBySlug (
     slug = ""
 )
 {
-    return fetch(`/api/articles/${slug}`)
+    return fetch(API_ENDPOINTS.ARTICLES.BY_SLUG(slug))
         .then(response => response);
 }
 
 export function getLatestArticles() {
-    return fetch('/api/articles/latest')
+    return fetch(API_ENDPOINTS.ARTICLES.LATEST)
         .then(response => response.json());
 }
 
 export function getFeaturedArticles() {
-    return fetch('/api/articles/featured')
+    return fetch(API_ENDPOINTS.ARTICLES.FEATURED)
         .then(response => response.json());
 }
 
@@ -23,18 +25,17 @@ export function searchArticles(
     categories = [],
     page = 1
 ) {
-    const query = new URLSearchParams();
+    const query = buildQuery({
+        search: searchText,
+        page: page.toString(),
+        tags,
+        categories
+    });
 
-    query.append("search", searchText);
-    query.append("page", page.toString());
+    const endpoint = publicOnly
+        ? API_ENDPOINTS.ARTICLES.SEARCH
+        : API_ENDPOINTS.ARTICLES.EDITOR_SEARCH;
 
-    tags.forEach(tag => query.append("tags[]", tag));
-    categories.forEach(cat => query.append("categories[]", cat));
-    if (publicOnly) {
-        return fetch(`/api/articles/search?${query.toString()}`)
-            .then(response => response.json());
-    }
-
-    return fetch(`/api/articles/editor/search?${query.toString()}`)
+    return fetch(`${endpoint}?${query}`)
         .then(response => response.json());
 }

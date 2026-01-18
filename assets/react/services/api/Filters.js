@@ -1,14 +1,16 @@
+import { API_ENDPOINTS, buildQuery } from "../../config/api";
+
 export function searchFilters (
     searchText = "",
     page = 1
 )
 {
-    const query = new URLSearchParams();
+    const query = buildQuery({
+        search: searchText,
+        page: page.toString()
+    });
 
-    query.append("search", searchText);
-    query.append("page", page.toString());
-
-    return fetch(`/api/search/filter?${query.toString()}`)
+    return fetch(`${API_ENDPOINTS.FILTERS.SEARCH}?${query}`)
         .then(response => response.json());
 }
 
@@ -17,10 +19,10 @@ export function getFilterByIdAndType (
     type
 )
 {
-    if (type === "tag") {
-        return fetch(`/api/tags/${id.toString()}`)
-            .then(response => response.json());
-    }
-    return fetch(`/api/categories/${id.toString()}`)
+    const endpoint = type === "tag"
+        ? API_ENDPOINTS.TAGS.BY_ID(id)
+        : API_ENDPOINTS.CATEGORIES.BY_ID(id);
+
+    return fetch(endpoint)
         .then(response => response.json());
 }

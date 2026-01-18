@@ -48,11 +48,11 @@ class Element
     private ?Article $article = null;
 
     #[ORM\ManyToOne(cascade: ['persist'], inversedBy: 'elements')]
-    #[ORM\JoinColumn(nullable: false)]
+    #[ORM\JoinColumn(nullable: true)]
     #[Groups(['Article_read', 'Article_write'])]
     private ?Image $image = null;
 
-    #[ORM\Column(type: Types::TEXT)]
+    #[ORM\Column(type: Types::TEXT, nullable: true)]
     #[Groups(['Element_read', 'Element_write', 'Article_read_alone', 'Article_write'])]
     private ?string $elementHref = null;
 
@@ -126,7 +126,7 @@ class Element
         return $this->elementHref;
     }
 
-    public function setElementHref(string $elementHref): static
+    public function setElementHref(?string $elementHref): static
     {
         $this->elementHref = $elementHref;
 

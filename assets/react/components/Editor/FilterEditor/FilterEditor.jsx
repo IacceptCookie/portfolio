@@ -2,6 +2,8 @@ import React, {useEffect, useState} from 'react';
 import "./FilterEditor.css";
 import {useLocation} from "wouter";
 import FilterEditorMenu from "./FilterEditorMenu";
+import { API_ENDPOINTS, authenticatedFetch } from "../../../config/api";
+import { useNotification } from "../../../providers/NotificationProvider";
 
 const defaultFilter = {
     type: "tag",
@@ -17,6 +19,9 @@ function FilterEditor(
 )
 {
     const [_, navigate] = useLocation();
+    const { notify } = useNotification();
+    const isUpdateMode = updateFilter !== defaultFilter;
+
     const [filter, setFilter] = useState(() => {
         const saved = sessionStorage.getItem("filter");
         if (saved) {
@@ -33,7 +38,6 @@ function FilterEditor(
     });
 
     useEffect(() => {
-        console.log("update session storage")
         const prev = sessionStorage.getItem("filter");
         const next = JSON.stringify(filter);
         if (prev !== next) {
@@ -44,133 +48,78 @@ function FilterEditor(
     const saveFilter = async (event) => {
         event.preventDefault();
 
-        // check label
-        if (filter.label === '') {
-            alert("Title is empty");
-            return
+        if (!filter.label || filter.label.trim() === '') {
+            notify.error("Label is empty");
+            return;
         }
 
-        if (
-            updateFilter !== defaultFilter
-        ) {
-            if (filter.type === "tag") {
-                const payload = {
-                    tagLabel: filter.label,
-                    tagColor: filter.color
-                };
+        const isTag = filter.type === "tag";
+        const payload = isTag
+            ? { tagLabel: filter.label, tagColor: filter.color }
+            : { categoryLabel: filter.label };
 
-                const response = await fetch(`/api/tags/${filter.id}`, {
-                    method: "PATCH",
-                    headers: {
-                        "X-CSRF-TOKEN": sessionStorage.getItem("csrf_token"),
-                        "accept": "application/ld+json",
-                        "Content-Type": "application/merge-patch+json",
-                    },
-                    body: JSON.stringify(payload),
-                });
+        const endpoint = isUpdateMode
+            ? (isTag ? API_ENDPOINTS.TAGS.BY_ID(filter.id) : API_ENDPOINTS.CATEGORIES.BY_ID(filter.id))
+            : (isTag ? API_ENDPOINTS.TAGS.LIST : API_ENDPOINTS.CATEGORIES.LIST);
 
-                if (!response.ok) {
-                    alert("error while sending changes");
-                    return
-                }
-            } else {
-                const payload = {
-                    categoryLabel: filter.label
-                };
+        const method = isUpdateMode ? "PATCH" : "POST";
+        const contentType = isUpdateMode ? "application/merge-patch+json" : "application/ld+json";
 
-                const response = await fetch(`/api/categories/${filter.id}`, {
-                    method: "PATCH",
-                    headers: {
-                        "X-CSRF-TOKEN": sessionStorage.getItem("csrf_token"),
-                        "accept": "application/ld+json",
-                        "Content-Type": "application/merge-patch+json",
-                    },
-                    body: JSON.stringify(payload),
-                });
+        try {
+            const response = await authenticatedFetch(endpoint, {
+                method,
+                headers: {
+                    "accept": "application/ld+json",
+                    "Content-Type": contentType,
+                },
+                body: JSON.stringify(payload),
+            });
 
-                if (!response.ok) {
-                    alert("error while sending changes");
-                    return
-                }
+            if (!response.ok) {
+                notify.error("Error while sending changes");
+                return;
             }
-        } else {
-            if (filter.type === "tag") {
-                const payload = {
-                    tagLabel: filter.label,
-                    tagColor: filter.color
-                };
 
-                const response = await fetch("/api/tags", {
-                    method: "POST",
-                    headers: {
-                        "X-CSRF-TOKEN": sessionStorage.getItem("csrf_token"),
-                        "accept": "application/ld+json",
-                        "Content-Type": "application/ld+json",
-                    },
-                    body: JSON.stringify(payload),
-                });
-                if (!response.ok) {
-                    alert("error while sending changes");
-                    return
-                }
-            } else {
-                const payload = {
-                    categoryLabel: filter.label
-                };
-
-                const response = await fetch("/api/categories", {
-                    method: "POST",
-                    headers: {
-                        "X-CSRF-TOKEN": sessionStorage.getItem("csrf_token"),
-                        "accept": "application/ld+json",
-                        "Content-Type": "application/ld+json",
-                    },
-                    body: JSON.stringify(payload),
-                });
-                if (!response.ok) {
-                    alert("error while sending changes");
-                    return
-                }
-            }
+            notify.success(isUpdateMode ? "Filter updated successfully" : "Filter created successfully");
+            sessionStorage.removeItem("filter");
+            navigate("/dashboard");
+        } catch (error) {
+            notify.error(`Failed to save filter: ${error.message}`);
         }
-        sessionStorage.removeItem("filter");
-        navigate("/dashboard");
-    }
+    };
 
     const deleteFilter = async () => {
-        if (
-            updateFilter !== defaultFilter
-        ) {
-            if (filter.type === "tag") {
-                const response = await fetch(`/api/tags/${filter.id}`, {
-                    method: "DELETE",
-                    headers: {
-                        "X-CSRF-TOKEN": sessionStorage.getItem("csrf_token"),
-                        "accept": "*/*",
-                    },
-                });
-                if (!response.ok) {
-                    alert("error while deleting");
-                    return
-                }
-            } else {
-                const response = await fetch(`/api/categories/${filter.id}`, {
-                    method: "DELETE",
-                    headers: {
-                        "X-CSRF-TOKEN": sessionStorage.getItem("csrf_token"),
-                        "accept": "*/*",
-                    },
-                });
-                if (!response.ok) {
-                    alert("error while deleting");
-                    return
-                }
-            }
+        if (!isUpdateMode) {
+            sessionStorage.removeItem("filter");
+            navigate("/dashboard");
+            return;
         }
 
-        sessionStorage.removeItem("filter");
-        navigate("/dashboard");
-    }
+        const isTag = filter.type === "tag";
+        const endpoint = isTag
+            ? API_ENDPOINTS.TAGS.BY_ID(filter.id)
+            : API_ENDPOINTS.CATEGORIES.BY_ID(filter.id);
+
+        try {
+            const response = await authenticatedFetch(endpoint, {
+                method: "DELETE",
+                headers: {
+                    "accept": "*/*",
+                },
+            });
+
+            if (!response.ok) {
+                notify.error("Error while deleting");
+                return;
+            }
+
+            notify.success("Filter deleted successfully");
+            sessionStorage.removeItem("filter");
+            navigate("/dashboard");
+        } catch (error) {
+            notify.error(`Failed to delete filter: ${error.message}`);
+        }
+    };
 
     return (
         <form className="filter-editor">
