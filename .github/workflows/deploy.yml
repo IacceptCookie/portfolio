@@ -1,0 +1,132 @@
+name: Deploy to Production
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+jobs:
+  build:
+    name: Build Assets
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          cache: 'npm'
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Build assets
+        env:
+          GRAFANA_URL: https://grafana.${{ secrets.DOMAIN }}
+        run: npm run build
+
+      - name: Upload build artifacts
+        uses: actions/upload-artifact@v4
+        with:
+          name: build-assets
+          path: public/build/
+          retention-days: 1
+
+  deploy:
+    name: Deploy to VPS
+    runs-on: ubuntu-latest
+    needs: build
+    environment: production
+    steps:
+      - name: Download build artifacts
+        uses: actions/download-artifact@v4
+        with:
+          name: build-assets
+          path: public/build/
+
+      - name: Setup SSH
+        run: |
+          mkdir -p ~/.ssh
+          echo "${{ secrets.VPS_SSH_KEY }}" > ~/.ssh/deploy_key
+          chmod 600 ~/.ssh/deploy_key
+          ssh-keyscan -H ${{ secrets.VPS_HOST }} >> ~/.ssh/known_hosts
+
+      - name: Deploy to server
+        env:
+          HOST: ${{ secrets.VPS_HOST }}
+          USER: ${{ secrets.VPS_USER }}
+          DOMAIN: ${{ secrets.DOMAIN }}
+          DB_PASSWORD: ${{ secrets.DB_PASSWORD }}
+          GRAFANA_PASSWORD: ${{ secrets.GRAFANA_PASSWORD }}
+          JWT_PASSPHRASE: ${{ secrets.JWT_PASSPHRASE }}
+          MAILER_DSN: ${{ secrets.MAILER_DSN }}
+        run: |
+          # Créer le fichier .env.prod
+          cat > .env.prod << EOF
+          APP_ENV=prod
+          APP_SECRET=$(openssl rand -hex 16)
+          DATABASE_URL=postgresql://portfolio:${DB_PASSWORD}@db:5432/portfolio?serverVersion=17&charset=utf8
+          JWT_PASSPHRASE=${JWT_PASSPHRASE}
+          MAILER_DSN=${MAILER_DSN:-null://null}
+          DOMAIN=${DOMAIN}
+          GRAFANA_PASSWORD=${GRAFANA_PASSWORD}
+          EOF
+
+          # Copier les fichiers sur le serveur
+          ssh -i ~/.ssh/deploy_key ${USER}@${HOST} "mkdir -p /var/www/portfolio"
+
+          # Sync du code (exclure les fichiers sensibles et les dépendances)
+          rsync -avz --delete \
+            --exclude '.git' \
+            --exclude 'node_modules' \
+            --exclude 'vendor' \
+            --exclude 'var' \
+            --exclude '.env.local' \
+            --exclude '.env.*.local' \
+            -e "ssh -i ~/.ssh/deploy_key" \
+            ./ ${USER}@${HOST}:/var/www/portfolio/
+
+          # Copier les assets buildés
+          rsync -avz \
+            -e "ssh -i ~/.ssh/deploy_key" \
+            public/build/ ${USER}@${HOST}:/var/www/portfolio/public/build/
+
+          # Copier le fichier .env.prod
+          scp -i ~/.ssh/deploy_key .env.prod ${USER}@${HOST}:/var/www/portfolio/.env.local
+
+      - name: Run deployment commands
+        run: |
+          ssh -i ~/.ssh/deploy_key ${{ secrets.VPS_USER }}@${{ secrets.VPS_HOST }} << 'ENDSSH'
+            cd /var/www/portfolio
+
+            # Arrêter les conteneurs si nécessaire
+            docker compose -f compose.prod.yaml down --remove-orphans || true
+
+            # Construire et démarrer les conteneurs
+            docker compose -f compose.prod.yaml build
+            docker compose -f compose.prod.yaml up -d
+
+            # Attendre que la DB soit prête
+            echo "Waiting for database..."
+            sleep 10
+
+            # Installer les dépendances Composer
+            docker compose -f compose.prod.yaml exec -T backend composer install --no-dev --optimize-autoloader
+
+            # Exécuter les migrations
+            docker compose -f compose.prod.yaml exec -T backend php bin/console doctrine:migrations:migrate --no-interaction
+
+            # Clear cache
+            docker compose -f compose.prod.yaml exec -T backend php bin/console cache:clear
+            docker compose -f compose.prod.yaml exec -T backend php bin/console cache:warmup
+
+            # Vérifier le statut
+            docker compose -f compose.prod.yaml ps
+          ENDSSH
+
+      - name: Health check
+        run: |
+          sleep 5
+          curl -f -s -o /dev/null -w "%{http_code}" https://${{ secrets.DOMAIN }} || echo "Warning: Health check failed, but deployment may still be successful"

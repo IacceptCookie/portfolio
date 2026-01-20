@@ -48,7 +48,8 @@ function EditorHome() {
                         {
                             title: "Statistiques",
                             image: statIllustration,
-                            to: "/grafana"
+                            to: process.env.GRAFANA_URL,
+                            external: true
                         }
                     }
                 />

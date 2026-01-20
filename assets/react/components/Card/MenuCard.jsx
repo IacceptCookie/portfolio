@@ -9,8 +9,12 @@ function MenuCard(
     }
 )
 {
+    const linkProps = cardData.external
+        ? { target: "_blank", rel: "noopener noreferrer" }
+        : {};
+
     return (
-        <a href={cardData.to} className="menu-card">
+        <a href={cardData.to} className="menu-card" {...linkProps}>
             <Stack className="menu-card-illustration-stack">
                 <Layer
                     type="text"

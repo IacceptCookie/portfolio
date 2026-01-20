@@ -80,6 +80,13 @@ Encore
             },
         ],
     })
+
+    // Define environment variables for React
+    .configureDefinePlugin(options => {
+        options['process.env.GRAFANA_URL'] = JSON.stringify(
+            process.env.GRAFANA_URL || 'http://localhost:3000'
+        );
+    })
 ;
 
 module.exports = Encore.getWebpackConfig();
