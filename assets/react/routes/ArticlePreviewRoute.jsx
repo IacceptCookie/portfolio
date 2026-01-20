@@ -6,9 +6,25 @@ import PrivateRoute from "../tools/PrivateRoute";
 import Preview from "../views/Editor/Article/Preview";
 
 function ArticlePreviewRoute() {
-    const { contextArticle } = useArticlePreview();
+    const { contextArticle, isLoading } = useArticlePreview();
 
-    // contextArticle is automatically loaded from sessionStorage by the provider
+    // Wait for IndexedDB to load
+    if (isLoading) {
+        return (
+            <div style={{
+                display: 'flex',
+                justifyContent: 'center',
+                alignItems: 'center',
+                minHeight: '50vh',
+                fontSize: '1.2rem',
+                color: '#666'
+            }}>
+                Chargement...
+            </div>
+        );
+    }
+
+    // contextArticle is loaded from IndexedDB by the provider
     if (!contextArticle) {
         return (
             <>

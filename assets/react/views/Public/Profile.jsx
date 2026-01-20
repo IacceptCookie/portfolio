@@ -22,13 +22,19 @@ import { getLatestArticles } from "../../services/api/Articles";
 const EXPERIENCE_DATA = [
     {
         category: CATEGORIES.EXPERIENCE,
-        date: "Sept. 2024 - Présent",
+        date: "Janvier 2026 - Maintenant",
+        title: "Data Scientist Junior",
+        location: "Spacefoot SAS - Charleville-Mézières"
+    },
+    {
+        category: CATEGORIES.EXPERIENCE,
+        date: "Sept. 2024 - Décembre 2025",
         title: "Apprenti Data Analyst",
         location: "Spacefoot SAS - Charleville-Mézières",
         description: [
-            "Algorithme de recommandation",
-            "Achats prédictifs",
-            "Analyses et réflexions BI"
+            "Optimisation de campagnes publicitaires Google Ads",
+            "Travail analytique sur des achats prédictifs",
+            "Analyses et travaux BI divers"
         ]
     },
     {
@@ -47,7 +53,9 @@ const EXPERIENCE_DATA = [
         title: "Secrétaire (vacataire)",
         location: "OPAL - Office Public de l'Habitat de l'Aisne, Laon",
         description: [
-            "Gestion administrative"
+            "Bailleur social",
+            "Assister les locataires dans leurs démarches",
+            "Gérer les dossiers et le standard téléphonique"
         ]
     },
     {
@@ -56,8 +64,18 @@ const EXPERIENCE_DATA = [
         title: "Bénévole",
         location: "Association Panier Solidaire - Villeneuve-sur-Aisne",
         description: [
+            "Epicerie Solidaire",
             "Inventaire et remplissage des rayons",
             "Aide aux bénéficiaires"
+        ]
+    },
+    {
+        category: CATEGORIES.FORMATION,
+        date: "Septembre 2025 - Décembre 2025",
+        title: "Master Informatique Parcours IA",
+        location: "Université de Reims Champagne-Ardenne",
+        description: [
+            "Démission de la formation en cours de première année"
         ]
     },
     {
@@ -66,7 +84,7 @@ const EXPERIENCE_DATA = [
         title: "BUT Informatique Parcours DATA",
         location: "IUT de Reims Châlons Charleville",
         description: [
-            "Développement Web solide",
+            "Développement Web",
             "Spécialisation Python et Base de données",
             "Projets en groupe"
         ]
@@ -74,22 +92,11 @@ const EXPERIENCE_DATA = [
     {
         category: CATEGORIES.FORMATION,
         date: "2019 - 2022",
-        title: "Baccalauréat Général - Mention Très Bien",
+        title: "Baccalauréat Général",
         location: "Lycée technique Pierre Méchain - Laon",
         description: [
-            "Spécialités Mathématiques et NSI"
-        ]
-    },
-    {
-        category: CATEGORIES.PROJET,
-        date: "2024",
-        title: "UrFridge - Gestion de recettes",
-        location: "Projet universitaire",
-        description: [
-            "Site de gestion de recettes en groupe",
-            "Méthode agile SCRUM",
-            "CRUD avec backoffice",
-            "Interface utilisateur conviviale"
+            "Spécialités Mathématiques et NSI",
+            "Obtenu avec mention Très Bien"
         ]
     }
 ];
@@ -129,24 +136,24 @@ function Profile() {
                 <div className="presentation-portrait">
                     {/* TODO: Remplacer par la vraie image portrait */}
                     <div className="presentation-portrait-placeholder">
-                        <span>RD</span>
+                        <img src="/img/profile/profile-picture.webp" alt="profile picture" />
                     </div>
                 </div>
                 <div className="presentation-content">
                     <h1 className="presentation-title">Raphaël Durand</h1>
-                    <p className="presentation-subtitle">Data Engineer & Développeur Full-Stack</p>
+                    <p className="presentation-subtitle">En exploration pour le monde de demain</p>
                     <div className="presentation-text">
                         <p>
-                            Data Engineer chez <strong>Spacefoot</strong> depuis septembre 2024, une entreprise d'e-commerce française (28 magasins, budget Google Ads de 3M€) opérant en Europe et aux US sur les segments sport, lifestyle, animalerie et mobilier.
+                            Data Scientist Junior chez Spacefoot depuis janvier 2026 (j'ai rejoint l'entreprise ne 2024). J'évolue dans un milieu <strong>dynamique et novateur</strong>.
                         </p>
                         <p>
-                            Mon parcours : Licence en informatique (2021-2024), puis un choix pragmatique d'abandonner un Master jugé trop théorique. Je privilégie systématiquement les <strong>solutions concrètes et implémentables</strong>.
+                            J'ai un parcours qui m'a permis de m'intéresser dans de <strong>nombreux domaines</strong> et je compte sur cette richesse au quotidien pour apporter les <strong>solutions de demain</strong>.
                         </p>
                         <p>
-                            Actuellement, je développe <strong>Liber Mundi</strong>, une plateforme d'intelligence globale visant à agréger 15-20k articles d'actualité quotidiens via une architecture medallion. J'explore les méthodologies de développement assistées par IA et privilégie les fournisseurs européens pour la souveraineté des données.
+                            Je garde dans mon âme une conscience social des problèmes de notre société, et c'est la raison pour laquelle j'aspire à explorer de <strong>nouvelles</strong> façons d'entreprendre et de convevoir.
                         </p>
                         <p>
-                            Chez Spacefoot, j'automatise Google Ads (CLI Python, campagnes Shopping, ciblage géo), optimise PostgreSQL/Grafana/Prometheus, et explore Meta Ads API. Je travaille aussi sur du virtual try-on (VTON) avec FASHN API.
+                            J'espère vous <strong>enrichir</strong> à travers mon profil, de part mes passions et mes projets.
                         </p>
                     </div>
                 </div>

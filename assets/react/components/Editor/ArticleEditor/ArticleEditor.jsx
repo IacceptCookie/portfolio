@@ -1,4 +1,4 @@
-import React, {useEffect, useState} from 'react';
+import React, {useEffect, useState, useRef, useCallback} from 'react';
 import "./ArticleEditor.css";
 import ElementEditorMenu from "./ElementEditor/ElementEditorMenu";
 import ArticleEditorMenu from "./ArticleEditorMenu";
@@ -24,24 +24,37 @@ function ArticleEditor(
     }
 )
 {
-    const {contextArticle, setContextArticle} = useArticlePreview();
+    const {contextArticle, setContextArticle, isLoading} = useArticlePreview();
     const [_, navigate] = useLocation();
     const { createArticle, updateArticle: updateArticleRequest, deleteArticle: deleteArticleRequest } = useArticleSave();
     const { notify } = useNotification();
     const isUpdateMode = updateArticle !== defaultArticle;
+    const hasInitialized = useRef(false);
 
-    // Initialize from context (which reads from sessionStorage) or from props
-    const [article, setArticle] = useState(() => {
-        if (contextArticle && contextArticle.id === updateArticle.id) {
-            return contextArticle;
-        }
-        return updateArticle;
-    });
+    // Initialize article state
+    const [article, setArticleState] = useState(updateArticle);
 
-    // Sync article changes to context (and automatically to sessionStorage via provider)
+    // Update article AND sync to IndexedDB in one operation
+    const setArticle = useCallback((updater) => {
+        setArticleState(prev => {
+            const newArticle = typeof updater === 'function' ? updater(prev) : updater;
+            // Sync to IndexedDB immediately with the new value
+            setContextArticle(newArticle);
+            return newArticle;
+        });
+    }, [setContextArticle]);
+
+    // When contextArticle is loaded from IndexedDB, use it if it matches
     useEffect(() => {
-        setContextArticle(article);
-    }, [article, setContextArticle]);
+        if (isLoading) return;
+
+        if (!hasInitialized.current) {
+            if (contextArticle && contextArticle.id === updateArticle.id) {
+                setArticleState(contextArticle);
+            }
+            hasInitialized.current = true;
+        }
+    }, [isLoading, contextArticle, updateArticle.id]);
 
     const saveArticle = async (event) => {
         event.preventDefault();

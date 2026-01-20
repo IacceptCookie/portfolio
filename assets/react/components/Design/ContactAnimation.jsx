@@ -39,8 +39,8 @@ const ContactAnimation = () => {
     const envelopeOpen = () => {
         if (progress < 0.1) return 0;
         if (progress < 0.3) return easeOutCubic((progress - 0.1) / 0.2);
-        if (progress < 0.7) return 1;
-        if (progress < 0.9) return 1 - easeOutCubic((progress - 0.7) / 0.2);
+        if (progress < 0.85) return 1; // Reste ouvert jusqu'à ce que la lettre soit rentrée
+        if (progress < 0.95) return 1 - easeOutCubic((progress - 0.85) / 0.1); // Fermeture rapide
         return 0;
     };
 
@@ -124,13 +124,9 @@ const ContactAnimation = () => {
 
                 {/* Enveloppe */}
                 <g transform="translate(150, 180)">
-                    {/* Corps de l'enveloppe */}
-                    <rect
-                        x={-60}
-                        y={-30}
-                        width={120}
-                        height={70}
-                        rx={6}
+                    {/* Corps de l'enveloppe (coins arrondis en bas seulement) */}
+                    <path
+                        d="M -60 -30 L 60 -30 L 60 34 Q 60 40 54 40 L -54 40 Q -60 40 -60 34 Z"
                         fill="#0E1084"
                         stroke="#7577CD"
                         strokeWidth={2}
@@ -149,7 +145,7 @@ const ContactAnimation = () => {
                     {/* Rabat de l'enveloppe */}
                     <g style={{ transformOrigin: '0 -30px', transform: `rotateX(${flapRotation}deg)` }}>
                         <path
-                            d={`M -60 -30 L 0 10 L 60 -30 Z`}
+                            d={`M -58 -30 L 0 10 L 58 -30 Z`}
                             fill="#0E1084"
                             stroke="#7577CD"
                             strokeWidth={2}

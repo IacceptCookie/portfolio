@@ -1,4 +1,4 @@
-import {React, useEffect, useState} from "react";
+import React, { useEffect, useState } from "react";
 import "./Article.css";
 import EditorHeader from "../../../components/Editor/EditorHeader/EditorHeader";
 import SearchBar from "../../../components/Search/SearchBar";

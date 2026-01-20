@@ -73,8 +73,8 @@ function Home() {
                         <h2 className="home-section__title">Mon Profil</h2>
                         <p className="home-section__description">
                             Découvrez mon parcours, mes compétences et les technologies que je maîtrise.
-                            Data Engineer passionné, je travaille sur des projets alliant analyse de données,
-                            développement web et automatisation.
+                            Passionné, je travaille sur des projets alliant données,
+                            développement, design et automatisation.
                         </p>
                         <Link to="/profile" className="home-section__button">
                             Voir mon profil

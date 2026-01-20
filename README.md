@@ -1,75 +1,139 @@
-# My portfolio website project
+# Portfolio Website Project
 ## Made by IacceptCookie (aka Raphaël DURAND)
 
-This project aim to be a tool that i can use to display my work, share stuff, and support my other projects (as a public display)
+This project is a modern web portfolio application designed to display my work, share content, and support other projects as a public showcase.
 
 ## Stack
 
-- php 8.2
-- react 18.3
-- symfony 7.2
-- api platform 3.2
-- postgresql 17
-- nginx
-- symfony/webpack-encore-bundle 2.2
+### Backend
+- **PHP 8.2**
+- **Symfony 7.2** - Web framework
+- **API Platform 3.3** - RESTful API
+- **PostgreSQL 17** - Database
+- **Doctrine ORM** - Database abstraction
+- **Lexik JWT Authentication** - JWT + 2FA authentication
 
-## Project Organisation / Configuration files
+### Frontend
+- **React 18.3** - UI library
+- **Webpack Encore 2.2** - Asset bundling with code splitting
+- **Wouter** - Lightweight routing
+- **Jest + React Testing Library** - Testing framework
 
-The project is organised with a react front-end app mounted on a symfony back-end using the webpack encore bundle.
-It is also using a postgresql database and a nginx image as a web-server.
+### DevOps
+- **Docker** - Containerization
+- **Nginx** - Web server
+- **Docker Compose** - Multi-container orchestration
 
-The Dockerfiles in the docker folder contain the custom images, you can also find the nginx configuration file (nginx.conf).
-compose.yaml file in the root folder contain the differents services.
+## Features
 
-Webpack encore is configured in the webpack.config.js (it also configure react)
+### Security
+- JWT authentication with 2FA (email code)
+- CSRF protection (stateless)
+- Rate limiting on authentication
+- Role-based access control (ROLE_READER, ROLE_EDITOR)
 
-Front-end components and views are located in the asset/react folder
-Back-end application code is located in the src folder (like any symfony project)
+### Performance Optimizations
+- **Code splitting**: Main bundle reduced from 2.2MB to 153KB (-93%)
+- **Lazy loading**: Routes loaded on-demand
+- **React.memo**: Optimized component re-renders
+- **19+ dynamic chunks**: Efficient resource loading
 
-Back-end configuration is the same as a common symfony project.
+### Testing
+- **58 automated tests** with Jest
+- **Full coverage** of hooks, providers, and utilities
+- Test commands: `npm test`, `npm run test:watch`, `npm run test:coverage`
 
 ## Installation
 
-clone the repository with :
-```
+### 1. Clone the repository
+```bash
 git clone https://github.com/IacceptCookie/portfolio.git
+cd portfolio
 ```
 
-install back-end dependencies :
-```
+### 2. Install dependencies
+
+Backend dependencies:
+```bash
 composer install
 ```
 
-install front-end dependencies :
-```
+Frontend dependencies:
+```bash
 npm install
 ```
 
-build and launch containers :
-```
+### 3. Build and launch containers
+```bash
 make init
 ```
 
-compile the front-end app :
-```
-npm run build
-```
+### 4. Setup database
 
-development mode compilation :
-```
-npm run watch
-```
-
-once the compilation and the containers are launched, the webapp is available at [https://localhost](https://localhost)
-
-create the database schema and load fixtures :
-```
+Create database schema and load fixtures:
+```bash
 composer docker-db
 ```
 
-generate keys for authentication (only once when you install the project) :
-```
+Generate JWT keys for authentication (only once):
+```bash
 composer jwt-generate-keys
 ```
 
-[test mail local](https://mailtrap.io/)
+### 5. Compile frontend
+
+Production build (optimized with code splitting):
+```bash
+npm run build
+```
+
+Development mode with watch:
+```bash
+npm run watch
+```
+
+## Development
+
+### Available Scripts
+
+#### Frontend
+```bash
+npm run dev           # Development build
+npm run watch         # Development build with watch mode
+npm run build         # Production build (optimized)
+npm test              # Run all tests
+npm run test:watch    # Run tests in watch mode
+npm run test:coverage # Run tests with coverage report
+```
+
+#### Backend
+```bash
+composer start                # Start Symfony local server
+composer test                 # Run all backend tests (CS Fixer, PHPStan, YAML lint)
+composer test:csfixer         # Run PHP CS Fixer (dry run)
+composer fix:csfixer          # Fix code style issues
+composer test:phpstan         # Run PHPStan static analysis
+composer db                   # Recreate database with fixtures
+composer docker-db            # Recreate database in Docker container
+composer jwt-generate-keys    # Generate JWT keypair
+```
+
+### Running Tests
+
+Frontend tests use Jest + React Testing Library:
+```bash
+npm test                # Run all tests
+npm run test:watch      # Watch mode for development
+npm run test:coverage   # Generate coverage report
+```
+
+Coverage report is generated in `coverage/` directory.
+
+## Testing
+
+### Frontend Tests (Jest)
+- **58 tests** covering hooks, providers, and utilities
+- Located in `assets/react/**/__tests__/`
+- Run with `npm test`
+
+**Local Mail Testing**: [Mailtrap](https://mailtrap.io/)

@@ -50,6 +50,9 @@ export const useArticleSave = () => {
             // Only upload if it's different from original (for updates) or if it's a new article
             if (!originalArticle || article.thumbnail !== originalArticle.thumbnail) {
                 thumbnailPath = await uploadImage(article.thumbnail);
+            } else {
+                // Thumbnail unchanged, keep the existing path
+                thumbnailPath = article.thumbnail;
             }
         }
 

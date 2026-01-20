@@ -1,6 +1,7 @@
 import React from "react";
 import Stack from "../Stack/Stack";
 import Layer from "../Stack/Layer/Layer";
+import "./Card.css";
 
 function MenuCard(
     {

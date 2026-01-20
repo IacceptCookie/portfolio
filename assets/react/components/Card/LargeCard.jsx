@@ -3,6 +3,7 @@ import Stack from "../Stack/Stack";
 import Layer from "../Stack/Layer/Layer";
 import Tag from "../Tag/Tag";
 import { Link } from "wouter";
+import "./Card.css";
 
 function LargeCard(
     {

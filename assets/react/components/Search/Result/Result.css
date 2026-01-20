@@ -8,6 +8,11 @@
     align-items: center;
     overflow: scroll;
     scrollbar-color: #7577CD rgba(0,0,0,0);
+    margin: 0 auto;
+}
+
+.result-list-article {
+    align-self: center;
 }
 
 .result {

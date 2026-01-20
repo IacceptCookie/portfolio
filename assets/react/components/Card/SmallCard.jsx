@@ -1,9 +1,10 @@
-import React from "react";
+import React, { memo } from "react";
 import Stack from "../Stack/Stack";
 import Layer from "../Stack/Layer/Layer";
 import { Link } from "wouter";
+import "./Card.css";
 
-function SmallCard(
+const SmallCard = memo(function SmallCard(
     {
         cardData,
     }
@@ -46,6 +47,6 @@ function SmallCard(
             </div>
         </Link>
     )
-}
+});
 
 export default SmallCard;

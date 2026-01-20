@@ -7,6 +7,7 @@ import SearchBar from "../../components/Search/SearchBar";
 import ResultList from "../../components/Search/Result/ResultList";
 import {renameKeys} from "../../tools/remaper";
 import PaginationBar from "../../components/Search/Pagination/PaginationBar";
+import AnimatedText from "../../components/Text/AnimatedText";
 
 const defaultPagination = {
     current_page: undefined,
@@ -62,6 +63,7 @@ function Articles() {
                     zIndex={2}
                 />
             </Stack>
+            <AnimatedText className="centered-text" text="Retrouvez facilement mon contenu" delay={0.2} />
             <SearchBar
                 inputName="search"
                 updateTextState={updateSearchText}
