@@ -31,11 +31,11 @@
 }
 
 .footer__section-title {
-    font-size: 20px;
+    font-size: var(--text-xl);
     margin: 0;
     color: #ffffff;
     font-weight: bold;
-    font-family: AlteHaas, sans-serif;
+    font-family: var(--font-body);
 }
 
 .footer__section-links {
@@ -47,11 +47,11 @@
 .footer__section-link-item {
     text-align: center;
     display: block;
-    margin: 8px 0;
+    margin: var(--space-5) 0;
 }
 
 .footer__section-link {
-    font-size: 18px;
+    font-size: var(--text-lg);
     padding-top: 4px;
     padding-bottom: 4px;
     position: relative;
@@ -96,9 +96,9 @@
 .footer__homelink {
     text-decoration: none;
     color: #193e81;
-    font-size: 24px;
+    font-size: var(--text-2xl);
     transition: .3s ease-in-out;
-    font-family: AlteHaas, sans-serif;
+    font-family: var(--font-body);
 }
 
 .footer__homelink:hover {
@@ -119,11 +119,11 @@
     }
 
     .footer__section-link {
-        font-size: 20px;
+        font-size: var(--text-xl);
     }
 
     .footer__section-title {
-        font-size: 32px;
+        font-size: var(--text-4xl);
     }
 
     .footer__section-link-item {

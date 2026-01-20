@@ -2,22 +2,23 @@
     display: flex;
     flex-direction: column;
     justify-content: space-between;
-    padding: 0 20px;
+    padding: 0 var(--space-12);
     flex: 3;
 }
 
 .element-type-selector, .element-text {
     outline: none;
     background-color: white;
-    font-family: AltHaas, sans-serif;
+    font-family: var(--font-body);
     font-weight: bold;
-    font-size: 24px;
+    font-size: var(--text-2xl);
     width: 100%;
-    padding: 12px;
+    padding: var(--space-7);
     box-sizing: border-box;
     border-radius: 30px;
     border: solid 4px #7577CD;
-    margin: 10px 0;
+    margin: var(--space-6) 0;
+    min-height: var(--touch-target);
 }
 
 .element-text {
@@ -39,7 +40,7 @@
 .element-side-editor-area {
     display: flex;
     justify-content: space-between;
-    padding: 0 20px;
+    padding: 0 var(--space-12);
     flex: 1;
     align-items: center;
 }
@@ -48,7 +49,7 @@
     display: flex;
     flex-direction: column;
     justify-content: center;
-    padding: 10px;
+    padding: var(--space-6);
 }
 
 .element-editor-menu {
@@ -56,7 +57,7 @@
 }
 
 .element-editor-add-button, .element-editor-counter, .element-editor-readingtime-estimation {
-    margin: 10px 0;
+    margin: var(--space-6) 0;
 }
 
 .element-editor-menu, .element {
@@ -76,15 +77,16 @@
 
 .element-editor-add-button {
     color: white;
-    font-family: AltHaas, sans-serif;
+    font-family: var(--font-body);
     font-weight: bold;
-    font-size: 24px;
+    font-size: var(--text-2xl);
     cursor: pointer;
     background-color: #A0A3FF;
     padding: 6px 12px;
     border-radius: 12px;
     outline: none;
     border: none;
+    min-height: var(--touch-target);
 }
 
 .element-editor-add-button:hover {
@@ -97,10 +99,10 @@
     align-items: center;
     background-color: #7577CD;
     color: white;
-    font-family: AltHaas, sans-serif;
+    font-family: var(--font-body);
     font-weight: bold;
-    font-size: 24px;
-    padding: 12px;
+    font-size: var(--text-2xl);
+    padding: var(--space-7);
     text-align: center;
     border-radius: 18px;
     width: 100%;
@@ -120,9 +122,9 @@
     border-radius: 30px;
     border: solid 4px #7577CD;
     background-color: white;
-    padding: 3px;
+    padding: var(--space-1);
     box-sizing: border-box;
-    margin: 12px;
+    margin: var(--space-7);
     cursor: pointer;
 }
 
@@ -154,14 +156,14 @@
     width: 180px;
     height: 180px;
     color: white;
-    font-family: AltHaas, sans-serif;
+    font-family: var(--font-body);
     font-weight: bold;
-    font-size: 24px;
+    font-size: var(--text-2xl);
     cursor: pointer;
     background-color: #A0A3FF;
     border-radius: 18px;
     text-align: center;
-    margin: 12px;
+    margin: var(--space-7);
 }
 
 .element-image-displayer:hover {

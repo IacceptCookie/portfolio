@@ -1,43 +1,43 @@
 .element-paragraph {
-    font-size: 24px;
+    font-size: var(--text-2xl);
     font-weight: normal;
     color: white;
-    font-family: AlteHaas, sans-serif;
-    margin: 10px;
+    font-family: var(--font-body);
+    margin: var(--space-6);
     text-align: left;
 }
 
 .element-link {
-    font-size: 28px;
+    font-size: var(--text-3xl);
     font-weight: normal;
     text-decoration: underline;
     color: white;
-    font-family: AlteHaas, sans-serif;
-    margin: 10px;
+    font-family: var(--font-body);
+    margin: var(--space-6);
     text-align: left;
 }
 
 .element-quote {
-    font-size: 28px;
+    font-size: var(--text-3xl);
     font-weight: normal;
     color: white;
-    font-family: AlteHaas, sans-serif;
-    margin: 10px;
+    font-family: var(--font-body);
+    margin: var(--space-6);
     text-align: left;
 }
 
 .element-title {
-    font-size: 32px;
+    font-size: var(--text-4xl);
     font-weight: bold;
     color: white;
-    font-family: AlteHaas, sans-serif;
-    margin: 10px;
+    font-family: var(--font-body);
+    margin: var(--space-6);
     text-align: left;
 }
 
 .element-video-wrapper, .element-picture-wrapper {
     display: flex;
-    margin: 10px 0;
+    margin: var(--space-6) 0;
     width: 100%;
     flex-direction: column;
     box-sizing: border-box;
@@ -51,11 +51,11 @@
 }
 
 .element-video-legend, .element-picture-legend {
-    font-size: 20px;
+    font-size: var(--text-xl);
     font-weight: bold;
     color: white;
-    font-family: AltHaas, sans-serif;
-    padding: 4px;
+    font-family: var(--font-body);
+    padding: var(--space-2);
     margin: 0;
     box-sizing: border-box;
     text-align: center;

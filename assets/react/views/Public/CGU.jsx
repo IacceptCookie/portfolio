@@ -9,7 +9,7 @@ function CGU() {
             <EditorHeader warning={false} />
             <div className="terms-of-use">
                 <h1>Conditions générales d'utilisation</h1>
-                <h2>Date de dernière mise à jour : 05/11/2025</h2>
+                <h2>Date de dernière mise à jour : 20/01/2026</h2>
                 <p>
                     Les présentes conditions générales d'utilisation sont conclues entre :<br />
                     <br />

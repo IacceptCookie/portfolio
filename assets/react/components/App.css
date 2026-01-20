@@ -18,16 +18,51 @@
     --font-heading: 'Altone', sans-serif;
     --font-body: 'AlteHaas', sans-serif;
 
-    /* Spacing (base 8px) */
-    --space-1: 4px;
-    --space-2: 8px;
-    --space-3: 12px;
-    --space-4: 16px;
-    --space-5: 20px;
-    --space-6: 24px;
-    --space-8: 32px;
-    --space-10: 40px;
-    --space-12: 48px;
+    /* Spacing */
+    --space-1: 3px;
+    --space-2: 4px;
+    --space-3: 5px;
+    --space-4: 6px;
+    --space-5: 8px;
+    --space-6: 10px;
+    --space-7: 12px;
+    --space-8: 14px;
+    --space-9: 15px;
+    --space-10: 16px;
+    --space-11: 18px;
+    --space-12: 20px;
+    --space-14: 25px;
+    --space-16: 30px;
+    --space-20: 40px;
+    --space-24: 50px;
+    --space-28: 60px;
+
+    /* Font Sizes */
+    --text-xs: 11px;
+    --text-sm: 12px;
+    --text-sm-2: 13px;
+    --text-sm-3: 14px;
+    --text-base: 16px;
+    --text-base-2: 17px;
+    --text-lg: 18px;
+    --text-xl: 20px;
+    --text-xl-2: 22px;
+    --text-2xl: 24px;
+    --text-2xl-2: 26px;
+    --text-3xl: 28px;
+    --text-3xl-2: 30px;
+    --text-4xl: 32px;
+    --text-4xl-2: 35px;
+    --text-4xl-3: 36px;
+    --text-5xl: 42px;
+    --text-5xl-2: 48px;
+    --text-5xl-3: 50px;
+    --text-6xl: 54px;
+    --text-6xl-2: 58px;
+    --text-6xl-3: 60px;
+    --text-7xl: 64px;
+    --text-8xl: 76px;
+    --text-9xl: 80px;
 
     /* Border Radius */
     --radius-sm: 4px;

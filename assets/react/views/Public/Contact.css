@@ -11,7 +11,7 @@
     align-items: center;
     width: 100%;
     height: 100%;
-    padding: 20px;
+    padding: var(--space-12);
     box-sizing: border-box;
 }
 
@@ -30,10 +30,10 @@
 
 .contact-form h1 {
     text-align: center;
-    font-size: 20px;
+    font-size: var(--text-xl);
     color: white;
     margin: 10px 0 25px 0;
-    font-family: AlteHaas, sans-serif;
+    font-family: var(--font-body);
     font-weight: bold;
 }
 
@@ -52,7 +52,7 @@
     color: black;
     font-family: var(--font-body);
     font-weight: bold;
-    font-size: 18px;
+    font-size: var(--text-lg);
     border-radius: 30px;
     outline: none;
     resize: none;
@@ -65,7 +65,7 @@
 
 #email {
     width: 100%;
-    margin: 15px;
+    margin: var(--space-9);
 }
 
 #subject {
@@ -75,7 +75,7 @@
     box-sizing: border-box;
     border-radius: 30px;
     background: white;
-    font-size: 18px;
+    font-size: var(--text-lg);
     font-weight: bold;
     font-family: var(--font-body);
     appearance: none;
@@ -100,9 +100,9 @@
 
 #cgu-consent__label {
     color: #7577CD;
-    font-size: 18px;
+    font-size: var(--text-lg);
     font-weight: bold;
-    font-family: AlteHaas, sans-serif;
+    font-family: var(--font-body);
     margin: 0 0 0 10px;
 }
 
@@ -113,7 +113,7 @@
 #submit {
     width: fit-content;
     padding: 10px 30px;
-    margin: 15px;
+    margin: var(--space-9);
     background-color: #A0A3FF;
     outline: none;
     cursor: pointer;
@@ -121,7 +121,7 @@
     box-sizing: border-box;
     font-family: var(--font-body);
     font-weight: bold;
-    font-size: 18px;
+    font-size: var(--text-lg);
     border: none;
     border-radius: 30px;
     transition: 0.3s;
@@ -134,14 +134,14 @@
 
 .disclaimer-text {
     max-width: 1000px;
-    padding: 20px;
+    padding: var(--space-12);
 }
 
 .disclaimer-text p {
     color: white;
     font-weight: bold;
-    font-size: 16px;
-    font-family: AlteHaas, sans-serif;
+    font-size: var(--text-base);
+    font-family: var(--font-body);
     text-align: center;
 }
 
@@ -155,7 +155,7 @@
     color: white;
     font-family: var(--font-body);
     font-weight: bold;
-    font-size: 18px;
+    font-size: var(--text-lg);
     padding: 10px 25px;
     border-radius: 30px;
     cursor: pointer;
@@ -194,15 +194,15 @@
     }
 
     .contact-form h1 {
-        font-size: 30px;
+        font-size: var(--text-3xl-2);
     }
 
     #submit, #email, #firstname, #lastname, #subject,
     #message {
-        font-size: 26px;
+        font-size: var(--text-2xl-2);
     }
 
     .disclaimer-text p {
-        font-size: 24px;
+        font-size: var(--text-2xl);
     }
 }

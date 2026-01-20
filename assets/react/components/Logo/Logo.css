@@ -8,7 +8,7 @@
     height: 80px;
     width: fit-content;
     box-shadow: 2px 2px 3px #7577cd;
-    margin: 10px;
+    margin: var(--space-6);
     max-width: 100%;
     transform: scale(1.05);
 }
@@ -26,7 +26,7 @@
     width: 80px;
     height: 80px;
     background-color: white;
-    padding: 10px;
+    padding: var(--space-6);
     box-sizing: border-box;
 }
 
@@ -39,14 +39,14 @@
 .logo-text {
     background-color: #0e1084;
     color: white;
-    font-family: AlteHaas, sans-serif;
-    font-size: 18px;
+    font-family: var(--font-body);
+    font-size: var(--text-lg);
     font-weight: bold;
     height: 100%;
     display: flex;
     align-items: center;
     justify-content: center;
-    padding: 5px;
+    padding: var(--space-3);
     box-sizing: border-box;
     transition: max-width 0.4s ease, padding 0.4s ease, opacity 0.4s ease;
     overflow: hidden;

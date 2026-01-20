@@ -3,7 +3,7 @@
     flex-direction: column;
     max-width: 1000px;
     width: calc(100% - 20px);
-    margin: 10px;
+    margin: var(--space-6);
     border-radius: 24px;
     overflow: hidden;
     transition: box-shadow 0.2s ease;
@@ -28,12 +28,13 @@
 .accordion-title {
     color: white;
     background-color: #7577CD;
-    padding: 16px;
+    padding: var(--space-10);
     display: flex;
     justify-content: space-between;
     align-items: center;
     transition: 0.2s;
     cursor: pointer;
+    min-height: var(--touch-target);
 }
 
 .accordion-title:hover {
@@ -41,14 +42,14 @@
 }
 
 .accordion-title h1 {
-    font-size: 24px;
+    font-size: var(--text-2xl);
     font-weight: bold;
-    font-family: AlteHaas, sans-serif;
+    font-family: var(--font-body);
     margin: 0;
 }
 
 .accordion-title svg {
-    font-size: 24px;
+    font-size: var(--text-2xl);
     transition: transform 0.3s ease;
     transform: rotate(0deg);
     margin-left: 10px;
@@ -60,7 +61,7 @@
 
 .accordion-content {
     background-color: #0E1084;
-    padding: 16px;
+    padding: var(--space-10);
     box-sizing: border-box;
     overflow: hidden;
     transition: max-height 0.3s ease, padding 0.3s ease;

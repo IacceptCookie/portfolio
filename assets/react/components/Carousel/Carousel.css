@@ -36,8 +36,8 @@
     top: 20%;
     left: 20%;
     color: white;
-    font-size: 24px;
-    font-family: AlteHaas, sans-serif;
+    font-size: var(--text-2xl);
+    font-family: var(--font-body);
     font-weight: bold;
     max-width: 60%;
 }
@@ -54,8 +54,8 @@
     top: 10%;
     left: 20%;
     color: white;
-    font-size: 14px;
-    font-family: AlteHaas, sans-serif;
+    font-size: var(--text-sm-3);
+    font-family: var(--font-body);
     max-width: 60%;
 }
 
@@ -67,6 +67,8 @@
     border: none;
     cursor: pointer;
     z-index: 999;
+    min-width: var(--touch-target);
+    min-height: var(--touch-target);
 }
 
 .carousel-button-icon {
@@ -112,7 +114,7 @@
     width: 100%;
     max-width: 800px;
     margin: 0;
-    padding: 20px;
+    padding: var(--space-12);
     box-sizing: border-box;
     position: relative;
 }
@@ -168,21 +170,21 @@
 
 @media only screen and (min-width: 600px) {
     .slide-title {
-        font-size: 35px;
+        font-size: var(--text-4xl-2);
     }
 
     .slide-description {
-        font-size: 20px;
+        font-size: var(--text-xl);
     }
 }
 
 @media only screen and (min-width: 800px) {
     .slide-title {
-        font-size: 48px;
+        font-size: var(--text-5xl-2);
     }
 
     .slide-description {
-        font-size: 24px;
+        font-size: var(--text-2xl);
     }
 }
 
@@ -190,14 +192,14 @@
     .slide-title {
         top: 20%;
         left: 20%;
-        font-size: 60px;
+        font-size: var(--text-6xl-3);
         max-width: 60%;
     }
 
     .slide-description {
         top: 5%;
         left: 20%;
-        font-size: 28px;
+        font-size: var(--text-3xl);
         max-width: 60%;
     }
 }

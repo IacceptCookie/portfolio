@@ -1,9 +1,9 @@
 .tag {
     display: flex;
-    margin: 5px;
+    margin: var(--space-3);
     padding: 6px 6px;
-    font-size: 14px;
-    font-family: AlteHaas, sans-serif;
+    font-size: var(--text-sm-3);
+    font-family: var(--font-body);
     font-weight: bold;
     color: white;
     border-radius: 15px;

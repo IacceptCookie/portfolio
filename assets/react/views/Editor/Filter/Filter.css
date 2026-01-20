@@ -7,12 +7,12 @@
     color: white;
     width: fit-content;
     box-sizing: border-box;
-    padding: 20px;
+    padding: var(--space-12);
     align-self: center;
-    margin: 15px 0;
-    font-family: AlteHaas, sans-serif;
+    margin: var(--space-9) 0;
+    font-family: var(--font-body);
     font-weight: bold;
-    font-size: 32px;
+    font-size: var(--text-4xl);
     text-decoration: none;
     border-radius: 15px;
     transition: 0.3s;
@@ -32,8 +32,8 @@
 .filter-usage-title {
     color: white;
     font-weight: bold;
-    font-size: 32px;
+    font-size: var(--text-4xl);
     justify-content: center;
     display: flex;
-    font-family: AlteHaas, sans-serif;
+    font-family: var(--font-body);
 }

@@ -20,7 +20,7 @@
 }
 
 .notfound-title {
-    font-size: 30px;
+    font-size: var(--text-3xl-2);
     color: white;
     font-weight: bold;
     font-family: Altone, sans-serif;
@@ -28,9 +28,9 @@
 }
 
 .notfound-homelink {
-    font-size: 24px;
+    font-size: var(--text-2xl);
     font-weight: normal;
     color: white;
     text-decoration: underline;
-    font-family: AlteHaas, sans-serif;
+    font-family: var(--font-body);
 }

@@ -9,8 +9,8 @@
     align-items: center;
     align-self: center;
     width: fit-content;
-    font-family: AlteHaas, sans-serif;
-    font-size: 24px;
+    font-family: var(--font-body);
+    font-size: var(--text-2xl);
     font-weight: bold;
     color: white;
     margin: 20px 8px;
@@ -24,7 +24,7 @@
     color: white;
     border: solid 2px #7577CD;
     font-family: var(--font-body);
-    font-size: 24px;
+    font-size: var(--text-2xl);
     padding: 6px 12px;
     align-items: center;
     justify-content: center;

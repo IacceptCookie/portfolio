@@ -1,38 +1,38 @@
 .terms-of-use p {
-    font-size: 20px;
-    font-family: AlteHaas, sans-serif;
+    font-size: var(--text-xl);
+    font-family: var(--font-body);
     font-style: normal;
     color: white;
 }
 
 .terms-of-use h1 {
-    font-size: 32px;
-    font-family: AlteHaas, sans-serif;
+    font-size: var(--text-4xl);
+    font-family: var(--font-body);
     font-style: normal;
     color: white;
 }
 
 .terms-of-use h2 {
-    font-size: 28px;
-    font-family: AlteHaas, sans-serif;
+    font-size: var(--text-3xl);
+    font-family: var(--font-body);
     font-style: normal;
     color: white;
 }
 
 .terms-of-use h3 {
-    font-size: 24px;
-    font-family: AlteHaas, sans-serif;
+    font-size: var(--text-2xl);
+    font-family: var(--font-body);
     font-style: normal;
     color: white;
 }
 
 .terms-of-use p a {
-    font-size: 20px;
-    font-family: AlteHaas, sans-serif;
+    font-size: var(--text-xl);
+    font-family: var(--font-body);
     font-style: normal;
     color: white;
 }
 
 .terms-of-use {
-    padding: 20px;
+    padding: var(--space-12);
 }

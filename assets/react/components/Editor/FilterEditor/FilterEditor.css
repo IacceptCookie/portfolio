@@ -2,7 +2,7 @@
     display: flex;
     flex-direction: column;
     justify-content: center;
-    padding: 10px;
+    padding: var(--space-6);
 }
 
 .filter-editor-menu {
@@ -15,7 +15,7 @@
     box-shadow: 2px 2px 3px #7577CD;
     border-radius: 20px;
     padding: 15px 10px;
-    margin: 0 10px;
+    margin: 0 var(--space-6);
     box-sizing: border-box;
     flex-direction: column;
 }
@@ -23,17 +23,18 @@
 .filter-editor-input-label, .filter-editor-input-color, .filter-editor-input-type {
     outline: none;
     background-color: white;
-    font-family: AltHaas, sans-serif;
+    font-family: var(--font-body);
     font-weight: bold;
-    font-size: 24px;
+    font-size: var(--text-2xl);
     width: 100%;
     max-width: 600px;
     align-self: center;
-    padding: 12px;
+    padding: var(--space-7);
     box-sizing: border-box;
     border-radius: 30px;
     border: solid 4px #7577CD;
-    margin: 10px 0;
+    margin: var(--space-6) 0;
+    min-height: var(--touch-target);
 }
 
 .filter-editor-input-type {
@@ -47,7 +48,7 @@
     display: flex;
     justify-content: space-around;
     width: 100%;
-    padding: 10px;
+    padding: var(--space-6);
     box-sizing: border-box;
     flex-direction: column;
 }
@@ -57,16 +58,17 @@
     color: white;
     width: fit-content;
     box-sizing: border-box;
-    padding: 20px;
+    padding: var(--space-12);
     align-self: center;
-    margin: 15px 0;
-    font-family: AlteHaas, sans-serif;
+    margin: var(--space-9) 0;
+    font-family: var(--font-body);
     font-weight: bold;
-    font-size: 32px;
+    font-size: var(--text-4xl);
     border-radius: 15px;
     border: none;
     outline: none;
     cursor: pointer;
+    min-height: var(--touch-target);
 }
 
 .filter-save-button:hover {
@@ -79,16 +81,17 @@
     color: white;
     width: fit-content;
     box-sizing: border-box;
-    padding: 20px;
+    padding: var(--space-12);
     align-self: center;
-    margin: 15px 0;
-    font-family: AlteHaas, sans-serif;
+    margin: var(--space-9) 0;
+    font-family: var(--font-body);
     font-weight: bold;
-    font-size: 32px;
+    font-size: var(--text-4xl);
     border-radius: 15px;
     border: none;
     outline: none;
     cursor: pointer;
+    min-height: var(--touch-target);
 }
 
 .filter-delete-button:hover {

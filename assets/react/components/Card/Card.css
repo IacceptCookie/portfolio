@@ -2,7 +2,7 @@
     display: flex;
     text-decoration: none;
     flex-direction: column;
-    margin: 8px;
+    margin: var(--space-5);
     width: calc(100% - 16px);
     max-width: 600px;
     background: #0E1084;
@@ -23,8 +23,8 @@
 .large-card-illustration-title, .menu-card-illustration-title {
     text-align: center;
     font-weight: bold;
-    font-size: 30px;
-    font-family: AlteHaas, sans-serif;
+    font-size: var(--text-3xl-2);
+    font-family: var(--font-body);
     color: white;
 }
 
@@ -38,25 +38,25 @@
     display: none;
     text-align: center;
     font-weight: bold;
-    font-size: 16px;
-    font-family: AlteHaas, sans-serif;
+    font-size: var(--text-base);
+    font-family: var(--font-body);
     color: white;
-    margin: 4px;
+    margin: var(--space-2);
 }
 
 .large-card-description-area {
     display: none;
     flex-direction: column;
     justify-content: space-between;
-    padding: 10px;
+    padding: var(--space-6);
     height: 180px;
 }
 
 .large-card-description {
     text-align: center;
     color: white;
-    font-size: 16px;
-    font-family: AlteHaas, sans-serif;
+    font-size: var(--text-base);
+    font-family: var(--font-body);
     overflow: auto;
     scrollbar-width: none;
 }
@@ -71,7 +71,7 @@
     position: relative;
     text-decoration: none;
     flex-direction: column;
-    margin: 8px;
+    margin: var(--space-5);
     width: calc(100% - 16px);
     max-width: 250px;
     background: #0E1084;
@@ -106,15 +106,15 @@
 .small-card-hover-text {
     text-align: center;
     color: white;
-    font-family: AlteHaas, sans-serif;
+    font-family: var(--font-body);
     font-weight: bold;
-    font-size: 20px;
+    font-size: var(--text-xl);
 }
 
 .small-card-content {
     display: flex;
     flex-direction: column;
-    padding: 5px;
+    padding: var(--space-3);
     width: 100%;
     box-sizing: border-box;
 }
@@ -128,9 +128,9 @@
 .small-card-illustration-title {
     text-align: center;
     font-weight: bold;
-    font-size: 20px;
+    font-size: var(--text-xl);
     color: white;
-    font-family: AlteHaas, sans-serif;
+    font-family: var(--font-body);
     transition: 0.5s;
 }
 
@@ -139,7 +139,7 @@
 }
 
 .small-card-description-area {
-    margin: 20px 0;
+    margin: var(--space-12) 0;
     height: 140px;
     overflow: auto;
     scrollbar-width: none;
@@ -147,14 +147,14 @@
 
 .small-card-description {
     text-align: center;
-    font-size: 16px;
+    font-size: var(--text-base);
     color: white;
-    font-family: AlteHaas, sans-serif;
+    font-family: var(--font-body);
 }
 
 @media only screen and (min-width: 600px) {
     .large-card-illustration-title, .menu-card-illustration-title {
-        font-size: 50px;
+        font-size: var(--text-5xl-3);
     }
 }
 
@@ -181,7 +181,7 @@
     .large-card-illustration-title {
         text-align: left;
         margin: 8%;
-        font-size: 58px;
+        font-size: var(--text-6xl-2);
     }
 
     .large-card-illustration-reading-time {
@@ -195,7 +195,7 @@
     }
 
     .large-card-description {
-        font-size: 20px;
+        font-size: var(--text-xl);
     }
 
     .left {
@@ -213,10 +213,10 @@
     }
 
     .large-card-illustration-title {
-        font-size: 76px;
+        font-size: var(--text-8xl);
     }
 
     .large-card-description {
-        font-size: 24px;
+        font-size: var(--text-2xl);
     }
 }

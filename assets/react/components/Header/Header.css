@@ -1,7 +1,7 @@
 .header {
     display: flex;
     flex-direction: column;
-    padding: 10px 0;
+    padding: var(--space-6) 0;
     z-index: 1000;
     position: fixed;
     left: 0;
@@ -28,7 +28,7 @@
 .header__left {
     display: flex;
     justify-content: left;
-    padding: 0 10px;
+    padding: 0 var(--space-6);
     flex: 1;
     align-items: center;
 }
@@ -36,7 +36,7 @@
 .header__right {
     display: flex;
     justify-content: right;
-    padding: 0 10px;
+    padding: 0 var(--space-6);
     flex: 1;
     align-items: center;
 }
@@ -62,12 +62,12 @@
 }
 
 .header__link {
-    font-size: 32px;
+    font-size: var(--text-4xl);
 }
 
 .header__link-small {
-    font-size: 26px;
-    margin: 10px 0;
+    font-size: var(--text-2xl-2);
+    margin: var(--space-6) 0;
     min-height: var(--touch-target);
     display: flex;
     align-items: center;
@@ -75,7 +75,7 @@
 
 .header__link.rollon, .header__link-small.rollon {
     position: relative;
-    padding: 0 10px;
+    padding: 0 var(--space-6);
 }
 
 .header__link-small.rollon::before {
@@ -127,7 +127,7 @@
 }
 
 .header__small>a, .header__small>button {
-    margin: 0 10px;
+    margin: 0 var(--space-6);
     height: 60px;
     padding: 0;
 }

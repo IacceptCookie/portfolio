@@ -34,7 +34,7 @@
 .presentation-portrait-placeholder span {
     color: white;
     font-family: Altone, sans-serif;
-    font-size: 64px;
+    font-size: var(--text-7xl);
     font-weight: bold;
 }
 
@@ -48,22 +48,22 @@
     margin: 0 0 8px 0;
     color: white;
     font-family: Altone, sans-serif;
-    font-size: 32px;
+    font-size: var(--text-4xl);
     font-weight: bold;
 }
 
 .presentation-subtitle {
     margin: 0 0 20px 0;
     color: #A0A3FF;
-    font-family: AlteHaas, sans-serif;
-    font-size: 18px;
+    font-family: var(--font-body);
+    font-size: var(--text-lg);
     font-weight: bold;
 }
 
 .presentation-text {
     color: #bdbecd;
-    font-family: AlteHaas, sans-serif;
-    font-size: 16px;
+    font-family: var(--font-body);
+    font-size: var(--text-base);
     line-height: 1.6;
 }
 
@@ -94,7 +94,7 @@
     }
 
     .presentation-portrait-placeholder span {
-        font-size: 80px;
+        font-size: var(--text-9xl);
     }
 
     .presentation-content {
@@ -102,15 +102,15 @@
     }
 
     .presentation-title {
-        font-size: 42px;
+        font-size: var(--text-5xl);
     }
 
     .presentation-subtitle {
-        font-size: 20px;
+        font-size: var(--text-xl);
     }
 
     .presentation-text {
-        font-size: 17px;
+        font-size: var(--text-base-2);
     }
 }
 
@@ -152,7 +152,7 @@
     color: white;
     font-family: Altone, sans-serif;
     font-weight: bold;
-    font-size: 28px;
+    font-size: var(--text-3xl);
     max-width: 1000px;
 }
 
@@ -161,7 +161,7 @@
     flex-direction: column;
     width: 100%;
     max-width: 1000px;
-    padding: 10px;
+    padding: var(--space-6);
     box-sizing: border-box;
     align-self: center;
     align-items: center;
@@ -174,7 +174,7 @@
     max-width: 90vh;
     object-fit: contain;
     display: block;
-    margin: 20px 0;
+    margin: var(--space-12) 0;
 }
 
 .cv-download-button {
@@ -184,11 +184,13 @@
     border: none;
     text-decoration: none;
     border-radius: 24px;
-    font-size: 30px;
+    font-size: var(--text-3xl-2);
     font-weight: bold;
-    font-family: AlteHaas, sans-serif;
+    font-family: var(--font-body);
     padding: 12px 18px;
     margin: 30px 0;
+    min-height: var(--touch-target);
+    align-items: center;
 }
 
 .cv-download-button:hover {
@@ -204,7 +206,7 @@
     display: flex;
     flex-direction: column;
     width: 100%;
-    padding: 10px;
+    padding: var(--space-6);
     box-sizing: border-box;
 }
 
@@ -213,14 +215,14 @@
     flex-direction: row;
     align-items: start;
     justify-content: center;
-    margin: 10px 0;
+    margin: var(--space-6) 0;
 }
 
 .grafana-section-logo>span {
     color: #bdbecd;
-    font-size: 16px;
+    font-size: var(--text-base);
     font-weight: bold;
-    font-family: AlteHaas, sans-serif;
+    font-family: var(--font-body);
 }
 
 .grafana-section-logo>img {
@@ -231,21 +233,21 @@
 
 .grafana-section-text, .grafana-section-text-centered {
     color: #bdbecd;
-    font-family: AlteHaas, sans-serif;
+    font-family: var(--font-body);
 }
 
 .grafana-section-text-centered {
     text-align: center;
     margin: 12px 0;
     padding: 0 15px;
-    font-size: 24px;
+    font-size: var(--text-2xl);
 }
 
 .grafana-section-text {
     width: fit-content;
     align-self: center;
-    margin: 10px 0;
-    font-size: 20px;
+    margin: var(--space-6) 0;
+    font-size: var(--text-xl);
     font-weight: normal;
 }
 
@@ -257,7 +259,7 @@
     display: flex;
     flex-direction: column;
     width: 100%;
-    padding: 10px;
+    padding: var(--space-6);
     box-sizing: border-box;
 }
 
@@ -266,23 +268,23 @@
     flex-direction: row;
     align-items: start;
     justify-content: center;
-    margin: 10px 0;
+    margin: var(--space-6) 0;
 }
 
 .postgresql-section-logo>p {
     color: #bdbecd;
     margin: 0 0 0 5px;
-    font-size: 32px;
+    font-size: var(--text-4xl);
     font-weight: bold;
-    font-family: AlteHaas, sans-serif;
+    font-family: var(--font-body);
     align-self: center;
 }
 
 .postgresql-section-logo>span {
     color: #bdbecd;
-    font-size: 16px;
+    font-size: var(--text-base);
     font-weight: bold;
-    font-family: AlteHaas, sans-serif;
+    font-family: var(--font-body);
 }
 
 .postgresql-section-logo>img {
@@ -293,21 +295,21 @@
 
 .postgresql-section-text, .postgresql-section-text-centered {
     color: #bdbecd;
-    font-family: AlteHaas, sans-serif;
+    font-family: var(--font-body);
 }
 
 .postgresql-section-text-centered {
     text-align: center;
     margin: 12px 0;
     padding: 0 15px;
-    font-size: 24px;
+    font-size: var(--text-2xl);
 }
 
 .postgresql-section-text {
     width: fit-content;
     align-self: center;
     margin: 10px 0 0 0;
-    font-size: 20px;
+    font-size: var(--text-xl);
     font-weight: normal;
 }
 
@@ -319,7 +321,7 @@
     display: flex;
     flex-direction: column;
     width: 100%;
-    padding: 10px;
+    padding: var(--space-6);
     box-sizing: border-box;
 }
 
@@ -328,23 +330,23 @@
     flex-direction: row;
     align-items: start;
     justify-content: center;
-    margin: 10px 0;
+    margin: var(--space-6) 0;
 }
 
 .react-section-logo>p {
     color: #bdbecd;
     margin: 0 0 0 5px;
-    font-size: 32px;
+    font-size: var(--text-4xl);
     font-weight: bold;
-    font-family: AlteHaas, sans-serif;
+    font-family: var(--font-body);
     align-self: center;
 }
 
 .react-section-logo>span {
     color: #bdbecd;
-    font-size: 16px;
+    font-size: var(--text-base);
     font-weight: bold;
-    font-family: AlteHaas, sans-serif;
+    font-family: var(--font-body);
 }
 
 .react-section-logo>img {
@@ -355,21 +357,21 @@
 
 .react-section-text, .react-section-text-centered {
     color: #bdbecd;
-    font-family: AlteHaas, sans-serif;
+    font-family: var(--font-body);
 }
 
 .react-section-text-centered {
     text-align: center;
     margin: 12px 0;
     padding: 0 15px;
-    font-size: 24px;
+    font-size: var(--text-2xl);
 }
 
 .react-section-text {
     width: fit-content;
     align-self: center;
     margin: 10px 0 0 0;
-    font-size: 20px;
+    font-size: var(--text-xl);
     font-weight: normal;
 }
 
@@ -379,7 +381,7 @@
 
 @media only screen and (min-width: 800px) {
     .react-section-logo>p {
-        font-size: 54px;
+        font-size: var(--text-6xl);
     }
 
     .react-section-logo>img {
@@ -387,11 +389,11 @@
     }
 
     .react-section-text {
-        margin: 10px 0;
+        margin: var(--space-6) 0;
     }
 
     .postgresql-section-logo>p {
-        font-size: 54px;
+        font-size: var(--text-6xl);
     }
 
     .postgresql-section-logo>img {
@@ -399,6 +401,6 @@
     }
 
     .postgresql-section-text {
-        margin: 10px 0;
+        margin: var(--space-6) 0;
     }
 }
