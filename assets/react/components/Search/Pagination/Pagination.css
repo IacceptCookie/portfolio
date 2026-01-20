@@ -23,11 +23,15 @@
     background-color: #0E1084;
     color: white;
     border: solid 2px #7577CD;
+    font-family: var(--font-body);
     font-size: 24px;
     padding: 6px 12px;
     align-items: center;
+    justify-content: center;
     border-radius: 10px;
     cursor: pointer;
+    min-height: var(--touch-target);
+    min-width: var(--touch-target);
 }
 
 .pagination-bar__current {

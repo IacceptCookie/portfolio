@@ -1,3 +1,56 @@
+/* ========================================
+   Design System - CSS Variables
+   ======================================== */
+:root {
+    /* Colors */
+    --color-primary: #7577CD;
+    --color-primary-light: #A0A3FF;
+    --color-primary-dark: #5a5bae;
+    --color-bg-main: #080957;
+    --color-bg-dark: #0E1084;
+    --color-bg-card: #0E1084;
+    --color-text-primary: #ffffff;
+    --color-text-secondary: #bdbecd;
+    --color-text-muted: #8b8c98;
+
+    /* Typography */
+    --font-display: 'Akira', sans-serif;
+    --font-heading: 'Altone', sans-serif;
+    --font-body: 'AlteHaas', sans-serif;
+
+    /* Spacing (base 8px) */
+    --space-1: 4px;
+    --space-2: 8px;
+    --space-3: 12px;
+    --space-4: 16px;
+    --space-5: 20px;
+    --space-6: 24px;
+    --space-8: 32px;
+    --space-10: 40px;
+    --space-12: 48px;
+
+    /* Border Radius */
+    --radius-sm: 4px;
+    --radius-md: 8px;
+    --radius-lg: 16px;
+    --radius-xl: 24px;
+    --radius-full: 9999px;
+
+    /* Shadows */
+    --shadow-sm: 1px 1px 2px var(--color-primary);
+    --shadow-md: 2px 2px 3px var(--color-primary);
+
+    /* Transitions */
+    --transition-fast: 0.2s ease;
+    --transition-normal: 0.3s ease;
+
+    /* Layout */
+    --container-max: 1000px;
+
+    /* Touch target minimum */
+    --touch-target: 44px;
+}
+
 html {
     height: 100%;
     display: flex;

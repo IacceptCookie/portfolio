@@ -57,13 +57,20 @@
     text-decoration: none;
     color: white;
     font-weight: 800;
-    font-size: 32px;
     letter-spacing: 3px;
-    font-family: Akira, sans-serif;
+    font-family: var(--font-display);
+}
+
+.header__link {
+    font-size: 32px;
 }
 
 .header__link-small {
+    font-size: 26px;
     margin: 10px 0;
+    min-height: var(--touch-target);
+    display: flex;
+    align-items: center;
 }
 
 .header__link.rollon, .header__link-small.rollon {
@@ -129,6 +136,8 @@
     background: none;
     border: none;
     cursor: pointer;
+    min-width: var(--touch-target);
+    min-height: var(--touch-target);
 }
 
 .header__toggle-icon {

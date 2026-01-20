@@ -54,11 +54,12 @@
     box-sizing: border-box;
     background-color: white;
     color: black;
-    font-family: AlteHaas, sans-serif;
+    font-family: var(--font-body);
     font-weight: bold;
     font-size: 18px;
     border-radius: 30px;
     outline: none;
+    min-height: var(--touch-target);
 }
 
 #submit {
@@ -70,12 +71,13 @@
     cursor: pointer;
     color: white;
     box-sizing: border-box;
-    font-family: AlteHaas, sans-serif;
+    font-family: var(--font-body);
     font-weight: bold;
     font-size: 18px;
     border: none;
     border-radius: 30px;
     transition: 0.3s;
+    min-height: var(--touch-target);
 }
 
 #submit:hover {

@@ -47,18 +47,18 @@
 .footer__section-link-item {
     text-align: center;
     display: block;
-    margin: 14px 0;
+    margin: 8px 0;
 }
 
 .footer__section-link {
     font-size: 18px;
-    padding-top: 5px;
-    padding-bottom: 2px;
+    padding-top: 4px;
+    padding-bottom: 4px;
     position: relative;
     text-decoration: none;
     color: #6286bf;
     font-weight: 800;
-    font-family: AlteHaas, sans-serif;
+    font-family: var(--font-body);
 }
 
 .outer-button {

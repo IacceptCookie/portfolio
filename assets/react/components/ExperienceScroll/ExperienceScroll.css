@@ -24,11 +24,12 @@
     border-radius: 20px;
     background: transparent;
     color: #bdbecd;
-    font-family: AlteHaas, sans-serif;
+    font-family: var(--font-body);
     font-size: 14px;
     font-weight: bold;
     cursor: pointer;
     transition: all 0.3s ease;
+    min-height: var(--touch-target);
 }
 
 .experience-scroll__filter:hover {

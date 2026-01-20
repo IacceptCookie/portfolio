@@ -50,12 +50,13 @@
     box-sizing: border-box;
     background-color: white;
     color: black;
-    font-family: AlteHaas, sans-serif;
+    font-family: var(--font-body);
     font-weight: bold;
     font-size: 18px;
     border-radius: 30px;
     outline: none;
     resize: none;
+    min-height: var(--touch-target);
 }
 
 #firstname {
@@ -76,9 +77,10 @@
     background: white;
     font-size: 18px;
     font-weight: bold;
-    font-family: AlteHaas, sans-serif;
+    font-family: var(--font-body);
     appearance: none;
     margin-bottom: 15px;
+    min-height: var(--touch-target);
 }
 
 #subject:focus {
@@ -117,12 +119,13 @@
     cursor: pointer;
     color: white;
     box-sizing: border-box;
-    font-family: AlteHaas, sans-serif;
+    font-family: var(--font-body);
     font-weight: bold;
     font-size: 18px;
     border: none;
     border-radius: 30px;
     transition: 0.3s;
+    min-height: var(--touch-target);
 }
 
 #submit:hover {
@@ -150,7 +153,7 @@
     display: inline-block;
     background-color: #A0A3FF;
     color: white;
-    font-family: AlteHaas, sans-serif;
+    font-family: var(--font-body);
     font-weight: bold;
     font-size: 18px;
     padding: 10px 25px;
@@ -160,6 +163,7 @@
     text-align: center;
     margin: 10px 0 15px 0;
     box-shadow: 2px 2px 3px #7577CD;
+    min-height: var(--touch-target);
 }
 
 #file-label:hover {
