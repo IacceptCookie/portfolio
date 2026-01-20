@@ -55,9 +55,9 @@ function CGU() {
                 <p>
                     Le Site propose un formulaire de contact permettant de Nous écrire. Les informations demandées par le formulaire
                     ne sont conservées que jusqu'à ce que le message soit traité. En aucun cas, ces informations ne sont utilisées dans un autre but que celui
-                    décrit dans cette article.<br />
+                    décrit dans cet article.<br />
                     <br />
-                    L'Utilisateur consent en remplissant le formulaire de contact à communiquer les informations demandées et a être recontacté via
+                    L'Utilisateur consent en remplissant le formulaire de contact à communiquer les informations demandées et à être recontacté via
                     l'adresse électronique ainsi renseignée.<br />
                     <br />
                     Il est de la responsabilité de l'Utilisateur de ne pas communiquer d'informations que ce dernier désire garder pour lui.
@@ -80,20 +80,20 @@ function CGU() {
                     Par définition, donc, Nous ne contrôlons pas le contenu et les services que ces sites peuvent vous présenter.<br />
                     <br />
                     Les liens hypertextes ont pour seule vocation de mener l'Utilisateur vers du contenu externe susceptible de l'intéresser.
-                    En aucun cas, nous ne pouvons être associés ou être tenus responsable du contenu présent sur les sites webs relatifs à ces liens.
+                    En aucun cas, nous ne pouvons être associés ou être tenus responsables du contenu présent sur les sites webs relatifs à ces liens.
                 </p>
                 <h2>Article 7</h2>
                 <h3>Clause de responsabilité</h3>
                 <p>
-                    En aucun cas, Moi Raphaël DURAND et le Site, ne peuvent être associé ou tenu responsable de dommages et troubles causés par la mauvaise
-                    interprétation ou utilisation par l'Utilisateur des informations présentent sur le Site.<br />
+                    En aucun cas, Moi Raphaël DURAND et le Site, ne peuvent être associés ou tenus responsables de dommages et troubles causés par la mauvaise
+                    interprétation ou utilisation par l'Utilisateur des informations présentes sur le Site.<br />
                     <br />
-                    Il convient de la responsabilité de l'Utilisateur d'utiliser en adéquation les informations présentent sur le Site.
+                    Il convient de la responsabilité de l'Utilisateur d'utiliser en adéquation les informations présentes sur le Site.
                 </p>
                 <h2>Article 8</h2>
                 <h3>Cookies</h3>
                 <p>
-                    Le Site utilise des cookies pour conserver les choix de l'Utilisateur en terme de préférences.<br />
+                    Le Site utilise des cookies pour conserver les choix de l'Utilisateur en termes de préférences.<br />
                     Ces cookies ne sont pas utilisés à des fins commerciales ou publicitaires mais uniquement pour améliorer l'expérience utilisateur.
                     L'Utilisateur pourra recevoir une demande de consentement en visitant le Site. Par ailleurs, si l'Utilisateur accepte les cookies, un cookie
                     conservant son consentement pendant 12 mois lui sera remis.

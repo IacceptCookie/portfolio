@@ -18,7 +18,7 @@ function NotFound() {
                         zIndex={1}
                     />
                 </Stack>
-                <h1 className="notfound-title">On dirait que la page que vous cherchez n'a pas été trouvé...</h1>
+                <h1 className="notfound-title">On dirait que la page que vous cherchez n'a pas été trouvée...</h1>
                 <Link to="/" className="notfound-homelink">Revenir sur la page d'accueil</Link>
             </div>
         </>

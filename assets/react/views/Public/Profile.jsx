@@ -144,16 +144,16 @@ function Profile() {
                     <p className="presentation-subtitle">En exploration pour le monde de demain</p>
                     <div className="presentation-text">
                         <p>
-                            Data Scientist Junior chez Spacefoot depuis janvier 2026 (j'ai rejoint l'entreprise ne 2024). J'évolue dans un milieu <strong>dynamique et novateur</strong>.
+                            Data Scientist Junior chez Spacefoot depuis janvier 2026 (j'ai rejoint l'entreprise en 2024). J'évolue dans un milieu <strong>dynamique et novateur</strong>.
                         </p>
                         <p>
                             J'ai un parcours qui m'a permis de m'intéresser dans de <strong>nombreux domaines</strong> et je compte sur cette richesse au quotidien pour apporter les <strong>solutions de demain</strong>.
                         </p>
                         <p>
-                            Je garde dans mon âme une conscience social des problèmes de notre société, et c'est la raison pour laquelle j'aspire à explorer de <strong>nouvelles</strong> façons d'entreprendre et de convevoir.
+                            Je garde dans mon âme une conscience sociale des problèmes de notre société, et c'est la raison pour laquelle j'aspire à explorer de <strong>nouvelles</strong> façons d'entreprendre et de concevoir.
                         </p>
                         <p>
-                            J'espère vous <strong>enrichir</strong> à travers mon profil, de part mes passions et mes projets.
+                            J'espère vous <strong>enrichir</strong> à travers mon profil, de par mes passions et mes projets.
                         </p>
                     </div>
                 </div>
@@ -317,7 +317,7 @@ function Profile() {
                         Grafana est une plateforme open source de <strong>visualisation et d’analyse de données</strong>.
                     </p>
                     <div className="grafana-section-text">
-                        <p>C'est un solution qui offre beaucoup de possibilités :</p>
+                        <p>C'est une solution qui offre beaucoup de possibilités :</p>
                         <ul className="grafana-section-list">
                             <li className="grafana-section-bullet">
                                 Tableaux de bord <strong>interactifs et hautement</strong> personnalisables

@@ -113,7 +113,7 @@ function Contact() {
                 </form>
                 <AnimatedText
                     className="disclaimer-text"
-                    text="Messages à caractère professionel uniquement. Tout message inapproprié ne sera pas traité. En complétant ce formulaire, vous consentez à communiquer les informations demandées. Ces dernières ne sont pas collectées dans un but commercial."
+                    text="Messages à caractère professionnel uniquement. Tout message inapproprié ne sera pas traité. En complétant ce formulaire, vous consentez à communiquer les informations demandées. Ces dernières ne sont pas collectées dans un but commercial."
                     speed={10}
                 />
             </div>

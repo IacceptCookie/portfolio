@@ -26,7 +26,7 @@ function Footer() {
                     }
                 />
                 <FooterSection
-                    title={"A propos"}
+                    title={"À propos"}
                     linksData={
                         [
                             {
