@@ -50,14 +50,11 @@ jobs:
           path: public/build/
 
       - name: Setup SSH
-        env:
-          SSH_PRIVATE_KEY: ${{ secrets.VPS_SSH_KEY }}
-          VPS_HOST: ${{ secrets.VPS_HOST }}
         run: |
           mkdir -p ~/.ssh
-          printf '%s\n' "$SSH_PRIVATE_KEY" > ~/.ssh/deploy_key
+          echo "${{ secrets.VPS_SSH_KEY }}" > ~/.ssh/deploy_key
           chmod 600 ~/.ssh/deploy_key
-          ssh-keyscan -t rsa,ed25519 "$VPS_HOST" >> ~/.ssh/known_hosts 2>/dev/null
+          ssh-keyscan -H ${{ secrets.VPS_HOST }} >> ~/.ssh/known_hosts
 
       - name: Deploy to server
         env:
@@ -70,15 +67,18 @@ jobs:
           MAILER_DSN: ${{ secrets.MAILER_DSN }}
         run: |
           # Créer le fichier .env.prod
-          cat > .env.prod << EOF
+          cat > .env.prod <<EOF
           APP_ENV=prod
           APP_SECRET=$(openssl rand -hex 16)
           DATABASE_URL=postgresql://portfolio:${DB_PASSWORD}@db:5432/portfolio?serverVersion=17&charset=utf8
           JWT_PASSPHRASE=${JWT_PASSPHRASE}
           MAILER_DSN=${MAILER_DSN:-null://null}
           DOMAIN=${DOMAIN}
+          DB_PASSWORD=${DB_PASSWORD}
           GRAFANA_PASSWORD=${GRAFANA_PASSWORD}
           EOF
+          # Supprimer les espaces en début de ligne
+          sed -i 's/^          //' .env.prod
 
           # Copier les fichiers sur le serveur
           ssh -i ~/.ssh/deploy_key ${USER}@${HOST} "mkdir -p /var/www/portfolio"
@@ -99,8 +99,8 @@ jobs:
             -e "ssh -i ~/.ssh/deploy_key" \
             public/build/ ${USER}@${HOST}:/var/www/portfolio/public/build/
 
-          # Copier le fichier .env.prod
-          scp -i ~/.ssh/deploy_key .env.prod ${USER}@${HOST}:/var/www/portfolio/.env.local
+          # Copier le fichier .env
+          scp -i ~/.ssh/deploy_key .env.prod ${USER}@${HOST}:/var/www/portfolio/.env
 
       - name: Run deployment commands
         run: |
@@ -108,28 +108,28 @@ jobs:
             cd /var/www/portfolio
 
             # Arrêter les conteneurs si nécessaire
-            docker compose --env-file .env.local -f compose.prod.yaml down --remove-orphans || true
+            docker compose -f compose.prod.yaml down --remove-orphans || true
 
             # Construire et démarrer les conteneurs
-            docker compose --env-file .env.local -f compose.prod.yaml build
-            docker compose --env-file .env.local -f compose.prod.yaml up -d
+            docker compose -f compose.prod.yaml build
+            docker compose -f compose.prod.yaml up -d
 
             # Attendre que la DB soit prête
             echo "Waiting for database..."
             sleep 10
 
             # Installer les dépendances Composer
-            docker compose --env-file .env.local -f compose.prod.yaml exec -T backend composer install --no-dev --optimize-autoloader
+            docker compose -f compose.prod.yaml exec -T backend composer install --no-dev --optimize-autoloader
 
             # Exécuter les migrations
-            docker compose --env-file .env.local -f compose.prod.yaml exec -T backend php bin/console doctrine:migrations:migrate --no-interaction
+            docker compose -f compose.prod.yaml exec -T backend php bin/console doctrine:migrations:migrate --no-interaction
 
             # Clear cache
-            docker compose --env-file .env.local -f compose.prod.yaml exec -T backend php bin/console cache:clear
-            docker compose --env-file .env.local -f compose.prod.yaml exec -T backend php bin/console cache:warmup
+            docker compose -f compose.prod.yaml exec -T backend php bin/console cache:clear
+            docker compose -f compose.prod.yaml exec -T backend php bin/console cache:warmup
 
             # Vérifier le statut
-            docker compose --env-file .env.local -f compose.prod.yaml ps
+            docker compose -f compose.prod.yaml ps
           ENDSSH
 
       - name: Health check
