@@ -105,28 +105,28 @@ jobs:
             cd /var/www/portfolio
 
             # Arrêter les conteneurs si nécessaire
-            docker compose -f compose.prod.yaml down --remove-orphans || true
+            docker compose --env-file .env.local -f compose.prod.yaml down --remove-orphans || true
 
             # Construire et démarrer les conteneurs
-            docker compose -f compose.prod.yaml build
-            docker compose -f compose.prod.yaml up -d
+            docker compose --env-file .env.local -f compose.prod.yaml build
+            docker compose --env-file .env.local -f compose.prod.yaml up -d
 
             # Attendre que la DB soit prête
             echo "Waiting for database..."
             sleep 10
 
             # Installer les dépendances Composer
-            docker compose -f compose.prod.yaml exec -T backend composer install --no-dev --optimize-autoloader
+            docker compose --env-file .env.local -f compose.prod.yaml exec -T backend composer install --no-dev --optimize-autoloader
 
             # Exécuter les migrations
-            docker compose -f compose.prod.yaml exec -T backend php bin/console doctrine:migrations:migrate --no-interaction
+            docker compose --env-file .env.local -f compose.prod.yaml exec -T backend php bin/console doctrine:migrations:migrate --no-interaction
 
             # Clear cache
-            docker compose -f compose.prod.yaml exec -T backend php bin/console cache:clear
-            docker compose -f compose.prod.yaml exec -T backend php bin/console cache:warmup
+            docker compose --env-file .env.local -f compose.prod.yaml exec -T backend php bin/console cache:clear
+            docker compose --env-file .env.local -f compose.prod.yaml exec -T backend php bin/console cache:warmup
 
             # Vérifier le statut
-            docker compose -f compose.prod.yaml ps
+            docker compose --env-file .env.local -f compose.prod.yaml ps
           ENDSSH
 
       - name: Health check
