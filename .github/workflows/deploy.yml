@@ -106,45 +106,36 @@ jobs:
           # Copier le fichier .env
           scp -i ~/.ssh/deploy_key .env.prod ${USER}@${HOST}:/var/www/portfolio/.env
 
-      - name: Run deployment commands
+      - name: Start containers
         run: |
-          ssh -i ~/.ssh/deploy_key ${{ secrets.VPS_USER }}@${{ secrets.VPS_HOST }} << 'ENDSSH'
-            cd /var/www/portfolio
+          ssh -i ~/.ssh/deploy_key ${{ secrets.VPS_USER }}@${{ secrets.VPS_HOST }} "cd /var/www/portfolio && docker compose -f compose.prod.yaml down --remove-orphans || true && mkdir -p var/cache var/log config/jwt && rm -rf var/cache/* && docker compose -f compose.prod.yaml build && docker compose -f compose.prod.yaml up -d"
 
-            # Arrêter les conteneurs si nécessaire
-            docker compose -f compose.prod.yaml down --remove-orphans || true
+      - name: Wait for database
+        run: sleep 15
 
-            # Préparer les répertoires sur le host
-            mkdir -p var/cache var/log config/jwt
-            rm -rf var/cache/*
+      - name: Install dependencies
+        run: |
+          ssh -i ~/.ssh/deploy_key ${{ secrets.VPS_USER }}@${{ secrets.VPS_HOST }} "cd /var/www/portfolio && docker compose -f compose.prod.yaml exec -T backend composer install --no-dev --optimize-autoloader"
 
-            # Construire et démarrer les conteneurs
-            docker compose -f compose.prod.yaml build
-            docker compose -f compose.prod.yaml up -d
+      - name: Run migrations
+        run: |
+          ssh -i ~/.ssh/deploy_key ${{ secrets.VPS_USER }}@${{ secrets.VPS_HOST }} "cd /var/www/portfolio && docker compose -f compose.prod.yaml exec -T backend php bin/console doctrine:migrations:migrate --no-interaction"
 
-            # Attendre que la DB soit prête
-            echo "Waiting for database..."
-            sleep 10
+      - name: Generate JWT keys
+        run: |
+          ssh -i ~/.ssh/deploy_key ${{ secrets.VPS_USER }}@${{ secrets.VPS_HOST }} "cd /var/www/portfolio && docker compose -f compose.prod.yaml exec -T backend php bin/console lexik:jwt:generate-keypair --skip-if-exists"
 
-            # Installer les dépendances Composer
-            docker compose -f compose.prod.yaml exec -T backend composer install --no-dev --optimize-autoloader
+      - name: Clear cache
+        run: |
+          ssh -i ~/.ssh/deploy_key ${{ secrets.VPS_USER }}@${{ secrets.VPS_HOST }} "cd /var/www/portfolio && docker compose -f compose.prod.yaml exec -T backend php bin/console cache:clear && docker compose -f compose.prod.yaml exec -T backend php bin/console cache:warmup"
 
-            # Exécuter les migrations
-            docker compose -f compose.prod.yaml exec -T backend php bin/console doctrine:migrations:migrate --no-interaction
+      - name: Fix permissions
+        run: |
+          ssh -i ~/.ssh/deploy_key ${{ secrets.VPS_USER }}@${{ secrets.VPS_HOST }} "cd /var/www/portfolio && docker compose -f compose.prod.yaml exec -T backend chown -R www-data:www-data /var/www/symfony/var /var/www/symfony/config/jwt"
 
-            # Générer les clés JWT (en root pour avoir les permissions d'écriture)
-            docker compose -f compose.prod.yaml exec -T backend php bin/console lexik:jwt:generate-keypair --skip-if-exists
-
-            # Clear et warmup du cache
-            docker compose -f compose.prod.yaml exec -T backend php bin/console cache:clear
-            docker compose -f compose.prod.yaml exec -T backend php bin/console cache:warmup
-
-            # FIXER LES PERMISSIONS À LA FIN (après que tous les fichiers sont créés)
-            docker compose -f compose.prod.yaml exec -T backend chown -R www-data:www-data /var/www/symfony/var /var/www/symfony/config/jwt
-
-            # Vérifier le statut
-            docker compose -f compose.prod.yaml ps
-          ENDSSH
+      - name: Verify deployment
+        run: |
+          ssh -i ~/.ssh/deploy_key ${{ secrets.VPS_USER }}@${{ secrets.VPS_HOST }} "cd /var/www/portfolio && docker compose -f compose.prod.yaml ps"
 
       - name: Health check
         run: |
