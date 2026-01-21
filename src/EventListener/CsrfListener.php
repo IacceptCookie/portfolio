@@ -19,9 +19,9 @@ class CsrfListener
     public function onKernelRequest(RequestEvent $event): void
     {
         $request = $event->getRequest();
-        $currentRoute = $request->attributes->get('_route');
+        $currentRoute = $request->attributes->get('_route') ?? '';
 
-        if (str_starts_with($currentRoute, 'authentication') || str_starts_with($currentRoute, 'email/contact')) {
+        if (str_starts_with($currentRoute, 'authentication') || str_starts_with($currentRoute, 'app_contact_email')) {
             return;
         }
 
