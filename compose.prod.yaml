@@ -37,9 +37,8 @@ services:
     volumes:
       - ./docker/nginx/nginx.prod.conf:/etc/nginx/nginx.conf
       - ./public:/var/www/symfony/public
-      # Décommenter après avoir généré les certificats SSL :
-      # - /etc/letsencrypt:/etc/letsencrypt:ro
-      # - ./certbot/www:/var/www/certbot:ro
+      - /etc/letsencrypt:/etc/letsencrypt:ro
+      - ./certbot/www:/var/www/certbot:ro
     depends_on:
       - backend
     networks:
