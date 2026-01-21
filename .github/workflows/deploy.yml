@@ -125,19 +125,19 @@ jobs:
             # Installer les dépendances Composer
             docker compose -f compose.prod.yaml exec -T backend composer install --no-dev --optimize-autoloader
 
-            # Générer les clés JWT si elles n'existent pas
-            docker compose -f compose.prod.yaml exec -T backend mkdir -p /var/www/symfony/config/jwt
-            docker compose -f compose.prod.yaml exec -T backend php bin/console lexik:jwt:generate-keypair --skip-if-exists
+            # Préparer les répertoires et permissions
+            docker compose -f compose.prod.yaml exec -T backend mkdir -p /var/www/symfony/config/jwt /var/www/symfony/var
+            docker compose -f compose.prod.yaml exec -T backend chown -R www-data:www-data /var/www/symfony/var /var/www/symfony/config/jwt
+
+            # Générer les clés JWT si elles n'existent pas (en tant que www-data)
+            docker compose -f compose.prod.yaml exec -T -u www-data backend php bin/console lexik:jwt:generate-keypair --skip-if-exists
 
             # Exécuter les migrations
             docker compose -f compose.prod.yaml exec -T backend php bin/console doctrine:migrations:migrate --no-interaction
 
-            # Clear cache
-            docker compose -f compose.prod.yaml exec -T backend php bin/console cache:clear
-            docker compose -f compose.prod.yaml exec -T backend php bin/console cache:warmup
-
-            # Fixer les permissions
-            docker compose -f compose.prod.yaml exec -T backend chown -R www-data:www-data /var/www/symfony/var /var/www/symfony/config/jwt
+            # Clear cache (en tant que www-data)
+            docker compose -f compose.prod.yaml exec -T -u www-data backend php bin/console cache:clear
+            docker compose -f compose.prod.yaml exec -T -u www-data backend php bin/console cache:warmup
 
             # Vérifier le statut
             docker compose -f compose.prod.yaml ps
