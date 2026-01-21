@@ -28,7 +28,7 @@ class TwoFactorService
         $this->entityManager->flush();
 
         $email = (new Email())
-            ->from('noreply@raphael-durand.fr')
+            ->from('contact@raphael-durand.fr')
             ->to($user->getEmail())
             ->subject('Votre code de connexion')
             ->text("Votre code de vérification est : $code. (Ce code est valable 5 minutes)");
