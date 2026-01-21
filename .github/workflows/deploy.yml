@@ -129,30 +129,18 @@ jobs:
             # Installer les dépendances Composer
             docker compose -f compose.prod.yaml exec -T backend composer install --no-dev --optimize-autoloader
 
-            # Fixer les permissions DANS le container (où on a root)
-            echo "=== Before chown ==="
-            docker compose -f compose.prod.yaml exec -T backend ls -la /var/www/symfony/var/
-            docker compose -f compose.prod.yaml exec -T backend ls -la /var/www/symfony/config/jwt/
+            # Exécuter les migrations
+            docker compose -f compose.prod.yaml exec -T backend php bin/console doctrine:migrations:migrate --no-interaction
 
+            # Générer les clés JWT (en root pour avoir les permissions d'écriture)
+            docker compose -f compose.prod.yaml exec -T backend php bin/console lexik:jwt:generate-keypair --skip-if-exists
+
+            # Clear et warmup du cache
+            docker compose -f compose.prod.yaml exec -T backend php bin/console cache:clear
+            docker compose -f compose.prod.yaml exec -T backend php bin/console cache:warmup
+
+            # FIXER LES PERMISSIONS À LA FIN (après que tous les fichiers sont créés)
             docker compose -f compose.prod.yaml exec -T backend chown -R www-data:www-data /var/www/symfony/var /var/www/symfony/config/jwt
-
-            echo "=== After chown ==="
-            docker compose -f compose.prod.yaml exec -T backend ls -la /var/www/symfony/var/
-            docker compose -f compose.prod.yaml exec -T backend ls -la /var/www/symfony/config/jwt/
-
-            # Générer les clés JWT si elles n'existent pas (en tant que www-data)
-            echo "=== Generating JWT keys ==="
-            docker compose -f compose.prod.yaml exec -T -u www-data backend php bin/console lexik:jwt:generate-keypair --skip-if-exists
-
-            echo "=== After JWT generation ==="
-            docker compose -f compose.prod.yaml exec -T backend ls -la /var/www/symfony/config/jwt/
-
-            # Exécuter les migrations (en tant que www-data)
-            docker compose -f compose.prod.yaml exec -T -u www-data backend php bin/console doctrine:migrations:migrate --no-interaction
-
-            # Clear cache (en tant que www-data)
-            docker compose -f compose.prod.yaml exec -T -u www-data backend php bin/console cache:clear
-            docker compose -f compose.prod.yaml exec -T -u www-data backend php bin/console cache:warmup
 
             # Vérifier le statut
             docker compose -f compose.prod.yaml ps
