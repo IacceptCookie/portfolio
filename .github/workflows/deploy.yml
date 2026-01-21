@@ -73,6 +73,8 @@ jobs:
           APP_CSRF_SECRET=$(openssl rand -hex 16)
           DATABASE_URL=postgresql://portfolio:${DB_PASSWORD}@db:5432/portfolio?serverVersion=17&charset=utf8
           MESSENGER_TRANSPORT_DSN=doctrine://default?auto_setup=0
+          JWT_SECRET_KEY=%kernel.project_dir%/config/jwt/private.pem
+          JWT_PUBLIC_KEY=%kernel.project_dir%/config/jwt/public.pem
           JWT_PASSPHRASE=${JWT_PASSPHRASE}
           MAILER_DSN=${MAILER_DSN:-null://null}
           DOMAIN=${DOMAIN}
@@ -122,6 +124,9 @@ jobs:
 
             # Installer les dépendances Composer
             docker compose -f compose.prod.yaml exec -T backend composer install --no-dev --optimize-autoloader
+
+            # Générer les clés JWT si elles n'existent pas
+            docker compose -f compose.prod.yaml exec -T backend php bin/console lexik:jwt:generate-keypair --skip-if-exists
 
             # Exécuter les migrations
             docker compose -f compose.prod.yaml exec -T backend php bin/console doctrine:migrations:migrate --no-interaction
