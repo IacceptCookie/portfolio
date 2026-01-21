@@ -81,8 +81,8 @@ jobs:
           # Supprimer les espaces en début de ligne
           sed -i 's/^          //' .env.prod
 
-          # Copier les fichiers sur le serveur
-          ssh -i ~/.ssh/deploy_key ${USER}@${HOST} "mkdir -p /var/www/portfolio"
+          # Préparer le serveur et fixer les permissions
+          ssh -i ~/.ssh/deploy_key ${USER}@${HOST} "mkdir -p /var/www/portfolio && sudo chown -R ${USER}:${USER} /var/www/portfolio"
 
           # Sync du code (exclure les fichiers sensibles et les dépendances)
           rsync -avz --delete \
