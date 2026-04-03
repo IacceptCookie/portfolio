@@ -102,6 +102,22 @@ function ArticleEditorMenu({ article, setArticle }) {
                     value={article.description || ""}
                     onChange={(e) => setArticle(prev => ({ ...prev, description: e.target.value }))}
                 />
+                <div className="article-editor-reading-time-wrapper">
+                    <input
+                        type="number"
+                        name="readingTime"
+                        placeholder="Temps de lecture (min)"
+                        className="article-editor-input-reading-time"
+                        min="1"
+                        value={article.readingTime || ""}
+                        onChange={(e) => setArticle(prev => ({ ...prev, readingTime: e.target.value }))}
+                    />
+                    <span className="article-editor-reading-time-hint">
+                        {!article.readingTime && article.elements?.length > 0
+                            ? `Auto : ${Math.round(article.elements.length * 1.5)} min`
+                            : ""}
+                    </span>
+                </div>
                 <select
                     className="article-editor-input-categories"
                     required

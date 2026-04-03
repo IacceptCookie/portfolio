@@ -16,6 +16,7 @@ const defaultArticle = {
     tags: [],
     thumbnail: "",
     elements: [],
+    readingTime: "",
 }
 
 function ArticleEditor(

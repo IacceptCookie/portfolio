@@ -48,6 +48,42 @@
     flex: 1;
 }
 
+.article-editor-reading-time-wrapper {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin: var(--space-6) 0;
+}
+
+.article-editor-input-reading-time {
+    outline: none;
+    background-color: white;
+    font-family: var(--font-body);
+    font-weight: bold;
+    font-size: var(--text-2xl);
+    padding: var(--space-7);
+    box-sizing: border-box;
+    border-radius: 30px;
+    border: solid 4px #7577CD;
+    min-height: var(--touch-target);
+    width: 250px;
+    -moz-appearance: textfield;
+}
+
+.article-editor-input-reading-time::-webkit-outer-spin-button,
+.article-editor-input-reading-time::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+
+.article-editor-reading-time-hint {
+    color: #A0A3FF;
+    font-family: var(--font-body);
+    font-weight: bold;
+    font-size: var(--text-base);
+    white-space: nowrap;
+}
+
 .article-editor-input-categories {
     -webkit-appearance: none;
     -moz-appearance: none;

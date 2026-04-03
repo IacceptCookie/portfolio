@@ -13,7 +13,7 @@ function Article(
         <>
             <ArticleIllustration
                 title={article.articleTitle}
-                readingTime={Math.round(article.elements.length * 1.5)}
+                readingTime={article.readingTime || Math.round(article.elements.length * 1.5)}
                 picture={article.illustration.imagePath}
             />
             <ArticleContentWrapper>

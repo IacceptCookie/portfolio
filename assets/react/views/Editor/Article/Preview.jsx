@@ -15,7 +15,7 @@ function Preview(
         <>
             <ArticleIllustration
                 title={article.title}
-                readingTime={Math.round(article.elements.length * 1.5)}
+                readingTime={article.readingTime || Math.round(article.elements.length * 1.5)}
                 picture={article.thumbnail}
             />
             <ArticleContentWrapper>
@@ -41,7 +41,7 @@ function Preview(
                     cardData={
                         {
                             title: article.title,
-                            readingTime: article.elements.length * 1.5,
+                            readingTime: article.readingTime || Math.round(article.elements.length * 1.5),
                             image: article.thumbnail,
                             description: article.description,
                             tags: article.tags,
@@ -55,7 +55,7 @@ function Preview(
                     cardData={
                         {
                             title: article.title,
-                            readingTime: article.elements.length * 1.5,
+                            readingTime: article.readingTime || Math.round(article.elements.length * 1.5),
                             image: article.thumbnail,
                             description: article.description,
                             tags: article.tags,

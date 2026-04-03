@@ -19,7 +19,7 @@ export const useArticleSave = () => {
     const buildPayload = (article, thumbnailPath) => ({
         articleTitle: article.title,
         articleDescription: article.description,
-        readingTime: Math.round(article.elements.length * 1.5),
+        readingTime: article.readingTime ? Number(article.readingTime) : Math.round(article.elements.length * 1.5),
         categories: article.categories.map((category) => API_ENDPOINTS.CATEGORIES.BY_ID(category.id)),
         tags: article.tags.map((tag) => API_ENDPOINTS.TAGS.BY_ID(tag.id)),
         elements: article.elements.map((element) => ({
