@@ -95,6 +95,7 @@ jobs:
             --exclude 'var' \
             --exclude '.env.local' \
             --exclude '.env.*.local' \
+            --exclude 'public/img/article/uploads' \
             -e "ssh -i ~/.ssh/deploy_key" \
             ./ ${USER}@${HOST}:/var/www/portfolio/
 
